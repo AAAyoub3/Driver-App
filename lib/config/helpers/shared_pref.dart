@@ -27,3 +27,9 @@ class SharedPrefHelper {
     return await sharedPreferences.remove(key);
   }
 }
+// @module
+// class SharedPrefHelper {
+//   @lazySingleton
+//   Future<SharedPreferences> get sharedPreferences =>
+//       SharedPreferences.getInstance();
+// }

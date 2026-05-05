@@ -8,7 +8,7 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
 import '../di/injectable_config.dart';
 
 Future<Result<T>> executeApi<T>(Future<T> Function() apiCall, BuildContext context,) async {
-   final lang = AppLocalizations.of(context)!;
+  final lang = AppLocalizations.of(context)!;
   if (!await getIt.get<InternetConnection>().hasInternetAccess) {
     return Error(
       exception: NetworkFailures(
