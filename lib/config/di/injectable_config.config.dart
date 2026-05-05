@@ -18,6 +18,7 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 import '../api/app_interceptors.dart' as _i781;
+import '../general_cubit/local_cubit.dart' as _i794;
 import '../helpers/shared_pref.dart' as _i42;
 import '../user_helper/user_helper.dart' as _i157;
 import 'register_module.dart' as _i291;
@@ -34,6 +35,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => coreInjectableModule.prefs(),
       preResolve: true,
     );
+    gh.factory<_i794.LocaleThemeCubit>(() => _i794.LocaleThemeCubit());
     gh.singleton<_i361.Dio>(() => coreInjectableModule.dio());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
       () => coreInjectableModule.secureStorage(),
