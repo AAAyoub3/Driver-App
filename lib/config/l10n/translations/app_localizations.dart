@@ -176,6 +176,72 @@ abstract class AppLocalizations {
   /// **'Phone number is required!'**
   String get phone_number_is_required;
 
+  /// No description provided for @no_internet.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection!'**
+  String get no_internet;
+
+  /// No description provided for @connectionError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to connect to the server'**
+  String get connectionError;
+
+  /// No description provided for @connectionTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to connect to the server'**
+  String get connectionTimeout;
+
+  /// No description provided for @cancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'The request to the server was cancelled'**
+  String get cancelled;
+
+  /// No description provided for @unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred while connecting to the server, please try again later!'**
+  String get unknown;
+
+  /// No description provided for @server_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Server error, please try again later!'**
+  String get server_error;
+
+  /// No description provided for @receiveTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to connect to the server while receiving data'**
+  String get receiveTimeout;
+
+  /// No description provided for @sendTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to connect to the server while sending data'**
+  String get sendTimeout;
+
+  /// No description provided for @unexpected_error.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred'**
+  String get unexpected_error;
+
+  /// No description provided for @badCertificate.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid certificate from the server'**
+  String get badCertificate;
+
+  /// No description provided for @expiredToken.
+  ///
+  /// In en, this message translates to:
+  /// **'Session expired, please log in again'**
+  String get expiredToken;
+
   /// No description provided for @phone_number_is_not_valid.
   ///
   /// In en, this message translates to:
@@ -205,6 +271,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hey There'**
   String get hey_there;
+
+  /// No description provided for @welcome_back.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get welcome_back;
 
   /// No description provided for @email.
   ///
@@ -284,12 +356,6 @@ abstract class AppLocalizations {
   /// **'Hi'**
   String get hi;
 
-  /// No description provided for @welcome_back.
-  ///
-  /// In en, this message translates to:
-  /// **'Welcome back'**
-  String get welcome_back;
-
   /// No description provided for @apply.
   ///
   /// In en, this message translates to:
@@ -368,6 +434,12 @@ abstract class AppLocalizations {
   /// **'Facebook'**
   String get facebook;
 
+  /// No description provided for @select_an_option.
+  ///
+  /// In en, this message translates to:
+  /// **'Select an option'**
+  String get select_an_option;
+
   /// No description provided for @login_success.
   ///
   /// In en, this message translates to:
@@ -379,12 +451,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Successfully'**
   String get register_success;
-
-  /// No description provided for @select_an_option.
-  ///
-  /// In en, this message translates to:
-  /// **'Select an option'**
-  String get select_an_option;
 
   /// No description provided for @connectButton.
   ///

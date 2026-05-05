@@ -50,6 +50,40 @@ class AppLocalizationsAr extends AppLocalizations {
   String get phone_number_is_required => 'رقم الهاتف مطلوب!';
 
   @override
+  String get no_internet => 'لا يوجد اتصال بالإنترنت!';
+
+  @override
+  String get connectionError => 'فشل الاتصال بالخادم';
+
+  @override
+  String get connectionTimeout => 'فشل الاتصال بالخادم';
+
+  @override
+  String get cancelled => 'تم إلغاء الطلب إلى الخادم';
+
+  @override
+  String get unknown =>
+      'حدث خطأ غير متوقع في الاتصال بالخادم ، يرجى المحاولة لاحقًا!';
+
+  @override
+  String get server_error => 'خطأ في الخادم، يرجى المحاولة لاحقًا!';
+
+  @override
+  String get receiveTimeout => 'فشل الاتصال بالخادم أثناء استلام البيانات';
+
+  @override
+  String get sendTimeout => 'فشل الاتصال بالخادم أثناء إرسال البيانات';
+
+  @override
+  String get unexpected_error => 'حدث خطأ غير متوقع';
+
+  @override
+  String get badCertificate => 'شهادة غير صالحة من الخادم';
+
+  @override
+  String get expiredToken => 'انتهت صلاحية الجلسة، يرجى تسجيل الدخول مرة أخرى';
+
+  @override
   String get phone_number_is_not_valid => 'رقم الهاتف غير صحيح';
 
   @override
@@ -63,6 +97,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get hey_there => 'مرحباً';
+
+  @override
+  String get welcome_back => 'مرحباً بعودتك';
 
   @override
   String get email => 'البريد الإلكتروني';
@@ -102,9 +139,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get hi => 'مرحباً';
-
-  @override
-  String get welcome_back => 'مرحباً بعودتك';
 
   @override
   String get apply => 'تقديم';
@@ -147,13 +181,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get facebook => 'فيسبوك';
 
   @override
+  String get select_an_option => 'اختر خياراً';
+
+  @override
   String get login_success => 'تم تسجيل الدخول بنجاح';
 
   @override
   String get register_success => 'تم التسجيل بنجاح';
-
-  @override
-  String get select_an_option => 'اختر خياراً';
 
   @override
   String get connectButton => 'ربط';

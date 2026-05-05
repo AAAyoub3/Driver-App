@@ -51,6 +51,42 @@ class AppLocalizationsEn extends AppLocalizations {
   String get phone_number_is_required => 'Phone number is required!';
 
   @override
+  String get no_internet => 'No internet connection!';
+
+  @override
+  String get connectionError => 'Failed to connect to the server';
+
+  @override
+  String get connectionTimeout => 'Failed to connect to the server';
+
+  @override
+  String get cancelled => 'The request to the server was cancelled';
+
+  @override
+  String get unknown =>
+      'An unexpected error occurred while connecting to the server, please try again later!';
+
+  @override
+  String get server_error => 'Server error, please try again later!';
+
+  @override
+  String get receiveTimeout =>
+      'Failed to connect to the server while receiving data';
+
+  @override
+  String get sendTimeout =>
+      'Failed to connect to the server while sending data';
+
+  @override
+  String get unexpected_error => 'An unexpected error occurred';
+
+  @override
+  String get badCertificate => 'Invalid certificate from the server';
+
+  @override
+  String get expiredToken => 'Session expired, please log in again';
+
+  @override
   String get phone_number_is_not_valid => 'This phone number is not valid';
 
   @override
@@ -64,6 +100,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get hey_there => 'Hey There';
+
+  @override
+  String get welcome_back => 'Welcome back';
 
   @override
   String get email => 'Email';
@@ -103,9 +142,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get hi => 'Hi';
-
-  @override
-  String get welcome_back => 'Welcome back';
 
   @override
   String get apply => 'Apply';
@@ -148,13 +184,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get facebook => 'Facebook';
 
   @override
+  String get select_an_option => 'Select an option';
+
+  @override
   String get login_success => 'LoginSuccessfully';
 
   @override
   String get register_success => 'Successfully';
-
-  @override
-  String get select_an_option => 'Select an option';
 
   @override
   String get connectButton => 'Connect';
