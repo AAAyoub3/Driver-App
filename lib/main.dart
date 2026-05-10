@@ -11,7 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-    Bloc.observer = MyBlocObserver();
+  Bloc.observer = MyBlocObserver();
   await configureDependencies();
   runApp(
     BlocProvider(
@@ -41,9 +41,9 @@ class FloweryApp extends StatelessWidget {
               onGenerateRoute: RouteGenerator.getRoute,
               debugShowCheckedModeBanner: false,
               theme: AppTheme.lightTheme,
-            //  darkTheme: AppTheme.darkTheme,
-             // themeMode: state.themeMode,
-            //  initialRoute: Routes.splashRoute, 
+              //  darkTheme: AppTheme.darkTheme,
+              // themeMode: state.themeMode,
+              //  initialRoute: Routes.splashRoute,
             );
           },
         );

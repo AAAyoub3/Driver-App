@@ -11,13 +11,16 @@ abstract class AppTheme {
       secondary: AppColors.lightPinkColor,
       error: AppColors.redColor,
       surface: AppColors.whiteColor,
+      onSurface: AppColors.greenColor,
+      onPrimary: AppColors.grayColor,
+      onSecondary: AppColors.hintGrayColor,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 14.h),
-        minimumSize: Size(double.infinity, 50.h),
         backgroundColor: AppColors.primaryColor,
         foregroundColor: AppColors.whiteColor,
+        minimumSize: Size(double.infinity, 25.h),
         textStyle: TextStyle(
           fontSize: 16.sp,
           fontWeight: .w500,
@@ -55,6 +58,16 @@ abstract class AppTheme {
         decoration: TextDecoration.underline,
         decorationColor: AppColors.primaryColor,
         decorationThickness: 1.w,
+      ),
+      labelLarge: TextStyle(
+        fontWeight: .w500,
+        fontSize: 16.sp,
+        color: AppColors.blackColor,
+      ),
+      titleLarge: TextStyle(
+        fontWeight: .w500,
+        fontSize: 13.sp,
+        color: AppColors.whiteColor,
       ),
     ),
     switchTheme: SwitchThemeData(
