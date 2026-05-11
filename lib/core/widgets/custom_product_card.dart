@@ -1,15 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flowery/core/const/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomGridWidget extends StatelessWidget {
+class CustomProductCard extends StatelessWidget {
   final String title;
   final String image;
   final double price;
   final bool hasDiscount;
   final double oldPrice;
   final double discount;
-  const CustomGridWidget({
+  const CustomProductCard({
     super.key,
     required this.title,
     required this.image,
@@ -30,11 +31,20 @@ class CustomGridWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network(
-            image,
+          CachedNetworkImage(
+            imageUrl: image,
             height: 130.h,
             width: double.infinity,
             fit: BoxFit.cover,
+            placeholder: (context, url) => Center(
+              child: CircularProgressIndicator(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+            errorWidget: (context, url, error) => Icon(
+              Icons.error,
+              color: Theme.of(context).colorScheme.error,
+            ),
           ),
           SizedBox(height: 8.h),
           Padding(
