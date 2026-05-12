@@ -8,11 +8,11 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
-class AppInterceptors extends Interceptor {
+class AuthInterceptor extends Interceptor {
   final Dio dio;
   final FlutterSecureStorage fss;
 
-  AppInterceptors({required this.dio, required this.fss});
+  AuthInterceptor({required this.dio, required this.fss});
 
   @override
   void onRequest(

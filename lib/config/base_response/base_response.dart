@@ -5,13 +5,20 @@ sealed class Result<T> {
     required R Function(T? data) success,
     required R Function(Exception? exception) error,
   }) {
-    if (this is Success<T>) {
-      return success((this as Success<T>).data);
-    } else if (this is Error<T>) {
-      return error((this as Error<T>).exception);
-    } else {
-      return error(Exception("Unhandled ApiResult case"));
+    switch (this) {
+      case Success<T>(:final data):
+        return success(data);
+      case Error<T>(:final exception):
+        return error(exception);
     }
+
+    // if (this is Success<T>) {
+    //   return success((this as Success<T>).data);
+    // } else if (this is Error<T>) {
+    //   return error((this as Error<T>).exception);
+    // } else {
+    //   return error(Exception("Unhandled ApiResult case"));
+    // }
   }
 }
 

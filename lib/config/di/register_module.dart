@@ -7,7 +7,6 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
-
 import '../api/app_interceptors.dart';
 
 @module
@@ -30,7 +29,7 @@ abstract class CoreInjectableModule {
         connectTimeout: Duration(seconds: 45),
       ),
     );
-    dio.interceptors.add(AppInterceptors(dio: dio, fss: secureStorage()));
+    dio.interceptors.add(AuthInterceptor(dio: dio, fss: secureStorage()));
     dio.interceptors.addAll([
       if (kDebugMode)
         PrettyDioLogger(

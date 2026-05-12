@@ -35,7 +35,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => coreInjectableModule.prefs(),
       preResolve: true,
     );
-    gh.factory<_i794.LocaleThemeCubit>(() => _i794.LocaleThemeCubit());
     gh.singleton<_i361.Dio>(() => coreInjectableModule.dio());
     gh.lazySingleton<_i558.FlutterSecureStorage>(
       () => coreInjectableModule.secureStorage(),
@@ -49,11 +48,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i42.SharedPrefHelper>(
       () => _i42.SharedPrefHelper(gh<_i460.SharedPreferences>()),
     );
-    gh.singleton<_i781.AppInterceptors>(
-      () => _i781.AppInterceptors(
+    gh.singleton<_i781.AuthInterceptor>(
+      () => _i781.AuthInterceptor(
         dio: gh<_i361.Dio>(),
         fss: gh<_i558.FlutterSecureStorage>(),
       ),
+    );
+    gh.factory<_i794.LocaleThemeCubit>(
+      () => _i794.LocaleThemeCubit(gh<_i42.SharedPrefHelper>()),
     );
     gh.factory<_i157.UserHelper>(
       () => _i157.UserHelper(

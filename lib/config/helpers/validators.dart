@@ -1,68 +1,91 @@
-import 'package:flowery/config/l10n/translations/app_localizations.dart';
-import 'package:flutter/material.dart';
 import 'regex.dart';
 
+
+enum ValidationError {
+  required,
+  invalidName,
+  invalidEmail,
+  invalidPassword,
+  invalidConfirmPassword,
+  passwordMismatch,
+  invalidPhoneNumber,
+}
+
 abstract class Validations {
-  static String? validateName(BuildContext context, String? name) {
+  static ValidationError? validateName(String? name) {
     if (name == null || name.isEmpty) {
-      return AppLocalizations.of(context)!.name_is_required;
-    } else if (!AppRegExp.isNameValid(name)) {
-      return AppLocalizations.of(context)!.name_is_not_valid;
+      return ValidationError.required;
     }
+
+    if (!AppRegExp.isNameValid(name)) {
+      return ValidationError.invalidName;
+    }
+
     return null;
   }
 
-  static String? validateEmail(BuildContext context, String? email) {
+  static ValidationError? validateEmail(String? email) {
     if (email == null || email.isEmpty) {
-      return AppLocalizations.of(context)!.email_is_required;
-    } else if (!AppRegExp.isEmailValid(email)) {
-      return AppLocalizations.of(context)!.email_is_not_valid;
+      return ValidationError.required;
     }
+
+    if (!AppRegExp.isEmailValid(email)) {
+      return ValidationError.invalidEmail;
+    }
+
     return null;
   }
 
-  static String? validatePassword(BuildContext context, String? password) {
+  static ValidationError? validatePassword(String? password) {
     if (password == null || password.isEmpty) {
-      return AppLocalizations.of(context)!.password_is_required;
-    } else if (!AppRegExp.isPasswordValid(password)) {
-      return AppLocalizations.of(context)!.password_is_not_valid;
+      return ValidationError.required;
     }
+
+    if (!AppRegExp.isPasswordValid(password)) {
+      return ValidationError.invalidPassword;
+    }
+
     return null;
   }
 
-  static String? validateConfirmPassword(
-    BuildContext context,
-    String? password,
-    String? confirmPassword,
-  ) {
+  static ValidationError? validateConfirmPassword({
+    required String? password,
+    required String? confirmPassword,
+  }) {
     if (confirmPassword == null || confirmPassword.isEmpty) {
-      return AppLocalizations.of(context)!.confirm_password_is_required;
-    } else if (!AppRegExp.isPasswordValid(confirmPassword)) {
-      return AppLocalizations.of(context)!.confirm_password_is_not_valid;
-    } else if (password != confirmPassword) {
-      return AppLocalizations.of(
-        context,
-      )!.password_and_confirm_password_must_be_same;
+      return ValidationError.required;
     }
+
+    if (!AppRegExp.isPasswordValid(confirmPassword)) {
+      return ValidationError.invalidConfirmPassword;
+    }
+
+    if (password != confirmPassword) {
+      return ValidationError.passwordMismatch;
+    }
+
     return null;
   }
 
-  static String? validatePhoneNumber(
-    BuildContext context,
+  static ValidationError? validatePhoneNumber(
     String? phoneNumber,
   ) {
     if (phoneNumber == null || phoneNumber.isEmpty) {
-      return AppLocalizations.of(context)!.phone_number_is_required;
-    } else if (!AppRegExp.isPhoneNumberValid(phoneNumber)) {
-      return AppLocalizations.of(context)!.phone_number_is_not_valid;
+      return ValidationError.required;
     }
+
+    if (!AppRegExp.isPhoneNumberValid(phoneNumber)) {
+      return ValidationError.invalidPhoneNumber;
+    }
+
     return null;
   }
 
-  static String? validateRequired(BuildContext context, String? value) {
+  static ValidationError? validateRequired(String? value) {
     if (value == null || value.isEmpty) {
-      return AppLocalizations.of(context)!.this_field_is_required;
+      return ValidationError.required;
     }
+
     return null;
   }
 }
