@@ -1,9 +1,16 @@
 import 'package:flowery/core/widgets/custom_product_card.dart';
+import 'package:flowery/features/occasions/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomGridView extends StatelessWidget {
-  const CustomGridView({super.key});
+  final int productsLength;
+  final List<ProductEntity> products;
+  const CustomGridView({
+    super.key,
+    required this.productsLength,
+    required this.products,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +25,18 @@ class CustomGridView extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           return CustomProductCard(
-            title: "Red Roses",
-            image:
-                "https://images.unsplash.com/photo-1518717213163-52f46dc581b4?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            price: 600,
-            hasDiscount: true,
-            oldPrice: 800,
-            discount: 20,
+            title: products[index].title,
+            image: products[index].imgCover,
+            price: products[index].priceAfterDiscount.toDouble(),
+            discount: products[index].discount.toDouble(),
+            hasDiscount: products[index].discount > 0,
+            oldPrice: products[index].price.toDouble(),
+            sold: products[index].sold,
+            quantity: products[index].quantity,
+            images: products[index].images,
           );
         },
+        itemCount: productsLength,
       ),
     );
   }

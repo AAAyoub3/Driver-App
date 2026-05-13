@@ -11,7 +11,7 @@ abstract class AppTheme {
       secondary: AppColors.lightPinkColor,
       error: AppColors.redColor,
       surface: AppColors.whiteColor,
-      onSurface: AppColors.greenColor,
+      onSurface: AppColors.blackColor,
       onPrimary: AppColors.grayColor,
       onSecondary: AppColors.hintGrayColor,
     ),
