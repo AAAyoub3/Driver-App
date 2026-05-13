@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flowery/config/routing/app_routes.dart';
 import 'package:flowery/config/routing/routing_extensions.dart';
 import 'package:flowery/core/const/app_strings.dart';
-import 'package:flowery/core/const/occasions_values.dart';
 import 'package:flowery/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,13 +35,13 @@ class CustomProductCard extends StatelessWidget {
       onTap: () => context.pushNamed(
         AppRoutes.productDetails,
         arguments: <String, dynamic>{
-          OccasionsValues.title: title,
-          OccasionsValues.image: image,
-          OccasionsValues.price: price,
-          OccasionsValues.discount: discount,
-          OccasionsValues.sold: sold,
-          OccasionsValues.quantity: quantity,
-          OccasionsValues.images: images,
+          AppStrings.title: title,
+          AppStrings.image: image,
+          AppStrings.price: price,
+          AppStrings.discount: discount,
+          AppStrings.sold: sold,
+          AppStrings.quantity: quantity,
+          AppStrings.images: images,
         },
       ),
       child: Container(

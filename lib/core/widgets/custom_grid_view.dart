@@ -1,11 +1,10 @@
 import 'package:flowery/core/widgets/custom_product_card.dart';
-import 'package:flowery/features/occasions/domain/entities/product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomGridView extends StatelessWidget {
   final int productsLength;
-  final List<ProductEntity> products;
+  final List<dynamic> products;
   const CustomGridView({
     super.key,
     required this.productsLength,
