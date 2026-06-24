@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../helpers/shared_pref.dart';
-import '../utils/constants.dart';
+import 'constants.dart';
 
 @injectable
 class LocaleThemeCubit extends Cubit<LocaleThemeState> {

@@ -14,11 +14,8 @@ abstract class CoreInjectableModule {
   @preResolve
   Future<SharedPreferences> prefs() => SharedPreferences.getInstance();
 
-  static AndroidOptions _getAndroidOptions() =>
-      const AndroidOptions(encryptedSharedPreferences: true);
   @lazySingleton
-  FlutterSecureStorage secureStorage() =>
-      FlutterSecureStorage(aOptions: _getAndroidOptions());
+  FlutterSecureStorage secureStorage() => FlutterSecureStorage();
 
   @singleton
   Dio dio() {

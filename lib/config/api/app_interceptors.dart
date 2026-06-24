@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flowery/config/api/api_keys.dart';
 import 'package:flowery/config/api/status_code.dart';
 import 'package:flowery/config/di/injectable_config.dart';
-import 'package:flowery/config/user_helper/user_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
@@ -32,14 +31,5 @@ class AuthInterceptor extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     // ToDo
     super.onResponse(response, handler);
-  }
-
-  @override
-  void onError(DioException err, ErrorInterceptorHandler handler) async {
-    debugPrint("err.response?.statusCode ${err.response?.statusCode}");
-    if (err.response?.statusCode == StatusCode.expiredToken) {
-      getIt.get<UserHelper>().clearUserData();
-    }
-    super.onError(err, handler);
   }
 }

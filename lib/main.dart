@@ -14,15 +14,15 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   await configureDependencies();
   runApp(
-    BlocProvider(
-      create: (context) => getIt<LocaleThemeCubit>(),
-      child: const FloweryApp(),
+    MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => getIt<LocaleThemeCubit>())],
+      child: const DriverApp(),
     ),
   );
 }
 
-class FloweryApp extends StatelessWidget {
-  const FloweryApp({super.key});
+class DriverApp extends StatelessWidget {
+  const DriverApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,16 +34,14 @@ class FloweryApp extends StatelessWidget {
         return BlocBuilder<LocaleThemeCubit, LocaleThemeState>(
           builder: (context, state) {
             return MaterialApp(
-              title: 'Flowery',
+              title: 'Driver-App',
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
               locale: state.locale,
               onGenerateRoute: RouteGenerator.getRoute,
               debugShowCheckedModeBanner: false,
               theme: AppTheme.lightTheme,
-              //  darkTheme: AppTheme.darkTheme,
-              // themeMode: state.themeMode,
-              //  initialRoute: Routes.splashRoute,
+              // initialRoute: AppRoutes.,
             );
           },
         );
