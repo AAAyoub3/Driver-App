@@ -138,7 +138,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get home => 'Home';
 
   @override
-  String get profile => 'Profile';
+  String get OrderTracking => 'OrderTracking';
 
   @override
   String get hi => 'Hi';

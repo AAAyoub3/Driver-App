@@ -135,7 +135,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get home => 'الرئيسية';
 
   @override
-  String get profile => 'الملف الشخصي';
+  String get OrderTracking => 'الملف الشخصي';
 
   @override
   String get hi => 'مرحباً';

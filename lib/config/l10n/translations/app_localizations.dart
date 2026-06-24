@@ -344,11 +344,11 @@ abstract class AppLocalizations {
   /// **'Home'**
   String get home;
 
-  /// No description provided for @profile.
+  /// No description provided for @OrderTracking.
   ///
   /// In en, this message translates to:
-  /// **'Profile'**
-  String get profile;
+  /// **'OrderTracking'**
+  String get OrderTracking;
 
   /// No description provided for @hi.
   ///

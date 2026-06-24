@@ -72,8 +72,8 @@
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
-   <ProfileAction
-      buildConfiguration = "Profile"
+   <OrderTrackingAction
+      buildConfiguration = "OrderTracking"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -88,7 +88,7 @@
             ReferencedContainer = "container:Runner.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-   </ProfileAction>
+   </OrderTrackingAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
    </AnalyzeAction>

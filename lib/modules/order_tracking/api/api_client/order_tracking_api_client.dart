@@ -1,14 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
-
-part 'profile_api_client.g.dart';
+part 'order_tracking_api_client.g.dart';
 
 @injectable
 @RestApi()
-abstract class ProfileApiClient {
+abstract class OrderTrackingApiClient {
   @factoryMethod
-  factory ProfileApiClient(Dio dio) = _ProfileApiClient;
+  factory OrderTrackingApiClient(Dio dio) = _OrderTrackingApiClient;
 
   // @GET('/tasks')
   // Future<List<Task>> getTasks();
