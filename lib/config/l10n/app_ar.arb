@@ -59,5 +59,12 @@
   "login_success": "تم تسجيل الدخول بنجاح",
   "register_success": "تم التسجيل بنجاح",
   "connectButton": "ربط",
-  "an_error_occurred": "حدث خطأ"
+  "an_error_occurred": "حدث خطأ",
+  "reset_password": "إعادة تعيين كلمة المرور",
+  "current_password": "كلمة المرور الحالية",
+  "new_password": "كلمة المرور الجديدة",
+  "update": "تحديث",
+  "enter_current_password": "أدخل كلمة المرور الحالية",
+  "enter_new_password": "أدخل كلمة المرور الجديدة",
+  "enter_confirm_password": "أدخل تأكيد كلمة المرور"
 }

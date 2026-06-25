@@ -463,6 +463,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An error occurred'**
   String get an_error_occurred;
+
+  /// No description provided for @reset_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get reset_password;
+
+  /// No description provided for @current_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Password'**
+  String get current_password;
+
+  /// No description provided for @new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get new_password;
+
+  /// No description provided for @update.
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get update;
+
+  /// No description provided for @enter_current_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter current password'**
+  String get enter_current_password;
+
+  /// No description provided for @enter_new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter new password'**
+  String get enter_new_password;
+
+  /// No description provided for @enter_confirm_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter confirm password'**
+  String get enter_confirm_password;
 }
 
 class _AppLocalizationsDelegate
