@@ -8,6 +8,7 @@ environment:
   sdk: ^3.11.4
 
 dependencies:
+  bloc_test: ^10.0.0
   cached_network_image: ^3.4.1
   camera: ^0.12.0+1
   cupertino_icons: ^1.0.8
@@ -23,13 +24,14 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_secure_storage: ^10.0.0
   fluttertoast: ^9.0.0
-  font_awesome_flutter: ^10.12.0
+  font_awesome_flutter: 11.0.0
   get_it: ^9.2.1
   google_fonts: ^8.0.2
   injectable: ^2.7.1+4
   internet_connection_checker_plus: ^2.9.1+2
   json_annotation: ^4.11.0
   logger: ^2.6.2
+  network_image_mock: ^2.1.1
   open_file: 3.5.11
   path_provider: 2.1.5
   permission_handler: 12.0.1

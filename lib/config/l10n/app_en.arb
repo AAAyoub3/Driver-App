@@ -40,7 +40,6 @@
   "light_mode": "Light mode",
   "logout": "Logout",
   "home": "Home",
-  "OrderTracking": "OrderTracking",
   "hi": "Hi",
   "apply": "Apply",
   "what_is_new": "What’s New?",
@@ -59,5 +58,19 @@
   "login_success": "LoginSuccessfully",
   "register_success": "Successfully",
   "connectButton": "Connect",
-  "an_error_occurred": "An error occurred"
+  "an_error_occurred": "An error occurred",
+  "order_details": "Order Details",
+  "pick_up_address": "Pick Up Address",
+  "user_address": "User Address",
+  "total": "Total",
+  "payment_method": "Payment Method",
+  "next_state_button": "Next State",
+  "progress": "Progress",
+  "arrived_at_pickup_point": "Arrived at Pickup Point",
+  "start_deliver": "Start Deliver",
+  "arrived_to_the_user": "Arrived to the User",
+  "delivered_to_the_user": "Delivered to the User",
+  "status" : "Status",
+  "order_id" : "Order ID",
+  "egp" : "EGP"
 }
