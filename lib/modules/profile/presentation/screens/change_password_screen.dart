@@ -2,6 +2,7 @@ import 'package:flowery/config/helpers/regex.dart';
 import 'package:flowery/config/l10n/translations/app_localizations.dart';
 import 'package:flowery/core/theme/app_colors.dart';
 import 'package:flowery/core/widgets/custom_text_form_field.dart';
+import 'package:flowery/modules/profile/presentation/keys/change_password_screen_keys.dart';
 import 'package:flowery/modules/profile/presentation/view_models/cubit/change_password_view_model.dart';
 import 'package:flowery/modules/profile/presentation/view_models/events/change_password_events.dart';
 import 'package:flowery/modules/profile/presentation/view_models/states/change_password_state.dart';
@@ -50,6 +51,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             children: [
               SizedBox(height: 10.h),
               CustomTextFormField(
+                key: Key(ChangePasswordScreenKeys.currentPassword),
                 hintText: localizations.current_password,
                 labelText: localizations.current_password,
                 controller: currentPasswordController,
@@ -65,6 +67,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               ),
               SizedBox(height: 10.h),
               CustomTextFormField(
+                key: Key(ChangePasswordScreenKeys.newPassword),
                 hintText: localizations.new_password,
                 labelText: localizations.new_password,
                 controller: newPasswordController,
@@ -80,6 +83,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               ),
               SizedBox(height: 10.h),
               CustomTextFormField(
+                key: Key(ChangePasswordScreenKeys.confirmPassword),
                 hintText: localizations.confirm_password,
                 labelText: localizations.confirm_password,
                 controller: confirmPasswordController,
