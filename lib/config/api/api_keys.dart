@@ -3,4 +3,5 @@ abstract class Apikeys {
 
   static const String token = 'token';
   static const String bearer = 'Bearer';
+  static const String error = 'error';
 }
