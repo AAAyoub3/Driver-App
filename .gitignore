@@ -53,3 +53,6 @@ app.*.map.json
 *.cc
 *.h
 *.swift
+lib/config/l10n/app_localizations_ar.dart
+lib/config/l10n/app_localizations_en.dart
+pubspec.lock
