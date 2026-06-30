@@ -47,3 +47,9 @@ app.*.map.json
 # FVM Version Cache
 .fvm/
 !.fvmrc
+
+**/*.g.dart
+**/*.config.dart
+*.cc
+*.h
+*.swift
