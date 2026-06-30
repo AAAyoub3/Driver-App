@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flowery/config/api/api_keys.dart';
 import 'package:flowery/config/base_response/base_response.dart';
+import 'package:flowery/config/handler/dio_exception_handler.dart';
 import 'package:flowery/modules/profile/api/api_client/profile_api_client.dart';
 import 'package:flowery/modules/profile/data/data_sources/profile_remote_data_sources_contract.dart';
 import 'package:flowery/modules/profile/data/models/requests/change_password_request.dart';
@@ -27,7 +28,7 @@ class ProfileRemoteDataSourcesImpl extends ProfileRemoteDataSourcesContract {
       return Success<ChangePasswordResponse>(data: response);
     } on DioException catch (e) {
       return Error<ChangePasswordResponse>(
-        exception: Exception(e.response?.data[Apikeys.error]),
+        exception: DioExceptionHandler.handle(e),
       );
     }
   }
