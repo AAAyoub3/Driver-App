@@ -1,41 +1,45 @@
 import 'package:dio/dio.dart';
 import 'package:flowery/config/api/api_keys.dart';
 
-Exception _handleDioException(DioException e) {
-  switch (e.type) {
-    case DioExceptionType.connectionTimeout:
-      return Exception('Connection timeout');
+class DioExceptionHandler {
+  DioExceptionHandler._();
 
-    case DioExceptionType.sendTimeout:
-      return Exception('Request timeout');
+  static Exception handle(DioException e) {
+    switch (e.type) {
+      case DioExceptionType.connectionTimeout:
+        return Exception('Connection timeout');
 
-    case DioExceptionType.receiveTimeout:
-      return Exception('Response timeout');
+      case DioExceptionType.sendTimeout:
+        return Exception('Request timeout');
 
-    case DioExceptionType.connectionError:
-      return Exception('No internet connection');
+      case DioExceptionType.receiveTimeout:
+        return Exception('Response timeout');
 
-    case DioExceptionType.badCertificate:
-      return Exception('Bad certificate');
+      case DioExceptionType.connectionError:
+        return Exception('No internet connection');
 
-    case DioExceptionType.cancel:
-      return Exception('Request cancelled');
+      case DioExceptionType.badCertificate:
+        return Exception('Bad certificate');
 
-    case DioExceptionType.badResponse:
-      final data = e.response?.data;
+      case DioExceptionType.cancel:
+        return Exception('Request cancelled');
 
-      if (data is Map<String, dynamic>) {
-        return Exception(
-          data[Apikeys.error] ??
-              data['message'] ??
-              data['error'] ??
-              'Something went wrong',
-        );
-      }
+      case DioExceptionType.badResponse:
+        final data = e.response?.data;
 
-      return Exception('Server error (${e.response?.statusCode})');
+        if (data is Map<String, dynamic>) {
+          return Exception(
+            data[Apikeys.error] ??
+                data['message'] ??
+                data['error'] ??
+                'Something went wrong',
+          );
+        }
 
-    case DioExceptionType.unknown:
-      return Exception(e.message ?? 'Unexpected error');
+        return Exception('Server error (${e.response?.statusCode})');
+
+      case DioExceptionType.unknown:
+        return Exception(e.message ?? 'Unexpected error');
+    }
   }
 }
