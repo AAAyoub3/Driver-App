@@ -1,1 +1,1 @@
-abstract class ProfileRemoteDataSourcesContract {}
+abstract interface class ProfileRemoteDataSourcesContract {}

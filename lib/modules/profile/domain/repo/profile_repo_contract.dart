@@ -1,1 +1,1 @@
-abstract class ProfileRepoContract {}
+abstract interface class ProfileRepoContract {}

@@ -3,7 +3,7 @@ import 'package:flowery/modules/profile/data/data_sources/profile_remote_data_so
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: ProfileRemoteDataSourcesContract)
-class ProfileRemoteDataSourcesImpl extends ProfileRemoteDataSourcesContract {
+class ProfileRemoteDataSourcesImpl implements ProfileRemoteDataSourcesContract {
   final ProfileApiClient apiClient;
   ProfileRemoteDataSourcesImpl(this.apiClient);
 }
