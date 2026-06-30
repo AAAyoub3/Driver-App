@@ -22,7 +22,7 @@ class ProfileRemoteDataSourcesImpl extends ProfileRemoteDataSourcesContract {
         request: ChangePasswordRequest(
           password: password,
           newPassword: newPassword,
-        ).toJson(),
+        ),
       );
       return Success<ChangePasswordResponse>(data: response);
     } on DioException catch (e) {
