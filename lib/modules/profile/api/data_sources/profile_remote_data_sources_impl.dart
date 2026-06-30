@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flowery/config/api/api_keys.dart';
 import 'package:flowery/config/base_response/base_response.dart';
 import 'package:flowery/config/handler/dio_exception_handler.dart';
 import 'package:flowery/modules/profile/api/api_client/profile_api_client.dart';
@@ -9,7 +8,7 @@ import 'package:flowery/modules/profile/data/models/responses/change_password_re
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: ProfileRemoteDataSourcesContract)
-class ProfileRemoteDataSourcesImpl extends ProfileRemoteDataSourcesContract {
+class ProfileRemoteDataSourcesImpl implements ProfileRemoteDataSourcesContract {
   final ProfileApiClient apiClient;
   ProfileRemoteDataSourcesImpl(this.apiClient);
 
