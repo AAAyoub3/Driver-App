@@ -1,5 +1,10 @@
-class ChangePasswordEntity {
+import 'package:equatable/equatable.dart';
+
+class ChangePasswordEntity extends Equatable {
   final String message;
 
-  ChangePasswordEntity({required this.message});
+  const ChangePasswordEntity({required this.message});
+  
+  @override
+  List<Object?> get props => [message];
 }

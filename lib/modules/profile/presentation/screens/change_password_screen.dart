@@ -1,8 +1,8 @@
-import 'package:flowery/config/helpers/regex.dart';
 import 'package:flowery/config/l10n/translations/app_localizations.dart';
 import 'package:flowery/core/theme/app_colors.dart';
 import 'package:flowery/core/widgets/custom_text_form_field.dart';
 import 'package:flowery/modules/profile/presentation/keys/change_password_screen_keys.dart';
+import 'package:flowery/modules/profile/presentation/validators/change_password_validator.dart';
 import 'package:flowery/modules/profile/presentation/view_models/cubit/change_password_view_model.dart';
 import 'package:flowery/modules/profile/presentation/view_models/events/change_password_events.dart';
 import 'package:flowery/modules/profile/presentation/view_models/states/change_password_state.dart';
@@ -55,15 +55,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 hintText: localizations.current_password,
                 labelText: localizations.current_password,
                 controller: currentPasswordController,
-                validator: (value) {
-                  if (value == "" || value == null) {
-                    return localizations.enter_current_password;
-                  }
-                  if (!AppRegExp.isPasswordValid(value)) {
-                    return localizations.password_is_not_valid;
-                  }
-                  return null;
-                },
+                validator: (value) =>
+                    ChangePasswordValidator.validateCurrentPassword(
+                      value,
+                      localizations,
+                    ),
               ),
               SizedBox(height: 10.h),
               CustomTextFormField(
@@ -71,15 +67,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 hintText: localizations.new_password,
                 labelText: localizations.new_password,
                 controller: newPasswordController,
-                validator: (value) {
-                  if (value == "" || value == null) {
-                    return localizations.enter_new_password;
-                  }
-                  if (!AppRegExp.isPasswordValid(value)) {
-                    return localizations.password_is_not_valid;
-                  }
-                  return null;
-                },
+                validator: (value) =>
+                    ChangePasswordValidator.validateNewPassword(
+                      value,
+                      localizations,
+                    ),
               ),
               SizedBox(height: 10.h),
               CustomTextFormField(
@@ -87,16 +79,12 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 hintText: localizations.confirm_password,
                 labelText: localizations.confirm_password,
                 controller: confirmPasswordController,
-                validator: (value) {
-                  if (value == "" || value == null) {
-                    return localizations.enter_confirm_password;
-                  }
-                  if (value != newPasswordController.text) {
-                    return localizations
-                        .password_and_confirm_password_must_be_same;
-                  }
-                  return null;
-                },
+                validator: (value) =>
+                    ChangePasswordValidator.validateConfirmPassword(
+                      value,
+                      newPasswordController.text,
+                      localizations,
+                    ),
               ),
               SizedBox(height: 30.h),
               ElevatedButton(

@@ -18,16 +18,13 @@ class ProfileRepoImpl implements ProfileRepoContract {
     String newPassword,
   ) async {
     final oldToken = await localDS.getUserTokenFromFSS();
-    print("The Old token is: $oldToken");
     final response = await remoteDS.changePassword(password, newPassword);
     switch (response) {
       case Success<ChangePasswordResponse>():
         await localDS.updateUserTokenFromFSS(response.data?.token ?? "");
-        print("at success we saved : ${response.data?.token} ");
         return Success<ChangePasswordEntity>(data: response.data?.toEntity());
       case Error<ChangePasswordResponse>():
         await localDS.updateUserTokenFromFSS(oldToken ?? "");
-        print("at error we saved : $oldToken ");
         return Error<ChangePasswordEntity>(exception: response.exception);
     }
   }
