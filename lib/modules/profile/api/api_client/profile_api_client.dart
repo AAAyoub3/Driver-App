@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'profile_api_client.g.dart';
 
-@injectable
+@LazySingleton()
 @RestApi()
 abstract class ProfileApiClient {
   @factoryMethod
