@@ -104,20 +104,27 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         bottom: PreferredSize(
           preferredSize: Size(0, 20.h),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(5, (index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: BlocBuilder<OrderDetailsViewModel, OrderDetailsState>(
                   builder: (context, state) {
+                    final currentOrderState = getOrderStateFromStatus(
+                      state.order?.status,
+                    );
+                    if (state.isLoadingOrder) {
+                      return const SizedBox.shrink();
+                    }
                     return Container(
                       key: Key('${OrderDetailsKeys.progress}$index'),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.r),
-                        color: index <= state.currentOrderState.value
+                        color: index <= (currentOrderState?.value ?? 0)
                             ? AppColors.greenColor
                             : AppColors.grayColor,
                       ),
-                      child: SizedBox(height: 3.h, width: 60.w),
+                      child: SizedBox(height: 3.h, width: 50.w),
                     );
                   },
                 ),
@@ -126,125 +133,152 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            BlocBuilder<OrderDetailsViewModel, OrderDetailsState>(
-              builder: (context, state) => StatusContainer(
-                status: state.currentOrderState.statusText,
-                orderId: orderId,
-                date: date,
-              ),
-            ),
-
-            // Pick Up Address
-            Row(
+      body: BlocBuilder<OrderDetailsViewModel, OrderDetailsState>(
+        builder: (context, state) {
+          if (state.isLoadingOrder) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    localizations.pick_up_address,
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
+                BlocBuilder<OrderDetailsViewModel, OrderDetailsState>(
+                  builder: (context, state) => StatusContainer(
+                    status: state.order?.status ?? "",
+                    orderId: state.order?.orderId ?? "",
+                    date: state.order?.acceptedAt ?? "",
                   ),
                 ),
-              ],
-            ),
-            CustomAddressContainer(
-              icon: storeIcon,
-              title: storeTitle,
-              address: storeAddress,
-            ),
-            SizedBox(height: 10.h),
 
-            // User Address
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    localizations.user_address,
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            CustomAddressContainer(
-              icon: userIcon,
-              title: userTitle,
-              address: userAddress,
-            ),
-            SizedBox(height: 10.h),
-
-            // Order Details
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    localizations.order_details,
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            CustomOrderContainer(
-              icon: itemIcon,
-              title: itemTitle,
-              cost: itemCost,
-              numberOfItem: itemNumber,
-            ),
-            SizedBox(height: 10.h),
-
-            // Payment Details
-            CustomPaymentContainer(
-              title: localizations.total,
-              value: "$orderCost ${localizations.egp}",
-            ),
-            SizedBox(height: 10.h),
-            CustomPaymentContainer(
-              title: localizations.payment_method,
-              value: paymentMethod,
-            ),
-            SizedBox(height: 20.h),
-
-            // Changing state button
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: BlocBuilder<OrderDetailsViewModel, OrderDetailsState>(
-                builder: (context, state) {
-                  return ElevatedButton(
-                    key: Key(OrderDetailsKeys.nextStateButton),
-                    onPressed: () {
-                      context.read<OrderDetailsViewModel>().doEvent(
-                        NextOrderStateEvent(
-                          currentOrderState: state.currentOrderState,
+                // Pick Up Address
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        localizations.pick_up_address,
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
                         ),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CustomAddressContainer(
+                    icon: state.order?.storeImage ?? "",
+                    title: state.order?.storeName ?? "",
+                    address: state.order?.storeAddress ?? "",
+                  ),
+                ),
+                SizedBox(height: 10.h),
+
+                // User Address
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        localizations.user_address,
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CustomAddressContainer(
+                    icon: state.order?.userPhoto ?? "",
+                    title: state.order?.userName ?? "",
+                    address: state.order?.userAddress ?? "",
+                  ),
+                ),
+                SizedBox(height: 10.h),
+
+                // Order Details
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        localizations.order_details,
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                CustomOrderContainer(
+                  icon: itemIcon,
+                  title: itemTitle,
+                  cost: itemCost,
+                  numberOfItem: itemNumber,
+                ),
+                SizedBox(height: 10.h),
+
+                // Payment Details
+                CustomPaymentContainer(
+                  title: localizations.total,
+                  value:
+                      "${state.order?.totalPrice ?? ""} ${localizations.egp}",
+                ),
+                SizedBox(height: 10.h),
+                CustomPaymentContainer(
+                  title: localizations.payment_method,
+                  value: paymentMethod,
+                ),
+                SizedBox(height: 20.h),
+
+                // Changing state button
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: BlocBuilder<OrderDetailsViewModel, OrderDetailsState>(
+                    builder: (context, state) {
+                      final currentOrderState = getOrderStateFromStatus(
+                        state.order?.status,
+                      );
+                      return ElevatedButton(
+                        key: Key(OrderDetailsKeys.nextStateButton),
+                        onPressed: () {
+                          context.read<OrderDetailsViewModel>().doEvent(
+                            NextOrderStateEvent(
+                              orderId: state.order?.orderId ?? "",
+                              currentOrderState: state.currentOrderState,
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: (currentOrderState?.value ?? 0) < 4
+                              ? AppColors.primaryColor
+                              : AppColors.hintGrayColor,
+                        ),
+                        child: Text(currentOrderState?.buttonText ?? ""),
                       );
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: state.currentOrderState.value < 4
-                          ? AppColors.primaryColor
-                          : AppColors.hintGrayColor,
-                    ),
-                    child: Text(state.currentOrderState.buttonText),
-                  );
-                },
-              ),
+                  ),
+                ),
+                SizedBox(height: 20.h),
+              ],
             ),
-            SizedBox(height: 20.h),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
+}
+
+OrderStates? getOrderStateFromStatus(String? status) {
+  if (status == null) return null;
+
+  return OrderStates.values.firstWhere(
+    (e) => e.statusText == status,
+    orElse: () => OrderStates.firstState,
+  );
 }

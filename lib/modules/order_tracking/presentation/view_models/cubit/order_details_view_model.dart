@@ -1,3 +1,7 @@
+import 'package:flowery/config/base_response/base_response.dart';
+import 'package:flowery/modules/order_tracking/data/models/order_model.dart';
+import 'package:flowery/modules/order_tracking/domain/use_cases/get_order_details_use_case.dart';
+import 'package:flowery/modules/order_tracking/domain/use_cases/update_order_state_use_case.dart';
 import 'package:flowery/modules/order_tracking/presentation/screens/order_details_screen.dart';
 import 'package:flowery/modules/order_tracking/presentation/view_models/events/order_details_events.dart';
 import 'package:flowery/modules/order_tracking/presentation/view_models/states/order_details_state.dart';
@@ -6,23 +10,63 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class OrderDetailsViewModel extends Cubit<OrderDetailsState> {
-  OrderDetailsViewModel() : super(OrderDetailsState());
+  final GetOrderDetailsUseCase _orderDetailsUseCase;
+  final UpdateOrderStateUseCase _updateOrderStateUseCase;
+  OrderDetailsViewModel(
+    this._orderDetailsUseCase,
+    this._updateOrderStateUseCase,
+  ) : super(OrderDetailsState());
   void doEvent(OrderDetailsEvents event) {
     switch (event) {
       case NextOrderStateEvent():
         _nextOrderState(event);
+      case GetOrderDetailsEvent():
+        _getOrderDetails(event);
     }
   }
 
-  void _nextOrderState(NextOrderStateEvent event) {
+  Future<void> _getOrderDetails(GetOrderDetailsEvent event) async {
+    emit(state.copyWith(isLoadingOrder: true));
+    final response = await _orderDetailsUseCase.call(event.driverId);
+    switch (response) {
+      case Success<OrderModel>():
+        emit(state.copyWith(isLoadingOrder: false, order: response.data));
+      case Error<OrderModel>():
+        emit(
+          state.copyWith(
+            isLoadingOrder: false,
+            errorMessage: response.exception.toString(),
+          ),
+        );
+    }
+  }
+
+  void _nextOrderState(NextOrderStateEvent event) async {
+    emit(state.copyWith(isLoadingOrder: true));
     if (event.currentOrderState == OrderStates.firstState) {
-      emit(OrderDetailsState(currentOrderState: OrderStates.secondState));
+      emit(state.copyWith(currentOrderState: OrderStates.secondState));
     } else if (event.currentOrderState == OrderStates.secondState) {
-      emit(OrderDetailsState(currentOrderState: OrderStates.thirdState));
+      emit(state.copyWith(currentOrderState: OrderStates.thirdState));
     } else if (event.currentOrderState == OrderStates.thirdState) {
-      emit(OrderDetailsState(currentOrderState: OrderStates.fourthState));
+      emit(state.copyWith(currentOrderState: OrderStates.fourthState));
     } else {
-      emit(OrderDetailsState(currentOrderState: OrderStates.fifthState));
+      emit(state.copyWith(currentOrderState: OrderStates.fifthState));
+    }
+
+    final response = await _updateOrderStateUseCase.call(
+      event.orderId,
+      state.currentOrderState.statusText,
+    );
+    switch (response) {
+      case Success<OrderModel>():
+        emit(state.copyWith(isLoadingOrder: false, order: response.data));
+      case Error<OrderModel>():
+        emit(
+          state.copyWith(
+            isLoadingOrder: false,
+            errorMessage: response.exception.toString(),
+          ),
+        );
     }
   }
 }

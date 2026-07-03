@@ -7,12 +7,14 @@ class CustomAddressContainer extends StatelessWidget {
   final String icon;
   final String title;
   final String address;
+
   const CustomAddressContainer({
     super.key,
     required this.icon,
     required this.title,
     required this.address,
   });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,54 +25,75 @@ class CustomAddressContainer extends StatelessWidget {
       ),
       child: SizedBox(
         height: 76.h,
-        width: 343.w,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Row(
-              children: [
-                CircleAvatar(
-                  radius: 22.sp,
-                  backgroundImage: NetworkImage(icon),
-                ),
-                SizedBox(width: 10.w),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 5.sp,
+        width: double.infinity,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12.w),
+          child: Row(
+            children: [
+              /// LEFT SIDE (avatar + text)
+              Expanded(
+                child: Row(
                   children: [
-                    Row(
-                      children: [
-                        SizedBox(width: 5.w),
-                        Text(title),
-                      ],
+                    CircleAvatar(
+                      radius: 22.sp,
+                      backgroundImage: NetworkImage(icon),
                     ),
-                    Row(
-                      children: [
-                        Icon(Icons.location_on_outlined, size: 16.sp),
-                        Text(address),
-                      ],
+                    SizedBox(width: 10.w),
+
+                    /// TEXT COLUMN
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          SizedBox(height: 5.h),
+
+                          Row(
+                            children: [
+                              Icon(Icons.location_on_outlined, size: 16.sp),
+                              SizedBox(width: 4.w),
+
+                              /// IMPORTANT: this Expanded fixes overflow
+                              Expanded(
+                                child: Text(
+                                  address,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-              ],
-            ),
-            Row(
-              children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.call, color: AppColors.primaryColor),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: FaIcon(
-                    FontAwesomeIcons.whatsapp,
-                    color: AppColors.primaryColor,
+              ),
+
+              /// RIGHT SIDE (buttons)
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.call, color: AppColors.primaryColor),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  IconButton(
+                    onPressed: () {},
+                    icon: FaIcon(
+                      FontAwesomeIcons.whatsapp,
+                      color: AppColors.primaryColor,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

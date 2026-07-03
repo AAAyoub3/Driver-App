@@ -2,6 +2,7 @@ import 'package:flowery/config/di/injectable_config.dart';
 import 'package:flowery/config/routing/app_routes.dart';
 import 'package:flowery/modules/order_tracking/presentation/screens/order_details_screen.dart';
 import 'package:flowery/modules/order_tracking/presentation/view_models/cubit/order_details_view_model.dart';
+import 'package:flowery/modules/order_tracking/presentation/view_models/events/order_details_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +15,10 @@ class RouteGenerator {
             builder: (_) => MultiBlocProvider(
               providers: [
                 BlocProvider(
-                  create: ((context) => getIt<OrderDetailsViewModel>()),
+                  create: ((context) => getIt<OrderDetailsViewModel>()
+                    ..doEvent(
+                      GetOrderDetailsEvent("6a3845ab992612ae599b1736"),
+                    )),
                 ),
               ],
               child: const OrderDetailsScreen(),

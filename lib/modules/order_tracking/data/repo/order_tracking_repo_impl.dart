@@ -1,0 +1,36 @@
+import 'package:flowery/config/base_response/base_response.dart';
+import 'package:flowery/modules/order_tracking/data/data_sources/order_tracking_remote_data_sources_contract.dart';
+import 'package:flowery/modules/order_tracking/data/models/order_model.dart';
+import 'package:flowery/modules/order_tracking/domain/repo/order_tracking_repo_contract.dart';
+import 'package:injectable/injectable.dart';
+
+@Injectable(as: OrderTrackingRepoContract)
+class OrderTrackingRepoImpl extends OrderTrackingRepoContract {
+  final OrderTrackingRemoteDataSourcesContract remoteDataSources;
+  OrderTrackingRepoImpl(this.remoteDataSources);
+
+  @override
+  Future<Result<OrderModel>> getOrderDetails(String driverId) async {
+    final response = await remoteDataSources.getOrderDetails(driverId);
+    switch (response) {
+      case Success<OrderModel>():
+        return Success<OrderModel>(data: response.data);
+      case Error<OrderModel>():
+        return Error<OrderModel>(exception: response.exception);
+    }
+  }
+
+  @override
+  Future<Result<OrderModel>> updateOrderStatus(
+    String orderId,
+    String status,
+  ) async {
+    final response = await remoteDataSources.updateOrderStatus(orderId, status);
+    switch (response) {
+      case Success<OrderModel>():
+        return Success<OrderModel>(data: response.data);
+      case Error<OrderModel>():
+        return Error<OrderModel>(exception: response.exception);
+    }
+  }
+}

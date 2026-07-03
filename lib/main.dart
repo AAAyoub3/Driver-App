@@ -1,4 +1,5 @@
 import 'package:flowery/config/di/injectable_config.dart';
+import 'package:flowery/config/firebase/services/firestore_service.dart';
 import 'package:flowery/config/general_cubit/general_state.dart';
 import 'package:flowery/config/general_cubit/local_cubit.dart';
 import 'package:flowery/config/helpers/bloc/bloc_observer.dart';
@@ -9,9 +10,11 @@ import 'package:flowery/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   Bloc.observer = MyBlocObserver();
   await configureDependencies();
   runApp(
