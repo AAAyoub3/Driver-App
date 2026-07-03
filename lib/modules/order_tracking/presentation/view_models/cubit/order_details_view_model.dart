@@ -55,6 +55,7 @@ class OrderDetailsViewModel extends Cubit<OrderDetailsState> {
 
     final response = await _updateOrderStateUseCase.call(
       event.orderId,
+      event.userId,
       state.currentOrderState.statusText,
     );
     switch (response) {

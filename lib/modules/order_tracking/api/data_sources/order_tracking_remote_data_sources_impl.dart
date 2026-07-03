@@ -25,10 +25,11 @@ class OrderTrackingRemoteDataSourcesImpl
   }
 
   @override
-  Future<Result<OrderModel>> updateOrderStatus(String orderId, String status) async {
+  Future<Result<OrderModel>> updateOrderStatus(String orderId,String userId ,String status) async {
         try {
       final response = await firebase.firestore.updateOrderStateInFirestore(
       orderId: orderId,
+      userId: userId,
       status: status,
     );
       return Success<OrderModel>(data: response);

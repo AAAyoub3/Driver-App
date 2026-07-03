@@ -1,4 +1,5 @@
 import 'package:flowery/config/di/injectable_config.dart';
+import 'package:flowery/config/firebase/firebase_services.dart';
 import 'package:flowery/config/firebase/services/firestore_service.dart';
 import 'package:flowery/config/general_cubit/general_state.dart';
 import 'package:flowery/config/general_cubit/local_cubit.dart';
@@ -15,8 +16,8 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  Bloc.observer = MyBlocObserver();
   await configureDependencies();
+  Bloc.observer = MyBlocObserver();
   runApp(
     MultiBlocProvider(
       providers: [BlocProvider(create: (context) => getIt<LocaleThemeCubit>())],

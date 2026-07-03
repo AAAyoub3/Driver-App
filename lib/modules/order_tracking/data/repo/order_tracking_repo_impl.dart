@@ -23,9 +23,10 @@ class OrderTrackingRepoImpl extends OrderTrackingRepoContract {
   @override
   Future<Result<OrderModel>> updateOrderStatus(
     String orderId,
+    String userId,
     String status,
   ) async {
-    final response = await remoteDataSources.updateOrderStatus(orderId, status);
+    final response = await remoteDataSources.updateOrderStatus(orderId,userId, status);
     switch (response) {
       case Success<OrderModel>():
         return Success<OrderModel>(data: response.data);

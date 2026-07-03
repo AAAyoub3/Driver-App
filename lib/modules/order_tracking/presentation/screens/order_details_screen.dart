@@ -79,7 +79,6 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   final String itemNumber = "2";
 
   // Payment Container
-  final String orderCost = "1000";
   final String paymentMethod = "Cash on delivery";
 
   // Localization
@@ -250,6 +249,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           context.read<OrderDetailsViewModel>().doEvent(
                             NextOrderStateEvent(
                               orderId: state.order?.orderId ?? "",
+                              userId: state.order?.userId ?? "",
                               currentOrderState: state.currentOrderState,
                             ),
                           );

@@ -24,29 +24,38 @@ class FirestoreService {
     }
   }
 
-Future<OrderModel> updateOrderStateInFirestore({
-  required String orderId,
-  required String status,
-}) async {
-  try {
-    final docRef =
-        _firestore.collection('accepted_orders').doc(orderId);
-
-    await docRef.update({
-      'status': status,
-    });
-
-    final updatedDoc = await docRef.get();
-
-    if (!updatedDoc.exists) {
-      throw Exception('Order not found');
+  Future<String?> getUserFcmToken(String userId) async {
+    try {
+      // Getting user fcm token
+      final snapshot = await _firestore.collection('users').doc(userId).get();
+      return snapshot.get("fcmToken");
+    } on FirebaseException catch (e) {
+      throw Exception('Failed to fetch user fcm token: ${e.message}');
     }
-
-    return OrderModel.fromJson(
-      updatedDoc.data() as Map<String, dynamic>,
-    );
-  } on FirebaseException catch (e) {
-    throw Exception('Failed to update order status: ${e.message}');
   }
-}
+
+  Future<OrderModel> updateOrderStateInFirestore({
+    required String orderId,
+    required String userId,
+    required String status,
+  }) async {
+    try {
+      final docRef = _firestore.collection('accepted_orders').doc(orderId);
+
+      await docRef.update({'status': status});
+
+      final updatedDoc = await docRef.get();
+
+      if (!updatedDoc.exists) {
+        throw Exception('Order not found');
+      }
+
+      final fcmToken = await getUserFcmToken(userId);
+      print("The currenct user FCM Token is : $fcmToken");
+
+      return OrderModel.fromJson(updatedDoc.data() as Map<String, dynamic>);
+    } on FirebaseException catch (e) {
+      throw Exception('Failed to update order status: ${e.message}');
+    }
+  }
 }

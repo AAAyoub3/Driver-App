@@ -9,7 +9,11 @@ class UpdateOrderStateUseCase {
 
   UpdateOrderStateUseCase(this.repo);
 
-  Future<Result<OrderModel>> call(String orderId, String status){
-    return repo.updateOrderStatus(orderId, status);
+  Future<Result<OrderModel>> call(
+    String orderId,
+    String userId,
+    String status,
+  ) {
+    return repo.updateOrderStatus(orderId, userId, status);
   }
 }
