@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flowery/config/api/api_keys.dart';
-import 'package:flowery/config/api/status_code.dart';
 import 'package:flowery/config/di/injectable_config.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 
@@ -21,8 +19,7 @@ class AuthInterceptor extends Interceptor {
     options.cancelToken = getIt<CancelToken>();
     String? authToken = await fss.read(key: Apikeys.accessToken);
     if (authToken != null && authToken.isNotEmpty) {
-      // options.headers['Authorization'] = 'Bearer $authToken';
-      options.headers[Apikeys.token] = authToken;
+      options.headers[Apikeys.authorization] = '${Apikeys.bearer} $authToken';
     }
     super.onRequest(options, handler);
   }

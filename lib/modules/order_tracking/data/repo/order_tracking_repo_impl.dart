@@ -5,7 +5,7 @@ import 'package:flowery/modules/order_tracking/domain/repo/order_tracking_repo_c
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: OrderTrackingRepoContract)
-class OrderTrackingRepoImpl extends OrderTrackingRepoContract {
+class OrderTrackingRepoImpl implements OrderTrackingRepoContract {
   final OrderTrackingRemoteDataSourcesContract remoteDataSources;
   OrderTrackingRepoImpl(this.remoteDataSources);
 
@@ -25,8 +25,9 @@ class OrderTrackingRepoImpl extends OrderTrackingRepoContract {
     String orderId,
     String userId,
     String status,
+    String title
   ) async {
-    final response = await remoteDataSources.updateOrderStatus(orderId,userId, status);
+    final response = await remoteDataSources.updateOrderStatus(orderId,userId, status,title);
     switch (response) {
       case Success<OrderModel>():
         return Success<OrderModel>(data: response.data);

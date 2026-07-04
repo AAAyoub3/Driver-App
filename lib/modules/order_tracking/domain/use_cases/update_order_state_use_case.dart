@@ -13,7 +13,8 @@ class UpdateOrderStateUseCase {
     String orderId,
     String userId,
     String status,
+    String title
   ) {
-    return repo.updateOrderStatus(orderId, userId, status);
+    return repo.updateOrderStatus(orderId, userId, status, title);
   }
 }

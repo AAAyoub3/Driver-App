@@ -6,7 +6,13 @@ class NextOrderStateEvent extends OrderDetailsEvents {
   final String orderId;
   final String userId;
   final OrderStates currentOrderState;
-  NextOrderStateEvent({required this.orderId, required this.userId,required this.currentOrderState});
+  final String title;
+  NextOrderStateEvent({
+    required this.orderId,
+    required this.userId,
+    required this.currentOrderState,
+    required this.title,
+  });
 }
 
 class GetOrderDetailsEvent extends OrderDetailsEvents {

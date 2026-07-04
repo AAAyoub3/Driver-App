@@ -251,6 +251,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                               orderId: state.order?.orderId ?? "",
                               userId: state.order?.userId ?? "",
                               currentOrderState: state.currentOrderState,
+                              title: localizations.your_order_status
                             ),
                           );
                         },

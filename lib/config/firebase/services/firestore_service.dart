@@ -36,7 +36,6 @@ class FirestoreService {
 
   Future<OrderModel> updateOrderStateInFirestore({
     required String orderId,
-    required String userId,
     required String status,
   }) async {
     try {
@@ -49,9 +48,6 @@ class FirestoreService {
       if (!updatedDoc.exists) {
         throw Exception('Order not found');
       }
-
-      final fcmToken = await getUserFcmToken(userId);
-      print("The currenct user FCM Token is : $fcmToken");
 
       return OrderModel.fromJson(updatedDoc.data() as Map<String, dynamic>);
     } on FirebaseException catch (e) {

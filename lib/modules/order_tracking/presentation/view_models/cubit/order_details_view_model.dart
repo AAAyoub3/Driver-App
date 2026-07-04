@@ -57,6 +57,7 @@ class OrderDetailsViewModel extends Cubit<OrderDetailsState> {
       event.orderId,
       event.userId,
       state.currentOrderState.statusText,
+      event.title
     );
     switch (response) {
       case Success<OrderModel>():

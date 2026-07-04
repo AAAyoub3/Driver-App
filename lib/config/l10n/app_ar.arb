@@ -72,5 +72,7 @@
   "delivered_to_the_user": "تم التسليم للمستخدم",
   "status" : "الحالة",
   "order_id" : "رقم الطلب",
-  "egp" : "جنيه"
+  "egp" : "جنيه",
+  "your_order_status" : "حالة طلبك",
+  "the_order_current_status_is" : " :حالة الطلب حاليا هي"
 }

@@ -72,5 +72,7 @@
   "delivered_to_the_user": "Delivered to the User",
   "status" : "Status",
   "order_id" : "Order ID",
-  "egp" : "EGP"
+  "egp" : "EGP",
+  "your_order_status" : "Your order status",
+  "the_order_current_status_is" : "the current order status is: "
 }
