@@ -1,13 +1,13 @@
-import 'package:flowery/modules/order_tracking/presentation/screens/order_details_screen.dart';
+import 'package:flowery/modules/order_tracking/presentation/helpers/order_states_helper.dart';
 
 sealed class OrderDetailsEvents {}
 
-class NextOrderStateEvent extends OrderDetailsEvents {
+class UpdateOrderStateEvent extends OrderDetailsEvents {
   final String orderId;
   final String userId;
   final OrderStates currentOrderState;
   final String title;
-  NextOrderStateEvent({
+  UpdateOrderStateEvent({
     required this.orderId,
     required this.userId,
     required this.currentOrderState,

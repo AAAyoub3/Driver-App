@@ -1,6 +1,6 @@
 import 'package:flowery/config/base_response/base_response.dart';
 import 'package:flowery/modules/order_tracking/data/data_sources/order_tracking_remote_data_sources_contract.dart';
-import 'package:flowery/modules/order_tracking/data/models/order_model.dart';
+import 'package:flowery/modules/order_tracking/data/models/responses/order_model.dart';
 import 'package:flowery/modules/order_tracking/domain/repo/order_tracking_repo_contract.dart';
 import 'package:injectable/injectable.dart';
 

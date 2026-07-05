@@ -1,183 +1,250 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:flowery/config/l10n/translations/app_localizations.dart';
-import 'package:flowery/core/theme/app_colors.dart';
+import 'package:flowery/modules/order_tracking/data/models/responses/order_item.dart';
+import 'package:flowery/modules/order_tracking/data/models/responses/order_model.dart';
+import 'package:flowery/modules/order_tracking/presentation/helpers/order_states_helper.dart';
 import 'package:flowery/modules/order_tracking/presentation/screens/order_details_screen.dart';
 import 'package:flowery/modules/order_tracking/presentation/view_models/cubit/order_details_view_model.dart';
-import 'package:flowery/modules/order_tracking/presentation/widgets/custom_address_container.dart';
-import 'package:flowery/modules/order_tracking/presentation/widgets/custom_order_container.dart';
-import 'package:flowery/modules/order_tracking/presentation/widgets/custom_payment_container.dart';
-import 'package:flowery/modules/order_tracking/presentation/widgets/status_container.dart';
+import 'package:flowery/modules/order_tracking/presentation/view_models/states/order_details_state.dart';
+import 'package:flowery/modules/order_tracking/presentation/widgets/changing_state_button.dart';
+import 'package:flowery/modules/order_tracking/presentation/widgets/containers/custom_address_container.dart';
+import 'package:flowery/modules/order_tracking/presentation/widgets/containers/custom_order_container.dart';
+import 'package:flowery/modules/order_tracking/presentation/widgets/containers/custom_payment_container.dart';
+import 'package:flowery/modules/order_tracking/presentation/widgets/containers/status_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
+class MockOrderDetailsViewModel extends MockCubit<OrderDetailsState>
+    implements OrderDetailsViewModel {}
+
 void main() {
-  group('OrderDetailsScreen Widget Tests', () {
-    /// Helper function to build the app with BlocProvider
+  late MockOrderDetailsViewModel cubit;
 
-    Widget _buildTestWidget() {
-      return ScreenUtilInit(
-        designSize: const Size(375, 812),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        child: MaterialApp(
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          locale: const Locale('en'),
-          home: BlocProvider(
-            create: (_) => OrderDetailsViewModel(),
-            child: const OrderDetailsScreen(),
-          ),
+  final fakeOrder = OrderModel(
+    acceptedAt: "Today",
+    driverId: "driverId",
+    email: "test@test.com",
+    firstName: "John",
+    lastName: "Doe",
+    orderId: "1",
+    orderNumber: "#123",
+    phone: "01000000000",
+    photo: "",
+    status: "Picked",
+    storeAddress: "Flower Store Address",
+    storeImage: "",
+    storeName: "Flower Store",
+    totalPrice: 500,
+    userAddress: "User Address",
+    userName: "Ahmed",
+    userPhoto: "",
+    userId: "user1",
+    vehicleNumber: "ABC123",
+    paymentMethod: "Cash",
+    items: [
+      OrderItem(
+        itemCost: "250",
+        itemCount: "2",
+        itemIcon: "",
+        itemTitle: "Red Roses",
+      ),
+    ],
+  );
+
+  Widget buildWidget() {
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      child: MaterialApp(
+        locale: const Locale('en'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: BlocProvider<OrderDetailsViewModel>.value(
+          value: cubit,
+          child: const OrderDetailsScreen(),
         ),
-      );
-    }
-
-    testWidgets('renders all main widgets correctly', (tester) async {
-      await mockNetworkImagesFor(() async {
-        await tester.pumpWidget(_buildTestWidget());
-        await tester.pumpAndSettle();
-
-        expect(find.byType(StatusContainer), findsOneWidget);
-        expect(find.byType(CustomAddressContainer), findsNWidgets(2));
-        expect(find.byType(CustomOrderContainer), findsOneWidget);
-        expect(find.byType(CustomPaymentContainer), findsNWidgets(2));
-        expect(find.byType(ElevatedButton), findsOneWidget);
-      });
-    });
-
-    testWidgets('initial state displays firstState', (
-      WidgetTester tester,
-    ) async {
-      await mockNetworkImagesFor(() async {
-        await tester.pumpWidget(_buildTestWidget());
-
-        /// Verify the button text shows the first state
-        expect(find.text('Arrived at Pickup point'), findsOneWidget);
-      });
-    });
-
-    testWidgets(
-      'transitions from first state to second state when button is pressed',
-      (WidgetTester tester) async {
-        await mockNetworkImagesFor(() async {
-          await tester.pumpWidget(_buildTestWidget());
-
-          /// Verify initial state
-          expect(find.text('Arrived at Pickup point'), findsOneWidget);
-
-          /// Tap the button
-          await tester.ensureVisible(
-            find.byKey(const Key('next_state_button')),
-          );
-          await tester.tap(find.byKey(const Key('next_state_button')));
-          await tester.pump();
-
-          /// Verify state changed to second state
-          expect(find.text('Start deliver'), findsOneWidget);
-        });
-      },
+      ),
     );
+  }
 
+  setUp(() {
+    cubit = MockOrderDetailsViewModel();
+  });
+
+  group('OrderDetailsScreen', () {
     testWidgets(
-      'transitions from first to third state after two button presses',
-      (WidgetTester tester) async {
-        await mockNetworkImagesFor(() async {
-          await tester.pumpWidget(_buildTestWidget());
-
-          /// Press button first time
-          await tester.ensureVisible(
-            find.byKey(const Key('next_state_button')),
-          );
-          await tester.tap(find.byKey(const Key('next_state_button')));
-          await tester.pump();
-
-          /// Verify second state
-          expect(find.text('Start deliver'), findsOneWidget);
-
-          /// Press button second time
-          await tester.ensureVisible(
-            find.byKey(const Key('next_state_button')),
-          );
-          await tester.tap(find.byKey(const Key('next_state_button')));
-          await tester.pump();
-
-          /// Verify third state
-          expect(find.text('Arrived to the user'), findsOneWidget);
-        });
-      },
-    );
-
-    testWidgets(
-      'transitions from first to fourth state after three button presses',
-      (WidgetTester tester) async {
-        await mockNetworkImagesFor(() async {
-          await tester.pumpWidget(_buildTestWidget());
-
-          /// Press button three times
-          for (int i = 0; i < 3; i++) {
-            await tester.ensureVisible(
-              find.byKey(const Key('next_state_button')),
-            );
-            await tester.tap(find.byKey(const Key('next_state_button')));
-            await tester.pump();
-          }
-
-          /// Verify fourth state
-          expect(find.text('Delivered to the user'), findsOneWidget);
-        });
-      },
-    );
-
-    testWidgets('reaches final state (fifth state) after four button presses', (
-      WidgetTester tester,
-    ) async {
-      await mockNetworkImagesFor(() async {
-        await tester.pumpWidget(_buildTestWidget());
-
-        /// Press button four times
-        for (int i = 0; i < 4; i++) {
-          await tester.ensureVisible(
-            find.byKey(const Key('next_state_button')),
-          );
-          await tester.tap(find.byKey(const Key('next_state_button')));
-          await tester.pump();
-        }
-
-        /// Verify fifth state
-        expect(find.text('Delivered to the user'), findsOneWidget);
-      });
-    });
-
-    testWidgets('button is disabled in final state', (
-      WidgetTester tester,
-    ) async {
-      await mockNetworkImagesFor(() async {
-        await tester.pumpWidget(_buildTestWidget());
-
-        /// Press button four times to reach final state
-        for (int i = 0; i < 4; i++) {
-          await tester.ensureVisible(
-            find.byKey(const Key('next_state_button')),
-          );
-          await tester.tap(find.byKey(const Key('next_state_button')));
-          await tester.pump();
-        }
-
-        /// Verify button is disabled (hintGrayColor background)
-        final elevatedButton = tester.widget<ElevatedButton>(
-          find.byType(ElevatedButton),
+      'shows loading indicator while loading order',
+      (tester) async {
+        when(() => cubit.state).thenReturn(
+          const OrderDetailsState(
+            isLoadingOrder: true,
+          ),
         );
 
-        final backgroundColor = elevatedButton.style?.backgroundColor?.resolve(
-          {},
+        whenListen(
+          cubit,
+          const Stream<OrderDetailsState>.empty(),
         );
 
-        expect(backgroundColor, AppColors.hintGrayColor);
+        await tester.pumpWidget(buildWidget());
 
-        /// Verify button text still shows the final state
-        expect(find.text('Delivered to the user'), findsOneWidget);
-      });
+        expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      },
+    );
+    
+
+    testWidgets(
+  'renders all widgets when order is loaded',
+  (tester) async {
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 1.0;
+
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
     });
+
+    when(() => cubit.state).thenReturn(
+      OrderDetailsState(
+        isLoadingOrder: false,
+        currentOrderState: OrderStates.firstState,
+        order: fakeOrder,
+      ),
+    );
+
+    whenListen(
+      cubit,
+      Stream.value(
+        OrderDetailsState(
+          isLoadingOrder: false,
+          currentOrderState: OrderStates.firstState,
+          order: fakeOrder,
+        ),
+      ),
+    );
+
+    await mockNetworkImagesFor(() async {
+      await tester.pumpWidget(buildWidget());
+      await tester.pumpAndSettle();
+
+      expect(find.byType(StatusContainer), findsOneWidget);
+      expect(find.byType(CustomAddressContainer), findsNWidgets(2));
+      expect(find.byType(CustomOrderContainer), findsOneWidget);
+      expect(find.byType(CustomPaymentContainer), findsNWidgets(2));
+      expect(find.byType(ChangingStateButton), findsOneWidget);
+    });
+  },
+);
+
+testWidgets(
+  'renders all order items',
+  (tester) async {
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 1.0;
+
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+
+    final order = OrderModel(
+      acceptedAt: fakeOrder.acceptedAt,
+      driverId: fakeOrder.driverId,
+      email: fakeOrder.email,
+      firstName: fakeOrder.firstName,
+      lastName: fakeOrder.lastName,
+      orderId: fakeOrder.orderId,
+      orderNumber: fakeOrder.orderNumber,
+      phone: fakeOrder.phone,
+      photo: fakeOrder.photo,
+      status: fakeOrder.status,
+      storeAddress: fakeOrder.storeAddress,
+      storeImage: fakeOrder.storeImage,
+      storeName: fakeOrder.storeName,
+      totalPrice: fakeOrder.totalPrice,
+      userAddress: fakeOrder.userAddress,
+      userName: fakeOrder.userName,
+      userPhoto: fakeOrder.userPhoto,
+      userId: fakeOrder.userId,
+      vehicleNumber: fakeOrder.vehicleNumber,
+      paymentMethod: fakeOrder.paymentMethod,
+      items: [
+        OrderItem(
+          itemCost: '100',
+          itemCount: '1',
+          itemIcon: '',
+          itemTitle: 'Rose',
+        ),
+        OrderItem(
+          itemCost: '200',
+          itemCount: '2',
+          itemIcon: '',
+          itemTitle: 'Tulip',
+        ),
+      ],
+    );
+
+    final state = OrderDetailsState(
+      isLoadingOrder: false,
+      order: order,
+    );
+
+    when(() => cubit.state).thenReturn(state);
+
+    whenListen(
+      cubit,
+      Stream.value(state),
+    );
+
+    await mockNetworkImagesFor(() async {
+      await tester.pumpWidget(buildWidget());
+      await tester.pumpAndSettle();
+
+      expect(find.byType(CustomOrderContainer), findsNWidgets(2));
+      expect(find.text('Rose'), findsOneWidget);
+      expect(find.text('Tulip'), findsOneWidget);
+    });
+  },
+);
+
+    testWidgets(
+  'shows snackbar when error message is emitted',
+  (tester) async {
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 1.0;
+
+    addTearDown(() {
+      tester.view.resetPhysicalSize();
+      tester.view.resetDevicePixelRatio();
+    });
+
+    final errorState = OrderDetailsState(
+      isLoadingOrder: false,
+      errorMessage: 'Something went wrong',
+      order: fakeOrder,
+    );
+
+    when(() => cubit.state).thenReturn(errorState);
+
+    whenListen(
+      cubit,
+      Stream.fromIterable([errorState]),
+    );
+
+    await mockNetworkImagesFor(() async {
+      await tester.pumpWidget(buildWidget());
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
+
+      expect(find.byType(SnackBar), findsOneWidget);
+      expect(find.text('Something went wrong'), findsOneWidget);
+    });
+  },
+);
+
+
   });
 }

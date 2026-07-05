@@ -1,32 +1,38 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dio/dio.dart';
 import 'package:flowery/config/api/api_keys.dart';
-import 'package:flowery/config/api/app_endpoints.dart';
 import 'package:flowery/config/base_response/base_response.dart';
-import 'package:flowery/config/firebase/firebase_services.dart';
+import 'package:flowery/config/firebase/services/firestore_service.dart';
+import 'package:flowery/config/handler/dio_exception_handler.dart';
+import 'package:flowery/config/handler/firebase_exception_handler.dart';
 import 'package:flowery/modules/order_tracking/api/api_client/order_tracking_api_client.dart';
 import 'package:flowery/modules/order_tracking/data/data_sources/order_tracking_remote_data_sources_contract.dart';
-import 'package:flowery/modules/order_tracking/data/models/notification_request_model.dart';
-import 'package:flowery/modules/order_tracking/data/models/order_model.dart';
+import 'package:flowery/modules/order_tracking/data/models/requests/notification_request_model.dart';
+import 'package:flowery/modules/order_tracking/data/models/responses/order_model.dart';
 import 'package:injectable/injectable.dart';
-import 'package:googleapis_auth/auth_io.dart';
-import 'dart:convert';
-import 'package:flutter/services.dart';
 
 @Injectable(as: OrderTrackingRemoteDataSourcesContract)
 class OrderTrackingRemoteDataSourcesImpl
     implements OrderTrackingRemoteDataSourcesContract {
-  final FirebaseServices firebase;
+  final FirestoreService firestore;
   final OrderTrackingApiClient apiClient;
-  OrderTrackingRemoteDataSourcesImpl(this.apiClient, this.firebase);
+  OrderTrackingRemoteDataSourcesImpl(this.apiClient, this.firestore);
 
   @override
   Future<Result<OrderModel>> getOrderDetails(String driverId) async {
     try {
-      final response = await firebase.firestore.getOrderFromFirestore(
+      final response = await firestore.getOrderFromFirestore(
         driverId: driverId,
       );
       return Success<OrderModel>(data: response);
+    } on DioException catch (e) {
+      return Error<OrderModel>(exception: DioExceptionHandler.handle(e));
+    } on FirebaseException catch (e) {
+      return Error<OrderModel>(
+        exception: FirebaseExceptionHandler.fromFirestore(e),
+      );
     } catch (e) {
-      return Error<OrderModel>(exception: Exception(e.toString()));
+      return Error(exception: Exception(e.toString()));
     }
   }
 
@@ -38,17 +44,17 @@ class OrderTrackingRemoteDataSourcesImpl
     String title,
   ) async {
     try {
-      // Update firestore order status
-      final response = await firebase.firestore.updateOrderStateInFirestore(
+      // Update order status in firestore
+      final response = await firestore.updateOrderStateInFirestore(
         orderId: orderId,
         status: status,
       );
 
       // Get the FCM token of the user
-      final fcmToken = await firebase.firestore.getUserFcmToken(userId);
+      final fcmToken = await firestore.getUserFcmToken(userId);
 
       // Get the Auth token to send the notification
-      final authToken = await getAuthTokenForNotification();
+      final authToken = await firestore.getAuthTokenForNotification();
 
       // Send Notification to the user using FCM & Auth Tokens
       await apiClient.sendNotification(
@@ -61,20 +67,14 @@ class OrderTrackingRemoteDataSourcesImpl
         ),
       );
       return Success<OrderModel>(data: response);
+    } on DioException catch (e) {
+      return Error<OrderModel>(exception: DioExceptionHandler.handle(e));
+    } on FirebaseException catch (e) {
+      return Error<OrderModel>(
+        exception: FirebaseExceptionHandler.fromFirestore(e),
+      );
     } catch (e) {
-      return Error<OrderModel>(exception: Exception(e.toString()));
+      return Error(exception: Exception(e.toString()));
     }
   }
-}
-
-Future<String> getAuthTokenForNotification() async {
-  final jsonString = await rootBundle.loadString(
-    "assets/flowery-app-fb297-firebase-adminsdk-fbsvc-087c98b328.json",
-  );
-
-  final Map<String, dynamic> jsonMap = jsonDecode(jsonString);
-  final accountCredentials = ServiceAccountCredentials.fromJson(jsonMap);
-  final scopes = [AppEndPoints.firebaseMessagingScope];
-  final client = await clientViaServiceAccount(accountCredentials, scopes);
-  return client.credentials.accessToken.data;
 }

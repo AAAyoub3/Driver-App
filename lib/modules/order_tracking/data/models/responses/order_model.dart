@@ -1,3 +1,4 @@
+import 'package:flowery/modules/order_tracking/data/models/responses/order_item.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'order_model.g.dart';
 
@@ -22,6 +23,8 @@ class OrderModel {
   final String? userPhoto;
   final String? userId;
   final String? vehicleNumber;
+  final String? paymentMethod;
+  final List<OrderItem>? items;
 
   const OrderModel({
     required this.acceptedAt,
@@ -43,9 +46,11 @@ class OrderModel {
     required this.userPhoto,
     required this.userId,
     required this.vehicleNumber,
+    required this.paymentMethod, 
+    required this.items,
   });
 
-    factory OrderModel.fromJson(Map<String, dynamic> json) =>
+  factory OrderModel.fromJson(Map<String, dynamic> json) =>
       _$OrderModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$OrderModelToJson(this);

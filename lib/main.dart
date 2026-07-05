@@ -1,6 +1,4 @@
 import 'package:flowery/config/di/injectable_config.dart';
-import 'package:flowery/config/firebase/firebase_services.dart';
-import 'package:flowery/config/firebase/services/firestore_service.dart';
 import 'package:flowery/config/general_cubit/general_state.dart';
 import 'package:flowery/config/general_cubit/local_cubit.dart';
 import 'package:flowery/config/helpers/bloc/bloc_observer.dart';
