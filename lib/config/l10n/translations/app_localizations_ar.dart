@@ -194,4 +194,25 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get an_error_occurred => 'حدث خطأ';
+
+  @override
+  String get reset_password => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get current_password => 'كلمة المرور الحالية';
+
+  @override
+  String get new_password => 'كلمة المرور الجديدة';
+
+  @override
+  String get update => 'تحديث';
+
+  @override
+  String get enter_current_password => 'أدخل كلمة المرور الحالية';
+
+  @override
+  String get enter_new_password => 'أدخل كلمة المرور الجديدة';
+
+  @override
+  String get enter_confirm_password => 'أدخل تأكيد كلمة المرور';
 }
