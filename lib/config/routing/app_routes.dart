@@ -1,3 +1,3 @@
 abstract class AppRoutes {
-  static const String orderDetails = "/order-details";
+  static const String home = '/home';
 }

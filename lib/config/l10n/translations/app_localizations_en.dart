@@ -138,9 +138,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get home => 'Home';
 
   @override
-  String get OrderTracking => 'OrderTracking';
-
-  @override
   String get hi => 'Hi';
 
   @override
@@ -197,4 +194,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get an_error_occurred => 'An error occurred';
+
+  @override
+  String get order_details => 'Order Details';
+
+  @override
+  String get pick_up_address => 'Pick Up Address';
+
+  @override
+  String get user_address => 'User Address';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get payment_method => 'Payment Method';
+
+  @override
+  String get next_state_button => 'Next State';
+
+  @override
+  String get progress => 'Progress';
+
+  @override
+  String get arrived_at_pickup_point => 'Arrived at Pickup Point';
+
+  @override
+  String get start_deliver => 'Start Deliver';
+
+  @override
+  String get arrived_to_the_user => 'Arrived to the User';
+
+  @override
+  String get delivered_to_the_user => 'Delivered to the User';
+
+  @override
+  String get status => 'Status';
+
+  @override
+  String get order_id => 'Order ID';
+
+  @override
+  String get egp => 'EGP';
 }

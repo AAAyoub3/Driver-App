@@ -41,6 +41,8 @@ dependencies:
   shimmer: ^3.0.0
   syncfusion_flutter_pdfviewer: 33.1.44
   url_launcher: ^6.3.2
+  firebase_core: ^4.11.0
+  cloud_firestore: ^6.6.0
 
 dev_dependencies:
   build_runner: ^2.11.1

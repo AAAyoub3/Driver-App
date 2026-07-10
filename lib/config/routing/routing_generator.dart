@@ -1,7 +1,7 @@
 import 'package:flowery/config/di/injectable_config.dart';
 import 'package:flowery/config/routing/app_routes.dart';
-import 'package:flowery/modules/order_tracking/presentation/screens/order_details_screen.dart';
-import 'package:flowery/modules/order_tracking/presentation/view_models/cubit/order_details_view_model.dart';
+import 'package:flowery/modules/order_tracking/presentation/screens/home_screen.dart';
+import 'package:flowery/modules/order_tracking/presentation/view_models/cubit/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,15 +9,11 @@ class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     try {
       switch (settings.name) {
-        case AppRoutes.orderDetails:
+        case AppRoutes.home:
           return MaterialPageRoute(
-            builder: (_) => MultiBlocProvider(
-              providers: [
-                BlocProvider(
-                  create: ((context) => getIt<OrderDetailsViewModel>()),
-                ),
-              ],
-              child: const OrderDetailsScreen(),
+            builder: (_) => BlocProvider(
+              create: (_) => getIt<HomeViewModel>(),
+              child: const HomeScreen(),
             ),
           );
 

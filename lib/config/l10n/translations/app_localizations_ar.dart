@@ -135,9 +135,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get home => 'الرئيسية';
 
   @override
-  String get OrderTracking => 'الملف الشخصي';
-
-  @override
   String get hi => 'مرحباً';
 
   @override
@@ -194,4 +191,46 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get an_error_occurred => 'حدث خطأ';
+
+  @override
+  String get order_details => 'تفاصيل الطلب';
+
+  @override
+  String get pick_up_address => 'عنوان الاستلام';
+
+  @override
+  String get user_address => 'عنوان المستخدم';
+
+  @override
+  String get total => 'الإجمالي';
+
+  @override
+  String get payment_method => 'طريقة الدفع';
+
+  @override
+  String get next_state_button => 'الخطوة التالية';
+
+  @override
+  String get progress => 'التقدم';
+
+  @override
+  String get arrived_at_pickup_point => 'تم الوصول إلى نقطة الاستلام';
+
+  @override
+  String get start_deliver => 'بدء التوصيل';
+
+  @override
+  String get arrived_to_the_user => 'تم الوصول إلى المستخدم';
+
+  @override
+  String get delivered_to_the_user => 'تم التسليم للمستخدم';
+
+  @override
+  String get status => 'الحالة';
+
+  @override
+  String get order_id => 'رقم الطلب';
+
+  @override
+  String get egp => 'جنيه';
 }

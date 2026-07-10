@@ -344,12 +344,6 @@ abstract class AppLocalizations {
   /// **'Home'**
   String get home;
 
-  /// No description provided for @OrderTracking.
-  ///
-  /// In en, this message translates to:
-  /// **'OrderTracking'**
-  String get OrderTracking;
-
   /// No description provided for @hi.
   ///
   /// In en, this message translates to:
@@ -463,6 +457,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An error occurred'**
   String get an_error_occurred;
+
+  /// No description provided for @order_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Details'**
+  String get order_details;
+
+  /// No description provided for @pick_up_address.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick Up Address'**
+  String get pick_up_address;
+
+  /// No description provided for @user_address.
+  ///
+  /// In en, this message translates to:
+  /// **'User Address'**
+  String get user_address;
+
+  /// No description provided for @total.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get total;
+
+  /// No description provided for @payment_method.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Method'**
+  String get payment_method;
+
+  /// No description provided for @next_state_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Next State'**
+  String get next_state_button;
+
+  /// No description provided for @progress.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress'**
+  String get progress;
+
+  /// No description provided for @arrived_at_pickup_point.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrived at Pickup Point'**
+  String get arrived_at_pickup_point;
+
+  /// No description provided for @start_deliver.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Deliver'**
+  String get start_deliver;
+
+  /// No description provided for @arrived_to_the_user.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrived to the User'**
+  String get arrived_to_the_user;
+
+  /// No description provided for @delivered_to_the_user.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered to the User'**
+  String get delivered_to_the_user;
+
+  /// No description provided for @status.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get status;
+
+  /// No description provided for @order_id.
+  ///
+  /// In en, this message translates to:
+  /// **'Order ID'**
+  String get order_id;
+
+  /// No description provided for @egp.
+  ///
+  /// In en, this message translates to:
+  /// **'EGP'**
+  String get egp;
 }
 
 class _AppLocalizationsDelegate
