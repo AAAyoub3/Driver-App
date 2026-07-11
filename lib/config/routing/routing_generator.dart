@@ -1,7 +1,9 @@
 import 'package:flowery/config/di/injectable_config.dart';
 import 'package:flowery/config/routing/app_routes.dart';
 import 'package:flowery/modules/profile/presentation/screens/change_password_screen.dart';
+import 'package:flowery/modules/profile/presentation/screens/my_profile_screen.dart';
 import 'package:flowery/modules/profile/presentation/view_models/cubit/change_password_view_model.dart';
+import 'package:flowery/modules/profile/presentation/view_models/cubit/my_profiel_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,6 +20,17 @@ class RouteGenerator {
                 ),
               ],
               child: const ChangePasswordScreen(),
+            ),
+          );
+        case AppRoutes.myProfile:
+          return MaterialPageRoute(
+            builder: (_) => MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: ((context) => getIt<MyProfielViewModel>()),
+                ),
+              ],
+              child: MyProfileScreen(),
             ),
           );
 

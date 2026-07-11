@@ -66,5 +66,7 @@
   "update": "تحديث",
   "enter_current_password": "أدخل كلمة المرور الحالية",
   "enter_new_password": "أدخل كلمة المرور الجديدة",
-  "enter_confirm_password": "أدخل تأكيد كلمة المرور"
+  "enter_confirm_password": "أدخل تأكيد كلمة المرور",
+  "english":"انجليزي",
+  "language":"اللغه"
 }

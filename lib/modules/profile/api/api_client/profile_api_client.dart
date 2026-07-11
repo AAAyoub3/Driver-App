@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flowery/config/api/app_endpoints.dart';
+import 'package:flowery/config/base_response/base_response.dart';
 import 'package:flowery/modules/profile/data/models/requests/change_password_request.dart';
 import 'package:flowery/modules/profile/data/models/responses/change_password_response.dart';
+import 'package:flowery/modules/profile/data/models/responses/my_profile_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -17,4 +19,9 @@ abstract class ProfileApiClient {
   Future<ChangePasswordResponse> changePassword({
     @Body() required ChangePasswordRequest request,
   });
+
+  @GET(AppEndPoints.my_profile)
+  Future<MyProfileResponse> getMyProfileData();
+
+  
 }

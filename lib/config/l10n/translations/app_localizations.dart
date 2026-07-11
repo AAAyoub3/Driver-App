@@ -505,6 +505,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter confirm password'**
   String get enter_confirm_password;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
 }
 
 class _AppLocalizationsDelegate
