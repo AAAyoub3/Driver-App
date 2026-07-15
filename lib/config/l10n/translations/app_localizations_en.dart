@@ -60,7 +60,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get connectionTimeout => 'Failed to connect to the server';
 
   @override
-  String get cancelled => 'The request to the server was cancelled';
+  String get cancelled => 'Cancelled';
 
   @override
   String get unknown =>
@@ -138,7 +138,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get home => 'Home';
 
   @override
-  String get OrderTracking => 'OrderTracking';
+  String get ordertracking => 'OrderTracking';
 
   @override
   String get hi => 'Hi';
@@ -197,4 +197,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get an_error_occurred => 'An error occurred';
+
+  @override
+  String get order_details => 'Order Details';
+
+  @override
+  String get my_orders => 'My orders';
+
+  @override
+  String get pickup_address => 'Pickup address';
+
+  @override
+  String get user_address => 'User address';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get egp => 'Egp';
+
+  @override
+  String get payment_method => 'Payment method';
+
+  @override
+  String get cash => 'Cash';
+
+  @override
+  String get cash_on_delivery => 'Cash on delivery';
+
+  @override
+  String get complete => 'Complete';
+
+  @override
+  String get recent_orders => 'Recent orders';
+
+  @override
+  String get flower_order => 'Flower order';
+
+  @override
+  String get product => 'Product';
 }
