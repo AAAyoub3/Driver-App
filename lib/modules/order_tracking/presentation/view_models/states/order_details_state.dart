@@ -3,6 +3,7 @@ import 'package:flowery/modules/order_tracking/data/models/responses/order_model
 import 'package:flowery/modules/order_tracking/presentation/helpers/order_states_helper.dart';
 
 class OrderDetailsState extends Equatable {
+  final String userLang;
   final bool isLoadingOrder;
   final bool isUpdatingOrderStatus;
   final OrderStates currentOrderState;
@@ -12,8 +13,9 @@ class OrderDetailsState extends Equatable {
     this.isLoadingOrder = true,
     this.isUpdatingOrderStatus = false,
     this.order,
-    this.currentOrderState = OrderStates.firstState,
-    this.errorMessage,
+    this.currentOrderState = OrderStates.accepted,
+    this.errorMessage, 
+    this.userLang = "en",
   });
 
   OrderDetailsState copyWith({
@@ -22,12 +24,14 @@ class OrderDetailsState extends Equatable {
     final OrderStates? currentOrderState,
     final String? errorMessage,
     final bool? isUpdatingOrderStatus,
+    final String? userLang,
   }) => OrderDetailsState(
     order: order ?? this.order,
     currentOrderState: currentOrderState ?? this.currentOrderState,
     errorMessage: errorMessage ?? this.errorMessage,
     isLoadingOrder: isLoadingOrder ?? this.isLoadingOrder,
     isUpdatingOrderStatus: isUpdatingOrderStatus ?? this.isUpdatingOrderStatus,
+    userLang: userLang ?? this.userLang
   );
   @override
   List<Object?> get props => [
@@ -36,5 +40,6 @@ class OrderDetailsState extends Equatable {
     errorMessage,
     isLoadingOrder,
     isUpdatingOrderStatus,
+    userLang
   ];
 }

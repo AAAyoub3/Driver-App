@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flowery/config/api/api_keys.dart';
 import 'package:flowery/config/api/app_endpoints.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -40,6 +41,12 @@ abstract class CoreInjectableModule {
         ),
     ]);
     return dio;
+  }
+
+  @Named(Apikeys.fcm)
+  @lazySingleton
+  Dio fcmDio() {
+    return Dio(BaseOptions(baseUrl: AppEndPoints.notificationbaseUrl));
   }
 
   @lazySingleton

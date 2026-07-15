@@ -45,6 +45,7 @@ dependencies:
   syncfusion_flutter_pdfviewer: 33.1.44
   url_launcher: ^6.3.2
   googleapis_auth: ^2.3.2
+  geolocator: ^14.0.2
 
 dev_dependencies:
   fake_cloud_firestore: ^4.1.1

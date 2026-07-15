@@ -1,60 +1,65 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flowery/config/l10n/translations/app_localizations.dart';
 
 class FirebaseExceptionHandler implements Exception {
   final String message;
 
   FirebaseExceptionHandler._(this.message);
 
-  factory FirebaseExceptionHandler.fromFirestore(FirebaseException exception) {
+  factory FirebaseExceptionHandler.fromFirestore({
+    required FirebaseException exception,
+    required AppLocalizations localizations,
+  }) {
     switch (exception.code) {
       case 'permission-denied':
         return FirebaseExceptionHandler._(
-          'You do not have permission to perform this action.',
+          localizations.firebase_permission_denied,
         );
 
       case 'not-found':
         return FirebaseExceptionHandler._(
-          'Requested document was not found.',
+          localizations.firebase_document_not_found,
         );
 
       case 'unavailable':
         return FirebaseExceptionHandler._(
-          'Firebase service is currently unavailable.',
+          localizations.firebase_service_unavailable,
         );
 
       case 'deadline-exceeded':
         return FirebaseExceptionHandler._(
-          'The request timed out. Please try again.',
+          localizations.firebase_request_timeout,
         );
 
       case 'cancelled':
         return FirebaseExceptionHandler._(
-          'The operation was cancelled.',
+          localizations.firebase_operation_cancelled,
         );
 
       case 'already-exists':
         return FirebaseExceptionHandler._(
-          'The document already exists.',
+          localizations.firebase_document_already_exists,
         );
 
       case 'resource-exhausted':
         return FirebaseExceptionHandler._(
-          'Firebase quota has been exceeded.',
+          localizations.firebase_quota_exceeded,
         );
 
       case 'unauthenticated':
         return FirebaseExceptionHandler._(
-          'Authentication is required.',
+          localizations.firebase_authentication_required,
         );
 
       case 'invalid-argument':
         return FirebaseExceptionHandler._(
-          'An invalid argument was provided.',
+          localizations.firebase_invalid_argument,
         );
 
       default:
         return FirebaseExceptionHandler._(
-          exception.message ?? 'An unknown Firebase error occurred.',
+          exception.message ??
+              localizations.unknown_firebase_error,
         );
     }
   }

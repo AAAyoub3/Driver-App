@@ -44,74 +44,84 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         ),
       ),
       body: BlocConsumer<OrderDetailsViewModel, OrderDetailsState>(
+        buildWhen: (previous, current) {
+          return previous.isLoadingOrder != current.isLoadingOrder ||
+              previous.order != current.order;
+        },
+        listenWhen: (previous, current) {
+          return previous.errorMessage != current.errorMessage;
+        },
         builder: (context, state) {
           if (state.isLoadingOrder) {
             return const Center(child: CircularProgressIndicator());
           }
-          return SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // Status Container
-                StatusContainer(
-                  status: state.order?.status ?? "",
-                  orderId: state.order?.orderNumber ?? "",
-                  date: state.order?.acceptedAt ?? "",
-                ),
+          return Column(
+            children: [
+              SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // Status Container
+                    StatusContainer(
+                      status: state.order?.status ?? "",
+                      orderId: state.order?.orderNumber ?? "",
+                      date: state.order?.acceptedAt ?? "",
+                    ),
 
-                // Pick Up Address
-                CustomTitle(title: localizations.pick_up_address),
-                CustomAddressContainer(
-                  icon: state.order?.storeImage ?? "",
-                  title: state.order?.storeName ?? "",
-                  address: state.order?.storeAddress ?? "",
-                ),
-                SizedBox(height: 10.h),
+                    // Pick Up Address
+                    CustomTitle(title: localizations.pick_up_address),
+                    CustomAddressContainer(
+                      icon: state.order?.storeImage ?? "",
+                      title: state.order?.storeName ?? "",
+                      address: state.order?.storeAddress ?? "",
+                    ),
+                    SizedBox(height: 10.h),
 
-                // User Address
-                CustomTitle(title: localizations.user_address),
-                CustomAddressContainer(
-                  icon: state.order?.userPhoto ?? "",
-                  title: state.order?.userName ?? "",
-                  address: state.order?.userAddress ?? "",
-                ),
-                SizedBox(height: 10.h),
+                    // User Address
+                    CustomTitle(title: localizations.user_address),
+                    CustomAddressContainer(
+                      icon: state.order?.userPhoto ?? "",
+                      title: state.order?.userName ?? "",
+                      address: state.order?.userAddress ?? "",
+                    ),
+                    SizedBox(height: 10.h),
 
-                // Order Details
-                CustomTitle(title: localizations.order_details),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: state.order?.items?.length ?? 0,
-                  itemBuilder: (context, index) {
-                    final item = state.order?.items?[index];
-                    return CustomOrderContainer(
-                      icon: item?.itemIcon ?? "",
-                      title: item?.itemTitle ?? "",
-                      cost: item?.itemCost ?? "",
-                      numberOfItem: item?.itemCount ?? "",
-                    );
-                  },
-                ),
+                    // Order Details
+                    CustomTitle(title: localizations.order_details),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: state.order?.items?.length ?? 0,
+                      itemBuilder: (context, index) {
+                        final item = state.order?.items?[index];
+                        return CustomOrderContainer(
+                          icon: item?.itemIcon ?? "",
+                          title: item?.itemTitle ?? "",
+                          cost: item?.itemCost ?? "",
+                          numberOfItem: item?.itemCount ?? "",
+                        );
+                      },
+                    ),
 
-                // Payment Details
-                CustomPaymentContainer(
-                  title: localizations.total,
-                  value:
-                      "${state.order?.totalPrice ?? ""} ${localizations.egp}",
+                    // Payment Details
+                    CustomPaymentContainer(
+                      title: localizations.total,
+                      value:
+                          "${state.order?.totalPrice ?? ""} ${localizations.egp}",
+                    ),
+                    SizedBox(height: 10.h),
+                    CustomPaymentContainer(
+                      title: localizations.payment_method,
+                      value: state.order?.paymentMethod ?? "",
+                    ),
+                    SizedBox(height: 20.h),
+                  ],
                 ),
-                SizedBox(height: 10.h),
-                CustomPaymentContainer(
-                  title: localizations.payment_method,
-                  value: state.order?.paymentMethod ?? "",
-                ),
-                SizedBox(height: 20.h),
-
-                // Changing state button
-                ChangingStateButton(localizations: localizations),
-                SizedBox(height: 20.h),
-              ],
-            ),
+              ),
+              // Changing state button
+              ChangingStateButton(localizations: localizations),
+              SizedBox(height: 20.h),
+            ],
           );
         },
         listener: (context, state) {

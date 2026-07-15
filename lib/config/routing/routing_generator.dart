@@ -1,4 +1,5 @@
 import 'package:flowery/config/di/injectable_config.dart';
+import 'package:flowery/config/l10n/translations/app_localizations.dart';
 import 'package:flowery/config/routing/app_routes.dart';
 import 'package:flowery/modules/order_tracking/presentation/screens/order_details_screen.dart';
 import 'package:flowery/modules/order_tracking/presentation/view_models/cubit/order_details_view_model.dart';
@@ -17,7 +18,10 @@ class RouteGenerator {
                 BlocProvider(
                   create: ((context) => getIt<OrderDetailsViewModel>()
                     ..doEvent(
-                      GetOrderDetailsEvent("6a3845ab992612ae599b1736"),
+                      GetOrderDetailsEvent(
+                        "6a3845ab992612ae599b1736",
+                        AppLocalizations.of(context)!,
+                      ),
                     )),
                 ),
               ],

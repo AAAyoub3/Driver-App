@@ -18,20 +18,33 @@ class ChangingStateButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: BlocBuilder<OrderDetailsViewModel, OrderDetailsState>(
+        buildWhen: (previous, current) {
+          return previous.order?.status != current.order?.status ||
+              previous.currentOrderState != current.currentOrderState ||
+              previous.isUpdatingOrderStatus != current.isUpdatingOrderStatus;
+        },
         builder: (context, state) {
           final currentOrderState = getOrderStateFromStatus(
             state.order?.status,
           );
           return ElevatedButton(
             key: Key(OrderDetailsKeys.nextStateButton),
-            onPressed: () {
-              if (state.currentOrderState != OrderStates.fifthState) {
+            onPressed: () async {
+              if (state.currentOrderState != OrderStates.delivered) {
+                final userLocal = await AppLocalizations.delegate.load(
+                  Locale(state.userLang),
+                );
+
                 context.read<OrderDetailsViewModel>().doEvent(
                   UpdateOrderStateEvent(
                     orderId: state.order?.orderId ?? "",
                     userId: state.order?.userId ?? "",
                     currentOrderState: state.currentOrderState,
                     title: localizations.your_order_status,
+                    localizations: localizations,
+                    messageSentToUser: state.currentOrderState.buttonText(
+                      userLocal,
+                    ),
                   ),
                 );
               }
@@ -41,10 +54,8 @@ class ChangingStateButton extends StatelessWidget {
                   ? AppColors.primaryColor
                   : AppColors.hintGrayColor,
             ),
-            child: BlocBuilder<OrderDetailsViewModel, OrderDetailsState>(
-              builder: (context, state) {
-                if (state.isUpdatingOrderStatus) {
-                  return Center(
+            child: state.isUpdatingOrderStatus
+                ? Center(
                     child: SizedBox(
                       height: 15.h,
                       width: 15.w,
@@ -52,11 +63,13 @@ class ChangingStateButton extends StatelessWidget {
                         color: AppColors.whiteColor,
                       ),
                     ),
-                  );
-                }
-                return Text(currentOrderState?.buttonText ?? "");
-              },
-            ),
+                  )
+                : Text(
+                    currentOrderState?.buttonText(
+                          AppLocalizations.of(context)!,
+                        ) ??
+                        "",
+                  ),
           );
         },
       ),
