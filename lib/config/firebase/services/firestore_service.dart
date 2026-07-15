@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flowery/config/api/api_keys.dart';
-import 'package:flowery/config/l10n/translations/app_localizations.dart';
+import 'package:flowery/modules/order_tracking/data/models/requests/firebase_notification_model.dart';
 import 'package:flowery/modules/order_tracking/data/models/responses/auth_credentials.dart';
 import 'package:flowery/modules/order_tracking/data/models/responses/driver_location.dart';
 import 'package:flowery/modules/order_tracking/data/models/responses/order_model.dart';
@@ -9,8 +9,7 @@ import 'package:injectable/injectable.dart';
 @lazySingleton
 class FirestoreService {
   final FirebaseFirestore _firestore;
-  final AppLocalizations _localizations;
-  FirestoreService(this._firestore, this._localizations);
+  FirestoreService(this._firestore);
 
   Future<OrderModel> getOrderFromFirestore({required String driverId}) async {
     final snapshot = await _firestore
@@ -20,7 +19,7 @@ class FirestoreService {
         .get();
 
     if (snapshot.docs.isEmpty) {
-      throw Exception(_localizations.no_accepted_order_found_for_this_driver);
+      throw Exception("No accepted order found for this driver");
     }
 
     return OrderModel.fromJson(snapshot.docs.first.data());
@@ -55,9 +54,9 @@ class FirestoreService {
     final updatedDoc = await docRef.get();
 
     if (!updatedDoc.exists) {
-      throw Exception(_localizations.order_not_found);
+      throw Exception("Order not found");
     }
-
+  
     return OrderModel.fromJson(updatedDoc.data() as Map<String, dynamic>);
   }
 
@@ -73,7 +72,7 @@ class FirestoreService {
     final snapshot = await credentialsRef.doc(Apikeys.firebaseAdmin).get();
 
     if (!snapshot.exists) {
-      throw Exception(_localizations.firebase_admin_credentials_not_found);
+      throw Exception("Firebase admin credentials not found");
     }
 
     return snapshot.data()!;
@@ -105,4 +104,15 @@ class FirestoreService {
       Apikeys.updatedAt: DateTime.now().toIso8601String(),
     }, SetOptions(merge: true));
   }
+
+
+Future<void> addNotification({
+  required String userId,
+  required FirebaseNotificationModel notification,
+}) async {
+  await _firestore
+      .collection(Apikeys.notifications)
+      .doc(userId)
+      .set(notification.toJson());
+}
 }

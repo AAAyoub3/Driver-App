@@ -8,9 +8,11 @@ import 'package:flowery/config/firebase/services/auth_service.dart';
 import 'package:flowery/config/firebase/services/firestore_service.dart';
 import 'package:flowery/config/handler/dio_exception_handler.dart';
 import 'package:flowery/config/handler/firebase_exception_handler.dart';
+import 'package:flowery/config/handler/location_permission_handler.dart';
 import 'package:flowery/config/l10n/translations/app_localizations.dart';
 import 'package:flowery/modules/order_tracking/api/api_client/fcm_api_client.dart';
 import 'package:flowery/modules/order_tracking/data/data_sources/order_tracking_remote_data_sources_contract.dart';
+import 'package:flowery/modules/order_tracking/data/models/requests/firebase_notification_model.dart';
 import 'package:flowery/modules/order_tracking/data/models/requests/notification_request_model.dart';
 import 'package:flowery/modules/order_tracking/data/models/responses/order_model.dart';
 import 'package:injectable/injectable.dart';
@@ -28,23 +30,32 @@ class OrderTrackingRemoteDataSourcesImpl
     this.fcmApiClient,
   );
   StreamSubscription<Position>? _subscription;
+  final _permissionHandler = const LocationPermissionHandler();
 
   @override
   Future<void> startTracking(String driverId) async {
-    const settings = LocationSettings(
-      accuracy: LocationAccuracy.high,
-      distanceFilter: 10,
-    );
+    try {
+      await _permissionHandler.ensurePermissionGranted();
 
-    _subscription = Geolocator.getPositionStream(locationSettings: settings)
-        .listen((position) async {
-          await firestore.updateDriverLocation(
-            driverId: driverId,
-            latitude: position.latitude,
-            longitude: position.longitude,
-            accuracy: position.accuracy,
-          );
-        });
+      const settings = LocationSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 10,
+      );
+
+      await _subscription?.cancel();
+
+      _subscription = Geolocator.getPositionStream(locationSettings: settings)
+          .listen((position) async {
+            await firestore.updateDriverLocation(
+              driverId: driverId,
+              latitude: position.latitude,
+              longitude: position.longitude,
+              accuracy: position.accuracy,
+            );
+          });
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
@@ -84,6 +95,7 @@ class OrderTrackingRemoteDataSourcesImpl
     String status,
     String title,
     AppLocalizations localizations,
+    String userMessage
   ) async {
     try {
       // Update order status in firestore
@@ -108,6 +120,16 @@ class OrderTrackingRemoteDataSourcesImpl
           ),
         ),
       );
+
+      await firestore.addNotification(
+        userId: userId,
+        notification: FirebaseNotificationModel(
+          title: Apikeys.flowery,
+          body: userMessage,
+          isRead: false,
+          createdAt: DateTime.now().toString(),
+        ),
+      );
       return Success<OrderModel>(data: response);
     } on DioException catch (e) {
       return Error<OrderModel>(exception: DioExceptionHandler.handle(e));
@@ -124,10 +146,7 @@ class OrderTrackingRemoteDataSourcesImpl
   }
 
   @override
-  Future<Result<String>> getUserLanguage(
-    String userId,
-
-  ) async {
+  Future<Result<String>> getUserLanguage(String userId) async {
     try {
       final response = await firestore.getUserLanguage(userId);
       return Success<String>(data: response);

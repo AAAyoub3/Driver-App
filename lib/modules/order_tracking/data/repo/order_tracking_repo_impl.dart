@@ -34,6 +34,7 @@ class OrderTrackingRepoImpl implements OrderTrackingRepoContract {
     String status,
     String title,
     AppLocalizations localizations,
+    String userMessage
   ) async {
     final response = await remoteDataSources.updateOrderStatus(
       orderId,
@@ -41,6 +42,7 @@ class OrderTrackingRepoImpl implements OrderTrackingRepoContract {
       status,
       title,
       localizations,
+      userMessage
     );
     switch (response) {
       case Success<OrderModel>():

@@ -30,11 +30,13 @@ class ChangingStateButton extends StatelessWidget {
           return ElevatedButton(
             key: Key(OrderDetailsKeys.nextStateButton),
             onPressed: () async {
+              context.read<OrderDetailsViewModel>().doEvent(
+                GetUserLanguageEvent(userId: state.order?.userId ?? ""),
+              );
               if (state.currentOrderState != OrderStates.delivered) {
                 final userLocal = await AppLocalizations.delegate.load(
                   Locale(state.userLang),
                 );
-
                 context.read<OrderDetailsViewModel>().doEvent(
                   UpdateOrderStateEvent(
                     orderId: state.order?.orderId ?? "",

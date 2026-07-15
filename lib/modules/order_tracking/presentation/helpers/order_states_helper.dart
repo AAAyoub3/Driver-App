@@ -3,23 +3,23 @@ import 'package:flowery/config/l10n/translations/app_localizations.dart';
 enum OrderStates {
   accepted(
     buttonTextKey: 'arrived_at_pickup_point',
-    statusTextKey: 'accepted',
+    statusTextKey: 'Accepted',
     value: 0,
   ),
-  picked(buttonTextKey: 'start_deliver', statusTextKey: 'picked', value: 1),
+  picked(buttonTextKey: 'start_deliver', statusTextKey: 'Picked', value: 1),
   outForDelivery(
     buttonTextKey: 'arrived_to_the_user',
-    statusTextKey: 'out_for_delivery',
+    statusTextKey: 'Out for delivery',
     value: 2,
   ),
   arrived(
     buttonTextKey: 'delivered_to_the_user',
-    statusTextKey: 'arrived',
+    statusTextKey: 'Arrived',
     value: 3,
   ),
   delivered(
     buttonTextKey: 'delivered_to_the_user',
-    statusTextKey: 'delivered',
+    statusTextKey: 'Delivered',
     value: 4,
   );
 

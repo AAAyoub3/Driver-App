@@ -15,8 +15,9 @@ class UpdateOrderStateUseCase {
     String userId,
     String status,
     String title,
-    AppLocalizations localizations
+    AppLocalizations localizations,
+    String userMessage
   ) {
-    return repo.updateOrderStatus(orderId, userId, status, title,localizations);
+    return repo.updateOrderStatus(orderId, userId, status, title,localizations,userMessage);
   }
 }

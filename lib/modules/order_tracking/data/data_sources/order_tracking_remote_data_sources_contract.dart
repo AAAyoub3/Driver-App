@@ -16,5 +16,6 @@ abstract interface class OrderTrackingRemoteDataSourcesContract {
     String status,
     String title,
     AppLocalizations localizations,
+    String userMessage
   );
 }

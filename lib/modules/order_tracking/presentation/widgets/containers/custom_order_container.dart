@@ -44,28 +44,29 @@ class _CustomOrderContainerState extends State<CustomOrderContainer> {
           height: 76.h,
           width: 343.w,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 22.sp,
-                    backgroundImage: NetworkImage(widget.icon),
-                  ),
-                  SizedBox(width: 10.w),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 5.sp,
-                    children: [
-                      SizedBox(width: 5.w),
-                      Text(widget.title),
-                      Text("${widget.cost} ${localizations.egp}"),
-                    ],
-                  ),
-                ],
+              SizedBox(width: 10.w),
+              CircleAvatar(
+                radius: 22.sp,
+                backgroundImage: NetworkImage(widget.icon),
               ),
-              const SizedBox(),
+              SizedBox(width: 10.w),
+
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(height: 5.h),
+                    Text("${widget.cost} ${localizations.egp}"),
+                  ],
+                ),
+              ),
               Text(
                 "X${widget.numberOfItem}",
                 style: TextStyle(
@@ -73,7 +74,7 @@ class _CustomOrderContainerState extends State<CustomOrderContainer> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(),
+              SizedBox(width: 10.w),
             ],
           ),
         ),

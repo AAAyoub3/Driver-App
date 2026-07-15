@@ -1,4 +1,6 @@
 abstract class Apikeys {
+  static const String flowery = "Flowery";
+
   // Auth
   static const String accessToken = 'accessToken';
   static const String token = 'token';
@@ -23,9 +25,10 @@ abstract class Apikeys {
   static const String status = 'status';
   static const String fcm = 'fcm';
   static const String language = 'language';
+  static const String notifications = 'notifications';
 
   // Driver
-  static const String driverLocations = "driver_llocations";
+  static const String driverLocations = "driver_locations";
   static const String latitude = "lat";
   static const String longitude = "lng";
   static const String accuracy = "accuracy";

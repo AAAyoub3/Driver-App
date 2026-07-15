@@ -13,20 +13,24 @@ class RouteGenerator {
       switch (settings.name) {
         case AppRoutes.orderDetails:
           return MaterialPageRoute(
-            builder: (_) => MultiBlocProvider(
-              providers: [
-                BlocProvider(
-                  create: ((context) => getIt<OrderDetailsViewModel>()
-                    ..doEvent(
-                      GetOrderDetailsEvent(
-                        "6a3845ab992612ae599b1736",
-                        AppLocalizations.of(context)!,
+            builder: (context) {
+              final localizations = AppLocalizations.of(context)!;
+
+              return MultiBlocProvider(
+                providers: [
+                  BlocProvider(
+                    create: (_) => getIt<OrderDetailsViewModel>()
+                      ..doEvent(
+                        GetOrderDetailsEvent(
+                          "6a3845ab992612ae599b1736",
+                          localizations,
+                        ),
                       ),
-                    )),
-                ),
-              ],
-              child: const OrderDetailsScreen(),
-            ),
+                  ),
+                ],
+                child: const OrderDetailsScreen(),
+              );
+            },
           );
 
         default:

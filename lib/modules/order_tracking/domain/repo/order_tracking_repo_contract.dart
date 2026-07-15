@@ -16,5 +16,6 @@ abstract interface class OrderTrackingRepoContract {
     String status,
     String title,
     AppLocalizations localizations,
+    String userMessage
   );
 }

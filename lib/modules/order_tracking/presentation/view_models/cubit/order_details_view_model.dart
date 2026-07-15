@@ -91,6 +91,7 @@ class OrderDetailsViewModel extends Cubit<OrderDetailsState> {
       state.currentOrderState.statusTextKey,
       event.title,
       event.localizations,
+      event.messageSentToUser
     );
 
     switch (response) {
