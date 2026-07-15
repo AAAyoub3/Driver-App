@@ -12,5 +12,5 @@ abstract class OrderTrackingApiClient {
   factory OrderTrackingApiClient(Dio dio) = _OrderTrackingApiClient;
 
   @GET(AppEndPoints.orders)
-  Future<DriverOrdersResponse> getOrders();
+  Future<DriverOrdersResponse> getDriverOrders();
 }

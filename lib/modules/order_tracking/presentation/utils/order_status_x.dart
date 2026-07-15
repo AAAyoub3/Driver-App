@@ -1,3 +1,4 @@
+import 'package:flowery/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 enum OrderTrackingStatus { pending, completed, cancelled, unknown }
@@ -35,13 +36,13 @@ extension OrderTrackingStatusX on OrderTrackingStatus {
   Color get color {
     switch (this) {
       case OrderTrackingStatus.completed:
-        return const Color(0xFF1FAE59);
+        return AppColors.greenColor;
       case OrderTrackingStatus.cancelled:
-        return const Color(0xFFE9384D);
+        return AppColors.redColor;
       case OrderTrackingStatus.pending:
-        return const Color(0xFFF5A623);
+        return AppColors.primaryColor;
       case OrderTrackingStatus.unknown:
-        return Colors.grey;
+        return AppColors.grayColor;
     }
   }
 

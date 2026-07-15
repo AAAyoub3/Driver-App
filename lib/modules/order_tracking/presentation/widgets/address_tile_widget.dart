@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flowery/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,7 @@ class AddressTileWidget extends StatelessWidget {
                 imageUrl != null &&
                     imageUrl!.isNotEmpty &&
                     imageUrl!.startsWith('http')
-                ? NetworkImage(imageUrl!)
+                ? CachedNetworkImageProvider(imageUrl!)
                 : null,
             child:
                 imageUrl == null ||

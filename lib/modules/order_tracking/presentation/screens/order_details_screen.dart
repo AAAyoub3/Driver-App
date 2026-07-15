@@ -125,7 +125,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  order?.paymentType == 'cash'
+                  order?.paymentType == localizations.cash
                       ? localizations.cash_on_delivery
                       : (order?.paymentType ?? ''),
                 ),

@@ -8,14 +8,14 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: OrderTrackingRemoteDataSourcesContract)
 class OrderTrackingRemoteDataSourcesImpl
-    extends OrderTrackingRemoteDataSourcesContract {
+    implements OrderTrackingRemoteDataSourcesContract {
   final OrderTrackingApiClient apiClient;
   OrderTrackingRemoteDataSourcesImpl(this.apiClient);
 
   @override
-  Future<Result<DriverOrdersResponse>> getOrders() async {
+  Future<Result<DriverOrdersResponse>> getDriverOrders() async {
     try {
-      final response = await apiClient.getOrders();
+      final response = await apiClient.getDriverOrders();
       return Success<DriverOrdersResponse>(data: response);
     } on DioException catch (e) {
       return Error<DriverOrdersResponse>(

@@ -1,13 +1,12 @@
-import 'package:flowery/config/routing/app_routes.dart';
-import 'package:flowery/modules/order_tracking/presentation/screens/orders_list_screen.dart';
+
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     try {
       switch (settings.name) {
-        case AppRoutes.ordersList:
-          return MaterialPageRoute(builder: (_) => const OrdersListScreen());
+        // case AppRoutes.ordersList:
+        //   return MaterialPageRoute(builder: (_) => const OrdersListScreen());
 
         default:
           return unDefinedRoute();

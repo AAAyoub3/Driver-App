@@ -197,7 +197,7 @@ abstract class AppLocalizations {
   /// No description provided for @cancelled.
   ///
   /// In en, this message translates to:
-  /// **'The request to the server was cancelled'**
+  /// **'Cancelled'**
   String get cancelled;
 
   /// No description provided for @unknown.
@@ -344,11 +344,11 @@ abstract class AppLocalizations {
   /// **'Home'**
   String get home;
 
-  /// No description provided for @OrderTracking.
+  /// No description provided for @ordertracking.
   ///
   /// In en, this message translates to:
   /// **'OrderTracking'**
-  String get OrderTracking;
+  String get ordertracking;
 
   /// No description provided for @hi.
   ///
@@ -463,6 +463,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An error occurred'**
   String get an_error_occurred;
+
+  /// No description provided for @order_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Details'**
+  String get order_details;
+
+  /// No description provided for @my_orders.
+  ///
+  /// In en, this message translates to:
+  /// **'My orders'**
+  String get my_orders;
+
+  /// No description provided for @pickup_address.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup address'**
+  String get pickup_address;
+
+  /// No description provided for @user_address.
+  ///
+  /// In en, this message translates to:
+  /// **'User address'**
+  String get user_address;
+
+  /// No description provided for @total.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get total;
+
+  /// No description provided for @egp.
+  ///
+  /// In en, this message translates to:
+  /// **'Egp'**
+  String get egp;
+
+  /// No description provided for @payment_method.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment method'**
+  String get payment_method;
+
+  /// No description provided for @cash.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash'**
+  String get cash;
+
+  /// No description provided for @cash_on_delivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash on delivery'**
+  String get cash_on_delivery;
+
+  /// No description provided for @complete.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete'**
+  String get complete;
+
+  /// No description provided for @recent_orders.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent orders'**
+  String get recent_orders;
+
+  /// No description provided for @flower_order.
+  ///
+  /// In en, this message translates to:
+  /// **'Flower order'**
+  String get flower_order;
+
+  /// No description provided for @product.
+  ///
+  /// In en, this message translates to:
+  /// **'Product'**
+  String get product;
 }
 
 class _AppLocalizationsDelegate

@@ -6,13 +6,13 @@ import 'package:flowery/modules/order_tracking/domain/repo/order_tracking_repo_c
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: OrderTrackingRepoContract)
-class OrderTrackingRepoImpl extends OrderTrackingRepoContract {
+class OrderTrackingRepoImpl implements OrderTrackingRepoContract {
   final OrderTrackingRemoteDataSourcesContract remoteDataSources;
   OrderTrackingRepoImpl(this.remoteDataSources);
 
   @override
   Future<Result<DriverOrdersResponseEntity>> getOrders() async {
-    final response = await remoteDataSources.getOrders();
+    final response = await remoteDataSources.getDriverOrders();
 
     return response.when(
       success: (data) {
