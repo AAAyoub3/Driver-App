@@ -83,7 +83,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _lastNameController.dispose();
     _emailController.dispose();
     _phoneController.dispose();
-    super.dispose();
+    super.dispose(); 
   }
 
   Future<void> _pickAndUploadImage(BuildContext context) async {
