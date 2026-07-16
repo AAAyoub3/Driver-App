@@ -66,5 +66,14 @@
   "update" : "Update",
   "enter_current_password" : "Enter current password",
   "enter_new_password" : "Enter new password",
-  "enter_confirm_password" : "Enter confirm password"
+  "enter_confirm_password" : "Enter confirm password",
+  "edit_profile":"Edit Profile",
+  "first_name": "First Name",
+  "last_name":"Last Name",
+  "phone_number":"Phone Number",
+  "male":"Male",
+  "female":"Female",
+  "gender":"Gender",
+  "change":"Change"
+  
 }
