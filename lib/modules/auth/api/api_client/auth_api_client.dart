@@ -1,0 +1,14 @@
+
+import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
+import 'package:retrofit/error_logger.dart';
+import 'package:retrofit/http.dart';
+
+part 'auth_api_client.g.dart';
+
+@LazySingleton()
+@RestApi()
+abstract class AuthApiClient {
+    @factoryMethod
+  factory AuthApiClient(Dio dio) = _AuthApiClient;
+}
