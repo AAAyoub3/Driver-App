@@ -8,8 +8,6 @@ part 'order_tracking_api_client.g.dart';
 @injectable
 @RestApi()
 abstract class OrderTrackingApiClient {
-  @factoryMethod
-  factory OrderTrackingApiClient(Dio dio) = _OrderTrackingApiClient;
 
   @GET(AppEndPoints.orders)
   Future<DriverOrdersResponse> getDriverOrders();

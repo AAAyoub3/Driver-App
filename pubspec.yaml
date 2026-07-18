@@ -8,12 +8,16 @@ environment:
   sdk: ^3.11.4
 
 dependencies:
+  bloc_test: ^10.0.0
   cached_network_image: ^3.4.1
   camera: ^0.12.0+1
+  cloud_firestore: ^6.6.0
+  firebase_messaging: ^16.4.1
   cupertino_icons: ^1.0.8
   dio: ^5.9.2
   equatable: ^2.0.8
   file_picker: ^10.3.10
+  firebase_core: ^4.11.0
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
@@ -23,13 +27,14 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_secure_storage: ^10.0.0
   fluttertoast: ^9.0.0
-  font_awesome_flutter: ^10.12.0
+  font_awesome_flutter: 11.0.0
   get_it: ^9.2.1
   google_fonts: ^8.0.2
   injectable: ^2.7.1+4
   internet_connection_checker_plus: ^2.9.1+2
   json_annotation: ^4.11.0
   logger: ^2.6.2
+  network_image_mock: ^2.1.1
   open_file: 3.5.11
   path_provider: 2.1.5
   permission_handler: 12.0.1
@@ -41,8 +46,11 @@ dependencies:
   url_launcher: ^6.3.2
   bloc_test: ^10.0.0
   mocktail: ^1.0.5
+  googleapis_auth: ^2.3.2
+  geolocator: ^14.0.2
 
 dev_dependencies:
+  fake_cloud_firestore: ^4.1.1
   build_runner: ^2.11.1
   flutter_lints: ^6.0.0
   flutter_test:
@@ -54,3 +62,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+  - assets/
