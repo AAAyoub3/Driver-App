@@ -59,7 +59,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get connectionTimeout => 'فشل الاتصال بالخادم';
 
   @override
-  String get cancelled => 'تم إلغاء الطلب إلى الخادم';
+  String get cancelled => 'تم الالغاء';
 
   @override
   String get unknown =>
@@ -135,7 +135,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get home => 'الرئيسية';
 
   @override
-  String get OrderTracking => 'الملف الشخصي';
+  String get ordertracking => 'الملف الشخصي';
 
   @override
   String get hi => 'مرحباً';
@@ -194,4 +194,43 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get an_error_occurred => 'حدث خطأ';
+
+  @override
+  String get order_details => 'تفاصيل الطلبات';
+
+  @override
+  String get my_orders => 'طلباتى';
+
+  @override
+  String get pickup_address => 'عنوان الاستلام';
+
+  @override
+  String get user_address => 'عنوان المستخدم';
+
+  @override
+  String get total => 'المجموع';
+
+  @override
+  String get egp => 'جنيه';
+
+  @override
+  String get payment_method => 'طريقة الدفع';
+
+  @override
+  String get cash => 'نقدي';
+
+  @override
+  String get cash_on_delivery => 'الدفع عند الأستلام';
+
+  @override
+  String get complete => 'مكتمل';
+
+  @override
+  String get recent_orders => 'الطلبات الأخيرة';
+
+  @override
+  String get flower_order => 'طلبات الزهور';
+
+  @override
+  String get product => 'المنتج';
 }

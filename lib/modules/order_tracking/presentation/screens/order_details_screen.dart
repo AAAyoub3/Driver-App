@@ -1,136 +1,138 @@
 import 'package:flowery/config/l10n/translations/app_localizations.dart';
-import 'package:flowery/config/routing/routing_extensions.dart';
-import 'package:flowery/modules/order_tracking/presentation/view_models/cubit/order_details_view_model.dart';
-import 'package:flowery/modules/order_tracking/presentation/view_models/states/order_details_state.dart';
-import 'package:flowery/modules/order_tracking/presentation/widgets/changing_state_button.dart';
-import 'package:flowery/modules/order_tracking/presentation/widgets/containers/custom_address_container.dart';
-import 'package:flowery/modules/order_tracking/presentation/widgets/containers/custom_order_container.dart';
-import 'package:flowery/modules/order_tracking/presentation/widgets/containers/custom_payment_container.dart';
-import 'package:flowery/modules/order_tracking/presentation/widgets/custom_progress_bar.dart';
-import 'package:flowery/modules/order_tracking/presentation/widgets/custom_title.dart';
-import 'package:flowery/modules/order_tracking/presentation/widgets/containers/status_container.dart';
+import 'package:flowery/core/theme/app_colors.dart';
+import 'package:flowery/modules/order_tracking/domain/entities/driver_order_entity.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flowery/modules/order_tracking/presentation/widgets/address_tile_widget.dart';
+import 'package:flowery/modules/order_tracking/presentation/widgets/order_item_tile_widget.dart';
+import 'package:flowery/modules/order_tracking/presentation/widgets/order_status_badge_widget.dart';
 
-class OrderDetailsScreen extends StatefulWidget {
-  const OrderDetailsScreen({super.key});
+class OrderDetailsScreen extends StatelessWidget {
+  final DriverOrderEntity driverOrder;
 
-  @override
-  State<OrderDetailsScreen> createState() => _OrderDetailsScreenState();
-}
-
-class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
-  late AppLocalizations localizations;
-  @override
-  void didChangeDependencies() {
-    localizations = AppLocalizations.of(context)!;
-    super.didChangeDependencies();
-  }
+  const OrderDetailsScreen({super.key, required this.driverOrder});
 
   @override
   Widget build(BuildContext context) {
+    final order = driverOrder.order;
+    final localizations = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+
     return Scaffold(
+      backgroundColor: theme.colorScheme.secondary,
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => context.pop(),
-          icon: const Icon(Icons.arrow_back_ios_new),
+        backgroundColor: theme.colorScheme.secondary,
+        leading: BackButton(color: theme.colorScheme.onSurface),
+        title: Text(
+          localizations.order_details,
+          style: theme.textTheme.labelLarge?.copyWith(
+            decoration: TextDecoration.none,
+          ),
         ),
-        title: Text(localizations.order_details),
-        titleSpacing: 0.0,
-        bottom: PreferredSize(
-          preferredSize: Size(0, 20.h),
-          child: CustomProgressBar(),
-        ),
+        centerTitle: false,
+        elevation: 0,
       ),
-      body: BlocConsumer<OrderDetailsViewModel, OrderDetailsState>(
-        buildWhen: (previous, current) {
-          return previous.isLoadingOrder != current.isLoadingOrder ||
-              previous.order != current.order;
-        },
-        listenWhen: (previous, current) {
-          return previous.errorMessage != current.errorMessage;
-        },
-        builder: (context, state) {
-          if (state.isLoadingOrder) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          return Column(
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      // Status Container
-                      StatusContainer(
-                        status: state.order?.status ?? "",
-                        orderId: state.order?.orderNumber ?? "",
-                        date: state.order?.acceptedAt ?? "",
-                      ),
-
-                      // Pick Up Address
-                      CustomTitle(title: localizations.pick_up_address),
-                      CustomAddressContainer(
-                        icon: state.order?.storeImage ?? "",
-                        title: state.order?.storeName ?? "",
-                        address: state.order?.storeAddress ?? "",
-                      ),
-                      SizedBox(height: 10.h),
-
-                      // User Address
-                      CustomTitle(title: localizations.user_address),
-                      CustomAddressContainer(
-                        icon: state.order?.userPhoto ?? "",
-                        title: state.order?.userName ?? "",
-                        address: state.order?.userAddress ?? "",
-                      ),
-                      SizedBox(height: 10.h),
-
-                      // Order Details
-                      CustomTitle(title: localizations.order_details),
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: state.order?.items?.length ?? 0,
-                        itemBuilder: (context, index) {
-                          final item = state.order?.items?[index];
-                          return CustomOrderContainer(
-                            icon: item?.itemIcon ?? "",
-                            title: item?.itemTitle ?? "",
-                            cost: item?.itemCost ?? "",
-                            numberOfItem: item?.itemCount ?? "",
-                          );
-                        },
-                      ),
-
-                      // Payment Details
-                      CustomPaymentContainer(
-                        title: localizations.total,
-                        value:
-                            "${state.order?.totalPrice ?? ""} ${localizations.egp}",
-                      ),
-                      SizedBox(height: 10.h),
-                      CustomPaymentContainer(
-                        title: localizations.payment_method,
-                        value: state.order?.paymentMethod ?? "",
-                      ),
-                    ],
-                  ),
+              OrderStatusBadgeWidget(state: order?.state),
+              Text(
+                order?.orderNumber ?? '',
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
                 ),
               ),
-              // Changing state button
-              ChangingStateButton(localizations: localizations),
             ],
-          );
-        },
-        listener: (context, state) {
-          if (state.errorMessage != "" && state.errorMessage != null) {
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(state.errorMessage ?? "")));
-          }
-        },
+          ),
+          const SizedBox(height: 20),
+          Text(
+            localizations.pickup_address,
+            style: theme.textTheme.labelMedium?.copyWith(
+              color: AppColors.grayColor,
+              fontSize: 13,
+              decoration: TextDecoration.none,
+            ),
+          ),
+          const SizedBox(height: 8),
+          AddressTileWidget(
+            imageUrl: driverOrder.store?.image,
+            name: driverOrder.store?.name ?? '',
+            address: driverOrder.store?.address ?? '',
+          ),
+          const SizedBox(height: 20),
+          Text(
+            localizations.user_address,
+            style: theme.textTheme.labelMedium?.copyWith(
+              color: AppColors.grayColor,
+              fontSize: 13,
+              decoration: TextDecoration.none,
+            ),
+          ),
+          const SizedBox(height: 8),
+          AddressTileWidget(
+            imageUrl: order?.user?.photo,
+            name:
+                '${order?.user?.firstName ?? ''} ${order?.user?.lastName ?? ''}',
+            address: driverOrder.store?.address ?? '',
+          ),
+          const SizedBox(height: 20),
+          Text(
+            localizations.order_details,
+            style: theme.textTheme.labelMedium?.copyWith(
+              decoration: TextDecoration.none,
+            ),
+          ),
+          const SizedBox(height: 10),
+          ...(order?.orderItems ?? []).map(
+            (item) => OrderItemTileWidget(item: item),
+          ),
+          const SizedBox(height: 8),
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              border: Border.all(color: AppColors.lightGrayColor),
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  localizations.total,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  '${localizations.egp} ${order?.totalPrice ?? 0}',
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              border: Border.all(color: AppColors.lightGrayColor),
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  localizations.payment_method,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  order?.paymentType == localizations.cash
+                      ? localizations.cash_on_delivery
+                      : (order?.paymentType ?? ''),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

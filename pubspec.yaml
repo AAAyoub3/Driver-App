@@ -44,6 +44,8 @@ dependencies:
   shimmer: ^3.0.0
   syncfusion_flutter_pdfviewer: 33.1.44
   url_launcher: ^6.3.2
+  bloc_test: ^10.0.0
+  mocktail: ^1.0.5
   googleapis_auth: ^2.3.2
   geolocator: ^14.0.2
 

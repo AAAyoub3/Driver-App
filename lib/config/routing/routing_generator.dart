@@ -1,10 +1,12 @@
+
 import 'package:flowery/config/di/injectable_config.dart';
 import 'package:flowery/config/l10n/translations/app_localizations.dart';
 import 'package:flowery/config/routing/app_routes.dart';
-import 'package:flowery/modules/order_tracking/presentation/screens/order_details_screen.dart';
+import 'package:flowery/modules/order_tracking/presentation/screens/order_tracking_screen.dart';
 import 'package:flowery/modules/order_tracking/presentation/view_models/cubit/order_details_view_model.dart';
 import 'package:flowery/modules/order_tracking/presentation/view_models/events/order_details_events.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RouteGenerator {
@@ -46,6 +48,8 @@ class RouteGenerator {
       builder: (_) => Scaffold(
         appBar: AppBar(title: const Text('No Route Found')),
         body: const Center(child: Text('No Route Found')),
+        appBar: AppBar(title: const Text('No Route Found')),
+        body: const Center(child: Text('No Route Found')),
       ),
     );
   }
@@ -55,7 +59,10 @@ class RouteGenerator {
       builder: (_) => Scaffold(
         appBar: AppBar(title: const Text('Route Error')),
         body: Center(child: Text(error)),
+        appBar: AppBar(title: const Text('Route Error')),
+        body: Center(child: Text(error)),
       ),
     );
   }
 }
+
