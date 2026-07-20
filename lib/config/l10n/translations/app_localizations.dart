@@ -463,6 +463,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An error occurred'**
   String get an_error_occurred;
+
+  /// No description provided for @didnt_receive_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t receive the code?'**
+  String get didnt_receive_code;
+
+  /// No description provided for @invalid_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid code, please try again'**
+  String get invalid_code;
+
+  /// No description provided for @resend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend'**
+  String get resend;
+
+  /// No description provided for @email_verification.
+  ///
+  /// In en, this message translates to:
+  /// **'Email verification'**
+  String get email_verification;
+
+  /// No description provided for @please_enter_your_email_associated_to_your_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email associated with your account'**
+  String get please_enter_your_email_associated_to_your_account;
+
+  /// No description provided for @forget_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget password'**
+  String get forget_password;
+
+  /// No description provided for @enter_your_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get enter_your_email;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading'**
+  String get loading;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @reset_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get reset_password;
+
+  /// No description provided for @password_must_not_be_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must not be empty and must contain at least 6 characters, one uppercase letter, and one number'**
+  String get password_must_not_be_empty;
+
+  /// No description provided for @enter_your_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get enter_your_password;
+
+  /// No description provided for @new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get new_password;
 }
 
 class _AppLocalizationsDelegate
