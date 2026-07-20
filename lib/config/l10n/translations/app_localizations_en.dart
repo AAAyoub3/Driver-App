@@ -197,4 +197,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get an_error_occurred => 'An error occurred';
+
+  @override
+  String get thank_you => 'Thank you!!';
+
+  @override
+  String get the_order_delivered_successfully =>
+      'The order delivered successfully';
+
+  @override
+  String get done => 'Done';
 }
