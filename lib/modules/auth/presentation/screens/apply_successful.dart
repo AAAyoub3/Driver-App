@@ -1,4 +1,6 @@
 import 'package:flowery/config/l10n/translations/app_localizations.dart';
+import 'package:flowery/config/routing/app_routes.dart';
+import 'package:flowery/config/routing/routing_extensions.dart';
 import 'package:flowery/core/app_assets/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -61,7 +63,7 @@ class _ApplySuccessfulState extends State<ApplySuccessful> {
                   width: 300.w,
                   child: ElevatedButton(
                     onPressed: () {
-                      //TODO: Navigate to login screen
+                      context.pushNamed(AppRoutes.login);
                     },
                     child: Text(localizations.login),
                   ),
