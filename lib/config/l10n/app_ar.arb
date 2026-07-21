@@ -59,5 +59,6 @@
   "login_success": "تم تسجيل الدخول بنجاح",
   "register_success": "تم التسجيل بنجاح",
   "connectButton": "ربط",
-  "an_error_occurred": "حدث خطأ"
+  "an_error_occurred": "حدث خطأ",
+  "orders":"الطلبات"
 }

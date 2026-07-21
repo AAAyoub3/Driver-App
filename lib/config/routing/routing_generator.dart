@@ -1,4 +1,9 @@
+import 'package:flowery/config/routing/app_routes.dart';
+import 'package:flowery/modules/app_section/screens/app_section_screen.dart';
+import 'package:flowery/modules/app_section/view_model/app_section_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     try {
@@ -7,6 +12,13 @@ class RouteGenerator {
         //   return MaterialPageRoute(
         //     builder: (_) => const LoginScreen(),
         //   );
+        case AppRoutes.appSection:
+          return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+              create: (_) => AppSectionViewModel(),
+              child: const AppSectionScreen(),
+            ),
+          );
 
         default:
           return unDefinedRoute();
@@ -19,12 +31,8 @@ class RouteGenerator {
   static Route<dynamic> unDefinedRoute() {
     return MaterialPageRoute(
       builder: (_) => Scaffold(
-        appBar: AppBar(
-          title: const Text('No Route Found'),
-        ),
-        body: const Center(
-          child: Text('No Route Found'),
-        ),
+        appBar: AppBar(title: const Text('No Route Found')),
+        body: const Center(child: Text('No Route Found')),
       ),
     );
   }
@@ -32,12 +40,8 @@ class RouteGenerator {
   static Route<dynamic> errorRoute(String error) {
     return MaterialPageRoute(
       builder: (_) => Scaffold(
-        appBar: AppBar(
-          title: const Text('Route Error'),
-        ),
-        body: Center(
-          child: Text(error),
-        ),
+        appBar: AppBar(title: const Text('Route Error')),
+        body: Center(child: Text(error)),
       ),
     );
   }
