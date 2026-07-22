@@ -194,4 +194,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get an_error_occurred => 'حدث خطأ';
+
+  @override
+  String get orders => 'الطلبات';
 }

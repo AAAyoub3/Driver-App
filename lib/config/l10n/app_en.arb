@@ -59,5 +59,6 @@
   "login_success": "LoginSuccessfully",
   "register_success": "Successfully",
   "connectButton": "Connect",
-  "an_error_occurred": "An error occurred"
+  "an_error_occurred": "An error occurred",
+  "orders":"Orders"
 }
