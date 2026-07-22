@@ -66,5 +66,7 @@
   "update" : "Update",
   "enter_current_password" : "Enter current password",
   "enter_new_password" : "Enter new password",
-  "enter_confirm_password" : "Enter confirm password"
+  "enter_confirm_password" : "Enter confirm password",
+  "english":"English",
+  "language":"Language"
 }

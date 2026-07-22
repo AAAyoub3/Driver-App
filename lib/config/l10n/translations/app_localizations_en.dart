@@ -218,4 +218,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get enter_confirm_password => 'Enter confirm password';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get language => 'Language';
 }

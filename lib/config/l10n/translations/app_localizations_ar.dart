@@ -215,4 +215,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get enter_confirm_password => 'أدخل تأكيد كلمة المرور';
+
+  @override
+  String get english => 'انجليزي';
+
+  @override
+  String get language => 'اللغه';
 }
