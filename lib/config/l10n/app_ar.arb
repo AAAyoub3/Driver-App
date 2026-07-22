@@ -67,6 +67,15 @@
   "enter_current_password": "أدخل كلمة المرور الحالية",
   "enter_new_password": "أدخل كلمة المرور الجديدة",
   "enter_confirm_password": "أدخل تأكيد كلمة المرور",
+  "edit_profile":"تعديل الصفحه",
+   "first_name": "الإسم الأول",
+  "last_name":"الإسم الأخير",
+  "phone_number":"رقم التليفون",
+  "male":"رجل",
+  "female":"انثي",
+  "gender":"الجنس",
+  "change":"تغيير"
+
   "english":"انجليزي",
   "language":"اللغه"
 }

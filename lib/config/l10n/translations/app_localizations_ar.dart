@@ -217,6 +217,28 @@ class AppLocalizationsAr extends AppLocalizations {
   String get enter_confirm_password => 'أدخل تأكيد كلمة المرور';
 
   @override
+  String get edit_profile => 'تعديل الصفحه';
+
+  @override
+  String get first_name => 'الإسم الأول';
+
+  @override
+  String get last_name => 'الإسم الأخير';
+
+  @override
+  String get phone_number => 'رقم التليفون';
+
+  @override
+  String get male => 'رجل';
+
+  @override
+  String get female => 'انثي';
+
+  @override
+  String get gender => 'الجنس';
+
+  @override
+  String get change => 'تغيير';
   String get english => 'انجليزي';
 
   @override
