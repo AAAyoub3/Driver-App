@@ -203,4 +203,5 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get done => 'منتهي';
+  String get orders => 'الطلبات';
 }

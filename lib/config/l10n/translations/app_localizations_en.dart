@@ -207,4 +207,5 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get done => 'Done';
+  String get orders => 'Orders';
 }

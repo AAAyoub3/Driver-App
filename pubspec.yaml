@@ -8,6 +8,7 @@ environment:
   sdk: ^3.11.4
 
 dependencies:
+  bloc_test: ^10.0.0
   cached_network_image: ^3.4.1
   camera: ^0.12.0+1
   cupertino_icons: ^1.0.8
@@ -30,6 +31,7 @@ dependencies:
   internet_connection_checker_plus: ^2.9.1+2
   json_annotation: ^4.11.0
   logger: ^2.6.2
+  mocktail: ^1.0.5
   open_file: 3.5.11
   path_provider: 2.1.5
   permission_handler: 12.0.1
