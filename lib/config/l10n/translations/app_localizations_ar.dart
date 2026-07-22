@@ -239,4 +239,8 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get change => 'تغيير';
+  String get english => 'انجليزي';
+
+  @override
+  String get language => 'اللغه';
 }

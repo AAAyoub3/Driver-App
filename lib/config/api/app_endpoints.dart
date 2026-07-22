@@ -3,4 +3,5 @@ abstract class AppEndPoints {
   static const String changePassword = "drivers/change-password";
   static const String editProfile = 'drivers/editProfile';
   static const String uploadProfilePhoto = 'drivers/upload-photo';
+  static const String my_profile = 'drivers/profile-data';
 }

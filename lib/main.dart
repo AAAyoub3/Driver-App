@@ -42,7 +42,7 @@ class DriverApp extends StatelessWidget {
               onGenerateRoute: RouteGenerator.getRoute,
               debugShowCheckedModeBanner: false,
               theme: AppTheme.lightTheme,
-              initialRoute: AppRoutes.editProfile,
+              initialRoute: AppRoutes.myProfile,
             );
           },
         );

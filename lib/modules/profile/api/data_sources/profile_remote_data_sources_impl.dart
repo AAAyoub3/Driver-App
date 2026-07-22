@@ -11,6 +11,7 @@ import 'package:flowery/modules/profile/data/models/requests/upload_profile_phot
 import 'package:flowery/modules/profile/data/models/responses/change_password_response.dart';
 import 'package:flowery/modules/profile/data/models/responses/edit_profile_response.dart';
 import 'package:flowery/modules/profile/data/models/responses/upload_profile_photo_response.dart';
+import 'package:flowery/modules/profile/data/models/responses/my_profile_response.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: ProfileRemoteDataSourcesContract)
@@ -77,6 +78,12 @@ class ProfileRemoteDataSourcesImpl implements ProfileRemoteDataSourcesContract {
       return Error<UploadProfilePhotoResponse>(
         exception: DioExceptionHandler.handle(e),
       );
+  Future<Result<MyProfileResponse>> getMyProfileData() async {
+    try {
+      final response = await apiClient.getMyProfileData();
+      return Success<MyProfileResponse>(data: response);
+    } on DioException catch (e) {
+      return Error<MyProfileResponse>(exception: DioExceptionHandler.handle(e));
     }
   }
 }

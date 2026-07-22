@@ -20,7 +20,7 @@ class AuthInterceptor extends Interceptor {
     // await fss.write(key: Apikeys.accessToken, value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkcml2ZXIiOiI2YTNiZTk2NTk5MjYxMmFlNTk5YjNkODQiLCJpYXQiOjE3ODIzNTY1MTF9.q9GnRjksBUOkyANhtnF5kSIizHAmpnG805ya7h8brn0");
     // String? authToken = await fss.read(key: Apikeys.accessToken);
     String? authToken =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkcml2ZXIiOiI2YTNiZTk2NTk5MjYxMmFlNTk5YjNkODQiLCJpYXQiOjE3ODQwNDQ5Mzl9.pnxye_6k2-wz9f0eVWOIbx2gD_FShtZwusga97P5VBE';
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkcml2ZXIiOiI2YTNiZTk2NTk5MjYxMmFlNTk5YjNkODQiLCJpYXQiOjE3ODM2ODc2NzV9.O8x7U0oZ4l45oYsbvlgSJVROR9WhEZsyKBEWSef1kpU';
     if (authToken != null && authToken.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $authToken';
       options.headers[Apikeys.token] = authToken;
