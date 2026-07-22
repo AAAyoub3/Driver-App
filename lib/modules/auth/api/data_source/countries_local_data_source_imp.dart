@@ -2,7 +2,9 @@ import 'package:flowery/config/base_response/base_response.dart';
 import 'package:flowery/modules/auth/api/local_client/local_client.dart';
 import 'package:flowery/modules/auth/data/data_sources/countries_local_data_source_contract.dart';
 import 'package:flowery/modules/auth/data/models/country_model.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as: CountriesLocalDataSourceContract)
 class CountriesLocalDataSourceImp implements CountriesLocalDataSourceContract {
   final LocalClient localClient;
   CountriesLocalDataSourceImp(this.localClient);
