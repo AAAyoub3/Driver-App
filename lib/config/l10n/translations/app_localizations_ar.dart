@@ -194,4 +194,45 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get an_error_occurred => 'حدث خطأ';
+
+  @override
+  String get didnt_receive_code => 'لم تستلم الكود؟';
+
+  @override
+  String get invalid_code => 'الكود غير صحيح، يرجى المحاولة مرة أخرى';
+
+  @override
+  String get resend => 'إعادة الإرسال';
+
+  @override
+  String get email_verification => 'التحقق من البريد الإلكتروني';
+
+  @override
+  String get please_enter_your_email_associated_to_your_account =>
+      'من فضلك أدخل البريد الإلكتروني المرتبط بحسابك';
+
+  @override
+  String get forget_password => 'نسيت كلمة المرور';
+
+  @override
+  String get enter_your_email => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get loading => 'تحميل ...';
+
+  @override
+  String get confirm => 'تأكيد';
+
+  @override
+  String get reset_password => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get password_must_not_be_empty =>
+      'يجب ألا تكون كلمة المرور فارغة وأن تحتوي على 6 أحرف وحرف كبير ورقم واحد على الأقل';
+
+  @override
+  String get enter_your_password => 'أدخل كلمة المرور';
+
+  @override
+  String get new_password => 'كلمة المرور الجديدة';
 }
