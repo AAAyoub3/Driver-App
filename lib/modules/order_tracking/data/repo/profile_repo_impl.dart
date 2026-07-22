@@ -35,18 +35,18 @@ class OrderTrackingRepoImpl extends OrderTrackingRepoContract {
   }
 
   @override
-  Future<Result<void>> acceptOrder(OrderEntity order) async {
+  Future<Result<String>> acceptOrder(OrderEntity order) async {
     // Step 1: call start order API
     final startResult = await remoteDataSources.startOrder(order.orderId ?? '');
     switch (startResult) {
       case Error<void>(:final exception):
-        return Error<void>(exception: exception);
+        return Error<String>(exception: exception);
       case Success<void>():
         // Step 2: get driver profile
         final profileResult = await remoteDataSources.getDriverProfile();
         switch (profileResult) {
           case Error<DriverProfileResponseModel>(:final exception):
-            return Error<void>(exception: exception);
+            return Error<String>(exception: exception);
           case Success<DriverProfileResponseModel>():
             try {
               // Step 3: save to Firestore
@@ -54,9 +54,10 @@ class OrderTrackingRepoImpl extends OrderTrackingRepoContract {
                 order: order,
                 driver: profileResult.data!,
               );
-              return const Success<void>(data: null);
+              // Return driverId so ViewModel can start location tracking
+              return Success<String>(data: profileResult.data!.id ?? '');
             } catch (e) {
-              return Error<void>(exception: Exception(e.toString()));
+              return Error<String>(exception: Exception(e.toString()));
             }
         }
     }

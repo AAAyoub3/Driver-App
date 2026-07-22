@@ -7,6 +7,20 @@ import 'package:injectable/injectable.dart';
 class FirestoreDataSource {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  Future<void> updateDriverLocation({
+    required String driverId,
+    required double lat,
+    required double lng,
+    required double accuracy,
+  }) async {
+    await _firestore.collection('driver_locations').doc(driverId).set({
+      'lat': lat,
+      'lng': lng,
+      'accuracy': accuracy,
+      'updatedAt': DateTime.now().toIso8601String(),
+    });
+  }
+
   Future<void> saveAcceptedOrder({
     required OrderEntity order,
     required DriverProfileResponseModel driver,

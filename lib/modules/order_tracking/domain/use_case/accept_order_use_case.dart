@@ -8,5 +8,5 @@ class AcceptOrderUseCase {
   final OrderTrackingRepoContract repo;
   AcceptOrderUseCase(this.repo);
 
-  Future<Result<void>> call(OrderEntity order) => repo.acceptOrder(order);
+  Future<Result<String>> call(OrderEntity order) => repo.acceptOrder(order);
 }

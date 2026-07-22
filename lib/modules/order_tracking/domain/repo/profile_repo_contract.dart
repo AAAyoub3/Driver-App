@@ -4,5 +4,5 @@ import 'package:flowery/modules/order_tracking/domain/entity/home_entity/paginat
 
 abstract class OrderTrackingRepoContract {
   Future<Result<PaginatedOrdersEntity>> getOrders({int page = 1});
-  Future<Result<void>> acceptOrder(OrderEntity order);
+  Future<Result<String>> acceptOrder(OrderEntity order);
 }

@@ -17,6 +17,7 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
     as _i161;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
+import '../../core/services/location_service.dart' as _i752;
 import '../../modules/order_tracking/api/api_client/order_tracking_api_client.dart'
     as _i543;
 import '../../modules/order_tracking/api/data_sources/order_tracking_remote_data_sources_impl.dart'
@@ -65,6 +66,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i42.SharedPrefHelper>(
       () => _i42.SharedPrefHelper(gh<_i460.SharedPreferences>()),
     );
+    gh.singleton<_i752.LocationService>(
+      () => _i752.LocationService(gh<_i2.FirestoreDataSource>()),
+    );
     gh.factory<_i543.OrderTrackingApiClient>(
       () => _i543.OrderTrackingApiClient(gh<_i361.Dio>()),
     );
@@ -98,6 +102,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i286.HomeViewModel(
         gh<_i717.GetOrdersUseCase>(),
         gh<_i812.AcceptOrderUseCase>(),
+        gh<_i752.LocationService>(),
       ),
     );
     return this;

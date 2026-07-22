@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flowery/config/base_response/base_response.dart';
 import 'package:flowery/config/base_state/base_state.dart';
+import 'package:flowery/core/services/location_service.dart';
 import 'package:flowery/modules/order_tracking/domain/entity/home_entity/order_entity.dart';
 import 'package:flowery/modules/order_tracking/domain/entity/home_entity/paginated_orders_entity.dart';
 import 'package:flowery/modules/order_tracking/domain/use_case/accept_order_use_case.dart';
@@ -13,10 +14,14 @@ import 'package:injectable/injectable.dart';
 class HomeViewModel extends Cubit<HomeState> {
   final GetOrdersUseCase _getOrdersUseCase;
   final AcceptOrderUseCase _acceptOrderUseCase;
+  final LocationService _locationService;
   final Set<String> _rejectedIds = {};
 
-  HomeViewModel(this._getOrdersUseCase, this._acceptOrderUseCase)
-      : super(HomeState()) {
+  HomeViewModel(
+    this._getOrdersUseCase,
+    this._acceptOrderUseCase,
+    this._locationService,
+  ) : super(HomeState()) {
     doEvent(GetOrdersEvent());
   }
 
@@ -78,9 +83,13 @@ class HomeViewModel extends Cubit<HomeState> {
     emit(state.copyWith(isLoading: true));
     final response = await _acceptOrderUseCase(order);
     switch (response) {
-      case Success<void>():
+      case Success<String>():
         emit(state.copyWith(isLoading: false));
-      case Error<void>():
+        final driverId = response.data ?? '';
+        if (driverId.isNotEmpty) {
+          _locationService.startTracking(driverId);
+        }
+      case Error<String>():
         emit(state.copyWith(
           isLoading: false,
           acceptErrorMessage: 'Sorry, we couldn\'t accept this order. Please try again.',
