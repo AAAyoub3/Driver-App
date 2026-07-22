@@ -1,4 +1,6 @@
 import 'package:flowery/config/routing/app_routes.dart';
+import 'package:flowery/modules/thanks_page_feature/screens/thanks_page_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:flowery/modules/app_section/screens/app_section_screen.dart';
 import 'package:flowery/modules/app_section/view_model/app_section_view_model.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,8 @@ class RouteGenerator {
         //   return MaterialPageRoute(
         //     builder: (_) => const LoginScreen(),
         //   );
+        case AppRoutes.thanksPage:
+          return MaterialPageRoute(builder: (_) => const ThanksPageScreen());
         case AppRoutes.appSection:
           return MaterialPageRoute(
             builder: (_) => BlocProvider(

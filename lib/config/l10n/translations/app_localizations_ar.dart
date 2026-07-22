@@ -196,5 +196,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get an_error_occurred => 'حدث خطأ';
 
   @override
+  String get thank_you => 'شكرا!!';
+
+  @override
+  String get the_order_delivered_successfully => 'تم تسليم الطلب بنجاح';
+
+  @override
+  String get done => 'منتهي';
   String get orders => 'الطلبات';
 }

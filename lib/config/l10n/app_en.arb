@@ -60,5 +60,9 @@
   "register_success": "Successfully",
   "connectButton": "Connect",
   "an_error_occurred": "An error occurred",
+  "thank_you":"Thank you!!",
+  "the_order_delivered_successfully":"The order delivered successfully",
+  "done":"Done"
+
   "orders":"Orders"
 }

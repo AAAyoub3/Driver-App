@@ -464,6 +464,23 @@ abstract class AppLocalizations {
   /// **'An error occurred'**
   String get an_error_occurred;
 
+  /// No description provided for @thank_you.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you!!'**
+  String get thank_you;
+
+  /// No description provided for @the_order_delivered_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'The order delivered successfully'**
+  String get the_order_delivered_successfully;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
   /// No description provided for @orders.
   ///
   /// In en, this message translates to:

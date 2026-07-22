@@ -60,5 +60,8 @@
   "register_success": "تم التسجيل بنجاح",
   "connectButton": "ربط",
   "an_error_occurred": "حدث خطأ",
+  "thank_you":"شكرا!!",
+  "the_order_delivered_successfully":"تم تسليم الطلب بنجاح",
+  "done":"منتهي"
   "orders":"الطلبات"
 }
