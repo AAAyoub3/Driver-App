@@ -235,4 +235,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get new_password => 'كلمة المرور الجديدة';
+
+  @override
+  String get remember_me => 'تذكرني';
+
+  @override
+  String get continue_btn => 'متابعة';
 }

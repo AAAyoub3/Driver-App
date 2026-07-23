@@ -3,62 +3,85 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  final String hintText;
-  final String labelText;
-  final TextEditingController controller;
-  final TextInputType keyboardType;
-  final bool obscureText;
-  final Widget? suffixIcon;
-  final Widget? prefixIcon;
-  final String? Function(String?)? validator;
   const CustomTextFormField({
     super.key,
-    required this.hintText,
     required this.labelText,
+    required this.hintText,
     required this.controller,
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
     this.suffixIcon,
     this.prefixIcon,
     this.validator,
+    this.autovalidateMode = AutovalidateMode.onUserInteraction,
+    this.textInputAction,
+    this.onFieldSubmitted,
+    this.readOnly = false,
+    this.onTap,
   });
+
+  final String labelText;
+  final String hintText;
+  final TextEditingController controller;
+  final TextInputType keyboardType;
+  final bool obscureText;
+  final Widget? suffixIcon;
+  final Widget? prefixIcon;
+  final String? Function(String?)? validator;
+  final AutovalidateMode autovalidateMode;
+  final TextInputAction? textInputAction;
+  final ValueChanged<String>? onFieldSubmitted;
+  final bool readOnly;
+  final VoidCallback? onTap;
+
+  static OutlineInputBorder _border(Color color) => OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.r),
+        borderSide: BorderSide(color: color, width: 1.w),
+      );
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       keyboardType: keyboardType,
       obscureText: obscureText,
-      controller: controller,
       validator: validator,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
+      autovalidateMode: autovalidateMode,
+      textInputAction: textInputAction,
+      onFieldSubmitted: onFieldSubmitted,
+      readOnly: readOnly,
+      onTap: onTap,
+      style: TextStyle(fontSize: 14.sp, color: AppColors.blackColor),
       decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16.r),
+        labelText: labelText,
+        labelStyle: TextStyle(
+          fontSize: 14.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.hintGrayColor,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16.r),
-          borderSide: BorderSide(color: AppColors.blackColor),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16.r),
-          borderSide: BorderSide(color: AppColors.primaryColor),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16.r),
-          borderSide: BorderSide(color: AppColors.redColor),
+        floatingLabelStyle: TextStyle(
+          fontSize: 14.sp,
+          fontWeight: FontWeight.w400,
+          color: AppColors.blackColor,
         ),
         hintText: hintText,
         hintStyle: TextStyle(
           fontSize: 14.sp,
-          fontWeight: .w400,
+          fontWeight: FontWeight.w400,
           color: AppColors.hintGrayColor,
         ),
-        labelText: labelText,
-        labelStyle: TextStyle(
-          fontWeight: .w400,
-          fontSize: 14.sp,
-          color: AppColors.blackColor,
+        errorStyle: TextStyle(
+          fontSize: 12.sp,
+          color: AppColors.redColor,
         ),
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+        border: _border(AppColors.hintGrayColor),
+        enabledBorder: _border(AppColors.hintGrayColor),
+        focusedBorder: _border(AppColors.primaryColor),
+        errorBorder: _border(AppColors.redColor),
+        focusedErrorBorder: _border(AppColors.redColor),
       ),
     );
   }

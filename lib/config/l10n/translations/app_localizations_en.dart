@@ -238,4 +238,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get new_password => 'New password';
+
+  @override
+  String get remember_me => 'Remember me';
+
+  @override
+  String get continue_btn => 'Continue';
 }

@@ -1,15 +1,15 @@
 import 'package:flowery/config/routing/app_routes.dart';
-
+import 'package:flowery/modules/auth/presentation/view/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     try {
       switch (settings.name) {
-        // case AppRoutes.login:
-        //   return MaterialPageRoute(
-        //     builder: (_) => const LoginScreen(),
-        //   );
+        case AppRoutes.login:
+          return MaterialPageRoute(
+            builder: (_) => const LoginPage(),
+          );
 
         default:
           return unDefinedRoute();

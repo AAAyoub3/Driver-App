@@ -541,6 +541,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'New password'**
   String get new_password;
+
+  /// No description provided for @remember_me.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember me'**
+  String get remember_me;
+
+  /// No description provided for @continue_btn.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continue_btn;
 }
 
 class _AppLocalizationsDelegate
