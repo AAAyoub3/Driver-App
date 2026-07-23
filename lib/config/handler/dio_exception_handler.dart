@@ -40,8 +40,6 @@ class DioExceptionHandler {
 
       case DioExceptionType.unknown:
         return Exception(e.message ?? 'Unexpected error');
-      case DioExceptionType.transformTimeout:
-        return Exception('Transform Timeout');
     }
   }
 }
