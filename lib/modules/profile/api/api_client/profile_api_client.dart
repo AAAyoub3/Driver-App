@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flowery/config/api/app_endpoints.dart';
 import 'package:flowery/modules/profile/data/models/requests/change_password_request.dart';
+import 'package:flowery/modules/profile/data/models/requests/edit_vieckle_request.dart';
 import 'package:flowery/modules/profile/data/models/responses/change_password_response.dart';
+import 'package:flowery/modules/profile/data/models/responses/edit_vieckle_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -16,5 +18,10 @@ abstract class ProfileApiClient {
   @PATCH(AppEndPoints.changePassword)
   Future<ChangePasswordResponse> changePassword({
     @Body() required ChangePasswordRequest request,
+  });
+
+  @PUT(AppEndPoints.editVieckleInfo)
+  Future<EditVieckleResponse> editVickleInfo({
+    @Body() required EditVehicleRequest request,
   });
 }

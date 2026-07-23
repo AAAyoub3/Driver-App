@@ -505,6 +505,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter confirm password'**
   String get enter_confirm_password;
+
+  /// No description provided for @edit_vehicle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Vehicle'**
+  String get edit_vehicle;
+
+  /// No description provided for @vehicle_type.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle type'**
+  String get vehicle_type;
+
+  /// No description provided for @vehicle_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle number'**
+  String get vehicle_number;
+
+  /// No description provided for @select_vehicle_type.
+  ///
+  /// In en, this message translates to:
+  /// **'Select vehicle type'**
+  String get select_vehicle_type;
+
+  /// No description provided for @vehicle_license.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle license'**
+  String get vehicle_license;
 }
 
 class _AppLocalizationsDelegate
