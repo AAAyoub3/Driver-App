@@ -22,7 +22,7 @@ class PersonalInfoContainer extends StatefulWidget {
   final TextEditingController _idImageController;
 
 
-  PersonalInfoContainer({
+  const PersonalInfoContainer({
     super.key,
     required TextEditingController firstLegalController,
     required TextEditingController lastLegalController,

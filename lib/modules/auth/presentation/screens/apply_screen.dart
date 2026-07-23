@@ -46,7 +46,14 @@ class _ApplyScreenState extends State<ApplyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(localizations.title)),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => context.pop(),
+          icon: Icon(Icons.arrow_back_ios_new),
+        ),
+        title: Text(localizations.title),
+        titleSpacing: 0.0,
+      ),
       body: BlocBuilder<ApplyCubit, ApplyState>(
         builder: (context, state) {
           final isLoaded =
@@ -58,7 +65,7 @@ class _ApplyScreenState extends State<ApplyScreen> {
                 success: (_) => true,
                 orElse: () => false,
               );
-          
+
           if (!isLoaded) {
             return SizedBox(
               height:
@@ -79,12 +86,12 @@ class _ApplyScreenState extends State<ApplyScreen> {
                   children: [
                     // Welcome Container
                     WelcomeWidget(),
-                
+
                     // Countries
                     CountriesDropDownMenu(),
-                
+
                     Divider(thickness: 0.5),
-                
+
                     // Personal Information
                     PersonalInfoContainer(
                       firstLegalController: _firstLegalController,
@@ -96,15 +103,15 @@ class _ApplyScreenState extends State<ApplyScreen> {
                       idNumberController: _idNumberController,
                       idImageController: _idImageController,
                     ),
-                
+
                     Divider(thickness: 0.5),
-                
+
                     // Vehicle Information
                     VehicleContainer(
                       vehicleNumberController: _vehicleNumberController,
                       licenseController: _licenseController,
                     ),
-                
+
                     // Apply Button
                     ElevatedButton(
                       onPressed: () {
