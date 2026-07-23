@@ -1,6 +1,7 @@
 import 'package:flowery/config/routing/app_routes.dart';
 import 'package:flowery/modules/auth/presentation/screens/email_verification_view.dart';
 import 'package:flowery/modules/auth/presentation/screens/forget_password_view.dart';
+import 'package:flowery/modules/auth/presentation/screens/on_boarding_screen.dart';
 import 'package:flowery/modules/auth/presentation/screens/reset_new_password_view.dart';
 import 'package:flowery/modules/auth/presentation/view_models/cubit/forget_password_view_model.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +10,10 @@ class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     try {
       switch (settings.name) {
-        // case AppRoutes.login:
-        //   return MaterialPageRoute(
-        //     builder: (_) => const LoginScreen(),
-        //   );
+        case AppRoutes.onBoarding:
+          return MaterialPageRoute(
+            builder: (_) => const OnBoardingScreen(),
+          );
         case AppRoutes.forgetPassword:
       
         return MaterialPageRoute(
