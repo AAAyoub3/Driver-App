@@ -1,14 +1,14 @@
 import 'package:equatable/equatable.dart';
 
 class CountryEntity extends Equatable {
-  final String isoCode;
-  final String name;
-  final String phoneCode;
-  final String flag;
-  final String currency;
-  final String latitude;
-  final String longitude;
-  final List<TimezoneEntity> timezones;
+  final String? isoCode;
+  final String? name;
+  final String? phoneCode;
+  final String? flag;
+  final String? currency;
+  final String? latitude;
+  final String? longitude;
+  final List<TimezoneEntity>? timezones;
 
   const CountryEntity({
     required this.isoCode,
@@ -35,11 +35,11 @@ class CountryEntity extends Equatable {
 }
 
 class TimezoneEntity extends Equatable {
-  final String zoneName;
-  final int gmtOffset;
-  final String gmtOffsetName;
-  final String abbreviation;
-  final String tzName;
+  final String? zoneName;
+  final int? gmtOffset;
+  final String? gmtOffsetName;
+  final String? abbreviation;
+  final String? tzName;
 
   const TimezoneEntity({
     required this.zoneName,

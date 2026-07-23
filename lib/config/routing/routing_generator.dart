@@ -1,7 +1,9 @@
 import 'package:flowery/config/di/injectable_config.dart';
 import 'package:flowery/config/routing/app_routes.dart';
 import 'package:flowery/modules/auth/presentation/screens/apply_screen.dart';
-import 'package:flowery/modules/auth/presentation/view_model/apply_cubit.dart';
+import 'package:flowery/modules/auth/presentation/screens/apply_successful.dart';
+import 'package:flowery/modules/auth/presentation/view_model/cubit/apply_cubit.dart';
+import 'package:flowery/modules/auth/presentation/view_model/events/apply_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,10 +14,15 @@ class RouteGenerator {
         case AppRoutes.apply:
           return MaterialPageRoute(
             builder: (_) => BlocProvider(
-              create: (context) => getIt<ApplyCubit>(),
+              create: (context) => getIt<ApplyCubit>()
+                ..doEvent(GetCountriesEvent())
+                ..doEvent(GetVehiclesEvent()),
               child: ApplyScreen(),
             ),
           );
+
+        case AppRoutes.applySuccess:
+          return MaterialPageRoute(builder: (_) => ApplySuccessful());
 
         default:
           return unDefinedRoute();

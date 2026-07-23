@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:flowery/config/api/app_endpoints.dart';
-import 'package:flowery/modules/auth/data/models/country_model.dart';
+import 'package:flowery/modules/auth/data/models/responses/country_model.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton()
-class LocalClient {
+class CountriesLocalClient {
   static const String countriesFile = AppEndPoints.countries;
 
   Future<List<CountryModel>> getCountries() async {

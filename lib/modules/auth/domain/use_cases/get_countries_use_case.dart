@@ -5,10 +5,10 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class GetCountriesUseCase {
-  final AuthRepoContract repository;
-  GetCountriesUseCase(this.repository);
+  final AuthRepoContract contract;
+  GetCountriesUseCase(this.contract);
 
-  Future<Result<List<CountryEntity>>> getCountries() {
-    return repository.getCountries();
+  Future<Result<List<CountryEntity>>> call() {
+    return contract.getCountries();
   }
 }

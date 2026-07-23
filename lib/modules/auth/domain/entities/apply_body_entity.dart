@@ -2,19 +2,19 @@ import 'package:equatable/equatable.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ApplyBodyEntity extends Equatable {
-  final String firstName;
-  final String lastName;
-  final String email;
-  final String phone;
-  final String password;
-  final String repassword;
-  final String gender;
-  final String country;
-  final String vehicleType;
-  final String vehicleNumber;
-  final XFile vehicleLicense;
-  final String nid;
-  final XFile nidImg;
+  final String? firstName;
+  final String? lastName;
+  final String? email;
+  final String? phone;
+  final String? password;
+  final String? repassword;
+  final String? gender;
+  final String? country;
+  final String? vehicleType;
+  final String? vehicleNumber;
+  final XFile? vehicleLicense;
+  final String? nid;
+  final XFile? nidImg;
 
   const ApplyBodyEntity({
     required this.firstName,
