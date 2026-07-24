@@ -1,3 +1,4 @@
+import 'package:flowery/config/l10n/translations/app_localizations.dart';
 import 'package:flowery/core/theme/app_colors.dart';
 import 'package:flowery/modules/order_tracking/presentation/view_models/cubit/home_view_model.dart';
 import 'package:flowery/modules/order_tracking/presentation/view_models/events/home_event.dart';
@@ -12,10 +13,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Flowery rider',
+          l10n.flowery_rider,
           style: TextStyle(
             color: AppColors.primaryColor,
             fontWeight: FontWeight.bold,
@@ -28,7 +30,7 @@ class HomeScreen extends StatelessWidget {
         listener: (context, state) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(state.acceptErrorMessage!),
+              content: Text(AppLocalizations.of(context)!.accept_order_error),
               backgroundColor: AppColors.redColor,
               behavior: SnackBarBehavior.floating,
             ),
@@ -52,7 +54,7 @@ class HomeScreen extends StatelessWidget {
               if (orders.isEmpty) {
                 return Center(
                   child: Text(
-                    'No orders available',
+                    l10n.no_orders_available,
                     style: TextStyle(fontSize: 14.sp, color: AppColors.grayColor),
                   ),
                 );

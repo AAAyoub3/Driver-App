@@ -236,4 +236,23 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get egp => 'EGP';
+
+  @override
+  String get flowery_rider => 'Flowery rider';
+
+  @override
+  String get no_orders_available => 'No orders available';
+
+  @override
+  String get flower_order => 'Flower order';
+
+  @override
+  String get reject => 'Reject';
+
+  @override
+  String get accept => 'Accept';
+
+  @override
+  String get accept_order_error =>
+      'Sorry, we couldn\'t accept this order. Please try again.';
 }

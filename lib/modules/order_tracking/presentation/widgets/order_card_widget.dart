@@ -1,3 +1,4 @@
+import 'package:flowery/config/l10n/translations/app_localizations.dart';
 import 'package:flowery/core/theme/app_colors.dart';
 import 'package:flowery/modules/order_tracking/domain/entity/home_entity/order_entity.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class OrderCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
@@ -36,7 +38,7 @@ class OrderCardWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Flower order',
+            l10n.flower_order,
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.bold,
@@ -45,7 +47,7 @@ class OrderCardWidget extends StatelessWidget {
           ),
           SizedBox(height: 12.h),
           Text(
-            'Pick up address',
+            l10n.pick_up_address,
             style: TextStyle(fontSize: 12.sp, color: AppColors.grayColor),
           ),
           SizedBox(height: 6.h),
@@ -56,7 +58,7 @@ class OrderCardWidget extends StatelessWidget {
           ),
           SizedBox(height: 12.h),
           Text(
-            'User address',
+            l10n.user_address,
             style: TextStyle(fontSize: 12.sp, color: AppColors.grayColor),
           ),
           SizedBox(height: 6.h),
@@ -69,7 +71,7 @@ class OrderCardWidget extends StatelessWidget {
           Row(
             children: [
               Text(
-                'EGP ${order.totalPrice?.toStringAsFixed(0) ?? '0'}',
+                '${l10n.egp} ${order.totalPrice?.toStringAsFixed(0) ?? '0'}',
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
@@ -78,13 +80,13 @@ class OrderCardWidget extends StatelessWidget {
               ),
               const Spacer(),
               _ActionButton(
-                label: 'Reject',
+                label: l10n.reject,
                 onPressed: onReject,
                 filled: false,
               ),
               SizedBox(width: 8.w),
               _ActionButton(
-                label: 'Accept',
+                label: l10n.accept,
                 onPressed: onAccept,
                 filled: true,
               ),

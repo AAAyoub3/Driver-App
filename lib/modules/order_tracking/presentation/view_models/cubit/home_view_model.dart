@@ -92,7 +92,7 @@ class HomeViewModel extends Cubit<HomeState> {
       case Error<String>():
         emit(state.copyWith(
           isLoading: false,
-          acceptErrorMessage: 'Sorry, we couldn\'t accept this order. Please try again.',
+          acceptErrorMessage: 'accept_order_error',
         ));
     }
   }

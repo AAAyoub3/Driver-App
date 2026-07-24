@@ -72,5 +72,11 @@
   "delivered_to_the_user": "Delivered to the User",
   "status" : "Status",
   "order_id" : "Order ID",
-  "egp" : "EGP"
+  "egp" : "EGP",
+  "flowery_rider": "Flowery rider",
+  "no_orders_available": "No orders available",
+  "flower_order": "Flower order",
+  "reject": "Reject",
+  "accept": "Accept",
+  "accept_order_error": "Sorry, we couldn't accept this order. Please try again."
 }

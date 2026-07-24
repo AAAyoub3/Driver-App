@@ -541,6 +541,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'EGP'**
   String get egp;
+
+  /// No description provided for @flowery_rider.
+  ///
+  /// In en, this message translates to:
+  /// **'Flowery rider'**
+  String get flowery_rider;
+
+  /// No description provided for @no_orders_available.
+  ///
+  /// In en, this message translates to:
+  /// **'No orders available'**
+  String get no_orders_available;
+
+  /// No description provided for @flower_order.
+  ///
+  /// In en, this message translates to:
+  /// **'Flower order'**
+  String get flower_order;
+
+  /// No description provided for @reject.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get reject;
+
+  /// No description provided for @accept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get accept;
+
+  /// No description provided for @accept_order_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, we couldn\'t accept this order. Please try again.'**
+  String get accept_order_error;
 }
 
 class _AppLocalizationsDelegate

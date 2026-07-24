@@ -233,4 +233,23 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get egp => 'جنيه';
+
+  @override
+  String get flowery_rider => 'فلاورى رايدر';
+
+  @override
+  String get no_orders_available => 'لا توجد طلبات متاحة';
+
+  @override
+  String get flower_order => 'طلب زهور';
+
+  @override
+  String get reject => 'رفض';
+
+  @override
+  String get accept => 'قبول';
+
+  @override
+  String get accept_order_error =>
+      'عذراً، لم نتمكن من قبول هذا الطلب. يرجى المحاولة مجدداً.';
 }

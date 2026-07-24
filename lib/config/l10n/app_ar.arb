@@ -72,5 +72,11 @@
   "delivered_to_the_user": "تم التسليم للمستخدم",
   "status" : "الحالة",
   "order_id" : "رقم الطلب",
-  "egp" : "جنيه"
+  "egp" : "جنيه",
+  "flowery_rider": "فلاورى رايدر",
+  "no_orders_available": "لا توجد طلبات متاحة",
+  "flower_order": "طلب زهور",
+  "reject": "رفض",
+  "accept": "قبول",
+  "accept_order_error": "عذراً، لم نتمكن من قبول هذا الطلب. يرجى المحاولة مجدداً."
 }
