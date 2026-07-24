@@ -39,7 +39,10 @@ class _LoginBodyState extends State<LoginBody> {
             onForgetPassword: () {},
           ),
           SizedBox(height: 32.h),
-          LoginContinueButton(loginCubit: widget.loginCubit),
+          LoginContinueButton(
+            loginCubit: widget.loginCubit,
+            rememberMe: _rememberMe,
+          ),
           SizedBox(height: 24.h),
         ],
       ),

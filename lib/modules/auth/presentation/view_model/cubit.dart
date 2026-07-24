@@ -1,5 +1,6 @@
 import 'package:flowery/config/base_response/base_response.dart';
 import 'package:flowery/config/base_state/base_state.dart';
+import 'package:flowery/core/services/secure_storage_service.dart';
 import 'package:flowery/modules/auth/data/models/request/login_request_model.dart';
 import 'package:flowery/modules/auth/domain/entity/login_entity.dart';
 import 'package:flowery/modules/auth/domain/use_case/login_use_case.dart';
@@ -11,9 +12,11 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginStates> {
-  LoginCubit(this._loginUseCase) : super(const LoginStates());
+  LoginCubit(this._loginUseCase, this._secureStorage)
+      : super(const LoginStates());
 
   final LoginUseCase _loginUseCase;
+  final SecureStorageService _secureStorage;
 
   final formKey = GlobalKey<FormState>();
 
@@ -48,6 +51,9 @@ class LoginCubit extends Cubit<LoginStates> {
 
     switch (response) {
       case Success<LoginEntity>():
+        if (event.rememberMe) {
+          await _secureStorage.saveToken(response.data!.token);
+        }
         emit(
           state.copyWith(
             loginState: BaseState.success(response.data!),

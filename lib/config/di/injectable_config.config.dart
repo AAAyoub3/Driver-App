@@ -17,6 +17,7 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
     as _i161;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
+import '../../core/services/secure_storage_service.dart' as _i814;
 import '../../modules/auth/api/api_client/auth_api_client.dart' as _i785;
 import '../../modules/auth/api/data_source/auth_remote_data_source_imp.dart'
     as _i899;
@@ -57,6 +58,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i42.SharedPrefHelper>(
       () => _i42.SharedPrefHelper(gh<_i460.SharedPreferences>()),
     );
+    gh.singleton<_i814.SecureStorageService>(
+      () => _i814.SecureStorageService(gh<_i558.FlutterSecureStorage>()),
+    );
     gh.lazySingleton<_i785.AuthApiClient>(
       () => _i785.AuthApiClient(gh<_i361.Dio>()),
     );
@@ -79,7 +83,10 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i46.LoginUseCase(gh<_i414.LoginRepoContract>()),
     );
     gh.factory<_i1065.LoginCubit>(
-      () => _i1065.LoginCubit(gh<_i46.LoginUseCase>()),
+      () => _i1065.LoginCubit(
+        gh<_i46.LoginUseCase>(),
+        gh<_i814.SecureStorageService>(),
+      ),
     );
     return this;
   }
