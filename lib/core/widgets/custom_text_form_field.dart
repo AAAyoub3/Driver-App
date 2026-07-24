@@ -11,6 +11,8 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final String? Function(String?)? validator;
+  final bool enabled;
+  final Color unenabledColor;
   const CustomTextFormField({
     super.key,
     required this.hintText,
@@ -21,6 +23,8 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.prefixIcon,
     this.validator,
+    this.enabled = true,
+    this.unenabledColor = AppColors.hintGrayColor,
   });
 
   @override
@@ -28,24 +32,28 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       keyboardType: keyboardType,
       obscureText: obscureText,
+      enabled: enabled,
       controller: controller,
       validator: validator,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16.r),
-        ),
+        suffixIcon: suffixIcon,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(16.r)),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.circular(4.r),
           borderSide: BorderSide(color: AppColors.blackColor),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.circular(4.r),
           borderSide: BorderSide(color: AppColors.primaryColor),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.circular(4.r),
           borderSide: BorderSide(color: AppColors.redColor),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(4.r),
+          borderSide: BorderSide(color: unenabledColor),
         ),
         hintText: hintText,
         hintStyle: TextStyle(
