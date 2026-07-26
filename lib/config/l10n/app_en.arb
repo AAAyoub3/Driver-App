@@ -72,11 +72,13 @@
     "reset_password": "Reset password",
    "password_must_not_be_empty": "Password must not be empty and must contain at least 6 characters, one uppercase letter, and one number",
   "enter_your_password": "Enter your password",
-  "new_password": "New password"
+  "new_password": "New password",
+  "remember_me": "Remember me",
+  "continue_btn": "Continue",
   "an_error_occurred": "An error occurred",
   "thank_you":"Thank you!!",
   "the_order_delivered_successfully":"The order delivered successfully",
-  "done":"Done"
+  "done":"Done",
 
   "orders":"Orders"
 }

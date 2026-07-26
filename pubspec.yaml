@@ -50,7 +50,7 @@ dev_dependencies:
   injectable_generator: ^2.12.1
   json_serializable: ^6.13.0
   retrofit_generator: ^10.2.3
-  mocktail: ^1.0.4
+  mockito: ^5.4.4
   bloc_test: ^10.0.0
 
 flutter:

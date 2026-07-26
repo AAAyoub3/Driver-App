@@ -245,5 +245,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get new_password => 'كلمة المرور الجديدة';
+<<<<<<< HEAD
 >>>>>>> cd699916d263e19f52f7251e9270a830906baa2e
+=======
+
+  @override
+  String get remember_me => 'تذكرني';
+
+  @override
+  String get continue_btn => 'متابعة';
+>>>>>>> 6fba0f14c64e3329e3435bb2a84191155af5b37e
 }

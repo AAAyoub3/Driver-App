@@ -18,13 +18,18 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+import '../../core/services/secure_storage_service.dart' as _i814;
+>>>>>>> 6fba0f14c64e3329e3435bb2a84191155af5b37e
 import '../../modules/auth/api/api_client/auth_api_client.dart' as _i785;
 import '../../modules/auth/api/data_source/auth_remote_data_source_imp.dart'
     as _i899;
 import '../../modules/auth/data/data_sources/auth_remote_data_source_contract.dart'
     as _i840;
 import '../../modules/auth/data/repo/auth_repo_imp.dart' as _i540;
+<<<<<<< HEAD
 import '../../modules/auth/domain/repo/auth_repo_contract.dart' as _i758;
 import '../../modules/auth/domain/use_cases/forget_password_use_case.dart'
     as _i726;
@@ -35,6 +40,12 @@ import '../../modules/auth/domain/use_cases/verify_email_use_case.dart'
 import '../../modules/auth/presentation/view_models/cubit/forget_password_view_model.dart'
     as _i1068;
 >>>>>>> cd699916d263e19f52f7251e9270a830906baa2e
+=======
+import '../../modules/auth/domain/repo_contract/login_repo_contract.dart'
+    as _i414;
+import '../../modules/auth/domain/use_case/login_use_case.dart' as _i46;
+import '../../modules/auth/presentation/view_model/cubit.dart' as _i1065;
+>>>>>>> 6fba0f14c64e3329e3435bb2a84191155af5b37e
 import '../api/app_interceptors.dart' as _i781;
 import '../general_cubit/local_cubit.dart' as _i794;
 import '../helpers/shared_pref.dart' as _i42;
@@ -66,7 +77,13 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i42.SharedPrefHelper(gh<_i460.SharedPreferences>()),
     );
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+    gh.singleton<_i814.SecureStorageService>(
+      () => _i814.SecureStorageService(gh<_i558.FlutterSecureStorage>()),
+    );
+>>>>>>> 6fba0f14c64e3329e3435bb2a84191155af5b37e
     gh.lazySingleton<_i785.AuthApiClient>(
       () => _i785.AuthApiClient(gh<_i361.Dio>()),
     );
@@ -85,23 +102,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i840.AuthRemoteDataSourceContract>(
       () => _i899.AuthRemoteDataSourceImp(gh<_i785.AuthApiClient>()),
     );
-    gh.factory<_i758.AuthRepoContract>(
-      () => _i540.AuthRepoImp(gh<_i840.AuthRemoteDataSourceContract>()),
+    gh.factory<_i414.LoginRepoContract>(
+      () => _i540.LoginRepoImpl(gh<_i840.AuthRemoteDataSourceContract>()),
     );
-    gh.factory<_i726.ForgetPasswordUseCase>(
-      () => _i726.ForgetPasswordUseCase(gh<_i758.AuthRepoContract>()),
+    gh.factory<_i46.LoginUseCase>(
+      () => _i46.LoginUseCase(gh<_i414.LoginRepoContract>()),
     );
-    gh.factory<_i858.ResetPasswordUseCase>(
-      () => _i858.ResetPasswordUseCase(gh<_i758.AuthRepoContract>()),
-    );
-    gh.factory<_i664.VerifyEmailUseCase>(
-      () => _i664.VerifyEmailUseCase(gh<_i758.AuthRepoContract>()),
-    );
-    gh.factory<_i1068.ForgetPasswordViewModel>(
-      () => _i1068.ForgetPasswordViewModel(
-        gh<_i726.ForgetPasswordUseCase>(),
-        gh<_i664.VerifyEmailUseCase>(),
-        gh<_i858.ResetPasswordUseCase>(),
+    gh.factory<_i1065.LoginCubit>(
+      () => _i1065.LoginCubit(
+        gh<_i46.LoginUseCase>(),
+        gh<_i814.SecureStorageService>(),
       ),
     );
 >>>>>>> cd699916d263e19f52f7251e9270a830906baa2e

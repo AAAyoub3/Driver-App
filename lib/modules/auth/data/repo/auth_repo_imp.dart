@@ -1,40 +1,36 @@
-import 'package:flowery/config/base_response/base_response.dart';
-import 'package:flowery/modules/auth/data/data_sources/auth_remote_data_source_contract.dart';
-import 'package:flowery/modules/auth/data/models/requestes/forget_password_request.dart';
-import 'package:flowery/modules/auth/data/models/requestes/reset_password_request.dart';
-import 'package:flowery/modules/auth/data/models/requestes/verify_reset_password_request.dart';
-import 'package:flowery/modules/auth/data/models/responses/forget_password_response.dart';
-import 'package:flowery/modules/auth/data/models/responses/reset_password_response.dart';
-import 'package:flowery/modules/auth/data/models/responses/verify_email_response.dart';
-import 'package:flowery/modules/auth/domain/repo/auth_repo_contract.dart';
+
+
 import 'package:injectable/injectable.dart';
 
+import '../../../../config/base_response/base_response.dart';
+import '../../domain/entity/login_entity.dart';
+import '../../domain/repo_contract/login_repo_contract.dart';
+import '../data_sources/auth_remote_data_source_contract.dart';
+import '../models/request/login_request_model.dart';
+import '../models/response/login_response_model.dart';
 
-@Injectable(as: AuthRepoContract)
-class AuthRepoImp implements AuthRepoContract{
-  final AuthRemoteDataSourceContract remoteDataSource;
-  AuthRepoImp(this.remoteDataSource);
+@Injectable(as: LoginRepoContract)
+class LoginRepoImpl implements LoginRepoContract {
+  final AuthRemoteDataSourceContract _remoteDataSource;
 
-   @override
-  Future<Result<ForgetPasswordResponse>> forgetPassword(
-      ForgetPasswordRequest request,
-      ) {
-    return remoteDataSource.forgetPassword(request);
-  }
-
-  @override
-  Future<Result<VerifyEmailResponse>> verifyEmail(VerifyResetPasswordRequest request) async {
-    return await remoteDataSource.verifyEmail(request);
-
-  }
-
+  LoginRepoImpl(this._remoteDataSource);
 
   @override
-  Future<Result<ResetPasswordResponse>> resetPassword(
-      ResetPasswordRequest request,
+  Future<Result<LoginEntity>> login(
+      LoginRequestModel request,
       ) async {
-    return  await remoteDataSource.resetPassword(request);
+    final result = await _remoteDataSource.login(request);
 
+    switch (result) {
+      case Success<LoginResponse>():
+        return Success(
+          data: result.data?.toDomain(),
+        );
+
+      case Error<LoginResponse>():
+        return Error(
+          exception: result.exception,
+        );
+    }
   }
-
 }
