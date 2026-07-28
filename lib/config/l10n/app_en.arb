@@ -128,5 +128,7 @@
   "validationIdNumberRequired": "Please enter your ID number",
   "validationIdImageRequired": "Please upload an ID image",
   "yourApplicationHasBeenSubmitted": "Your application has been submitted",
-  "thankyouForProvidingApplication": "Thank you for providing your application. We will review your application and get back to you soon."
+  "thankyouForProvidingApplication": "Thank you for providing your application. We will review your application and get back to you soon.",
+  "welcome_to" : "Welcome to",
+  "flowery_rider_app" : "Flowery Rider App"
 }

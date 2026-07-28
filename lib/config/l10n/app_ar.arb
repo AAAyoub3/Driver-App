@@ -128,5 +128,7 @@
   "validationIdNumberRequired": "يرجى إدخال رقم الهوية",
   "validationIdImageRequired": "يرجى رفع صورة الهوية",
   "yourApplicationHasBeenSubmitted": "تم إرسال طلبك بنجاح",
-  "thankyouForProvidingApplication": "شكرًا لتقديم طلبك. سنقوم بمراجعته والتواصل معك في أقرب وقت."
+  "thankyouForProvidingApplication": "شكرًا لتقديم طلبك. سنقوم بمراجعته والتواصل معك في أقرب وقت.",
+  "welcome_to" : "مرحبًا بك في",
+  "flowery_rider_app" : "تطبيق Flowery Rider"
 }

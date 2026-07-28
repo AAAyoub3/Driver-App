@@ -4,9 +4,9 @@ import 'package:flowery/modules/auth/presentation/screens/apply_screen.dart';
 import 'package:flowery/modules/auth/presentation/screens/apply_successful.dart';
 import 'package:flowery/modules/auth/presentation/view_model/cubit/apply_cubit.dart';
 import 'package:flowery/modules/auth/presentation/view_model/events/apply_events.dart';
-import 'package:flowery/config/routing/app_routes.dart';
 import 'package:flowery/modules/auth/presentation/screens/email_verification_view.dart';
 import 'package:flowery/modules/auth/presentation/screens/forget_password_view.dart';
+import 'package:flowery/modules/auth/presentation/screens/on_boarding_screen.dart';
 import 'package:flowery/modules/auth/presentation/screens/reset_new_password_view.dart';
 import 'package:flowery/modules/auth/presentation/view_models/cubit/forget_password_view_model.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +29,10 @@ class RouteGenerator {
         case AppRoutes.applySuccess:
           return MaterialPageRoute(builder: (_) => ApplySuccessful());
 
+        case AppRoutes.onBoarding:
+          return MaterialPageRoute(
+            builder: (_) => const OnBoardingScreen(),
+          );
         case AppRoutes.forgetPassword:
       
         return MaterialPageRoute(
