@@ -4,6 +4,7 @@ import 'package:flowery/config/general_cubit/local_cubit.dart';
 import 'package:flowery/config/helpers/bloc/bloc_observer.dart';
 import 'package:flowery/config/l10n/translations/app_localizations.dart';
 import 'package:flowery/config/routing/app_routes.dart';
+import 'package:flowery/config/routing/app_routes.dart';
 import 'package:flowery/config/routing/routing_generator.dart';
 import 'package:flowery/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
