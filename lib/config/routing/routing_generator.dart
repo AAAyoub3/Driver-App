@@ -1,6 +1,9 @@
 import 'package:flowery/config/di/injectable_config.dart';
 import 'package:flowery/config/routing/app_routes.dart';
 import 'package:flowery/modules/profile/presentation/screens/change_password_screen.dart';
+import 'package:flowery/modules/profile/presentation/screens/edit_vehicle_screen.dart';
+import 'package:flowery/modules/profile/presentation/view_models/cubit/change_password_view_model.dart';
+import 'package:flowery/modules/profile/presentation/view_models/cubit/edit_vehicle_view_model.dart';
 import 'package:flowery/modules/profile/presentation/screens/edit_profile_screen.dart';
 import 'package:flowery/modules/profile/presentation/view_models/cubit/change_password_view_model.dart';
 import 'package:flowery/modules/profile/presentation/view_models/cubit/edit_profile_view_model.dart';
@@ -26,6 +29,8 @@ class RouteGenerator {
               child: const ChangePasswordScreen(),
             ),
           );
+        case AppRoutes.editVehicle:
+          // final args = settings.arguments as EditVehicleArgs?;
         case AppRoutes.editProfile:
           
         case AppRoutes.myProfile:
@@ -33,6 +38,14 @@ class RouteGenerator {
             builder: (_) => MultiBlocProvider(
               providers: [
                 BlocProvider(
+                  create: ((context) => getIt<EditVehicleViewModel>()),
+                ),
+              ],
+              child: const EditVehicleScreen(),
+              // child: EditVehicleScreen(
+              //   vehicleType: args?.vehicleType,
+              //   vehicleNumber: args?.vehicleNumber,
+              // ),
                   create: (context) => getIt<EditProfileViewModel>(),
                 ),
                 BlocProvider(

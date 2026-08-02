@@ -67,6 +67,12 @@
   "enter_current_password" : "Enter current password",
   "enter_new_password" : "Enter new password",
   "enter_confirm_password" : "Enter confirm password",
+  "edit_vehicle":"Edit Vehicle",
+  "vehicle_type":"Vehicle type",
+  "vehicle_number":"Vehicle number",
+  "select_vehicle_type":"Select vehicle type",
+  "vehicle_license":"Vehicle license"
+
   "edit_profile":"Edit Profile",
   "first_name": "First Name",
   "last_name":"Last Name",

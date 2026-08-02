@@ -28,6 +28,7 @@ dependencies:
   font_awesome_flutter: ^10.12.0
   get_it: ^9.2.1
   google_fonts: ^8.0.2
+  image_picker: ^1.2.3
   injectable: ^2.7.1+4
   internet_connection_checker_plus: ^2.9.1+2
   json_annotation: ^4.11.0

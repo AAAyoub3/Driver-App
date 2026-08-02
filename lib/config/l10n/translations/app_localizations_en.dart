@@ -220,6 +220,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enter_confirm_password => 'Enter confirm password';
 
   @override
+  String get edit_vehicle => 'Edit Vehicle';
+
+  @override
+  String get vehicle_type => 'Vehicle type';
+
+  @override
+  String get vehicle_number => 'Vehicle number';
+
+  @override
+  String get select_vehicle_type => 'Select vehicle type';
+
+  @override
+  String get vehicle_license => 'Vehicle license';
   String get edit_profile => 'Edit Profile';
 
   @override

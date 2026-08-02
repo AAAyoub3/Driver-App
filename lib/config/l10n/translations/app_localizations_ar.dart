@@ -217,6 +217,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get enter_confirm_password => 'أدخل تأكيد كلمة المرور';
 
   @override
+  String get edit_vehicle => 'تعديل العربه';
+
+  @override
+  String get vehicle_type => 'نوع العربه';
+
+  @override
+  String get vehicle_number => 'رقم العربه';
+
+  @override
+  String get select_vehicle_type => 'اختر نوع العربه';
+
+  @override
+  String get vehicle_license => 'رخصه العربه';
   String get edit_profile => 'تعديل الصفحه';
 
   @override
