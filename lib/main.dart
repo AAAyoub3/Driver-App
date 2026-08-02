@@ -43,6 +43,7 @@ class DriverApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               theme: AppTheme.lightTheme,
               initialRoute: AppRoutes.editVehicle,
+            
             );
           },
         );

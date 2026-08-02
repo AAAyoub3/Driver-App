@@ -233,4 +233,30 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get vehicle_license => 'Vehicle license';
+  String get edit_profile => 'Edit Profile';
+
+  @override
+  String get first_name => 'First Name';
+
+  @override
+  String get last_name => 'Last Name';
+
+  @override
+  String get phone_number => 'Phone Number';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get change => 'Change';
+  String get english => 'English';
+
+  @override
+  String get language => 'Language';
 }

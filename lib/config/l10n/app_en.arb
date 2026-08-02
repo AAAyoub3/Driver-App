@@ -73,4 +73,15 @@
   "select_vehicle_type":"Select vehicle type",
   "vehicle_license":"Vehicle license"
 
+  "edit_profile":"Edit Profile",
+  "first_name": "First Name",
+  "last_name":"Last Name",
+  "phone_number":"Phone Number",
+  "male":"Male",
+  "female":"Female",
+  "gender":"Gender",
+  "change":"Change"
+  
+  "english":"English",
+  "language":"Language"
 }

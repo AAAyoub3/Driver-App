@@ -72,4 +72,15 @@
   "vehicle_number":"رقم العربه",
   "select_vehicle_type":"اختر نوع العربه",
   "vehicle_license":"رخصه العربه"
+  "edit_profile":"تعديل الصفحه",
+   "first_name": "الإسم الأول",
+  "last_name":"الإسم الأخير",
+  "phone_number":"رقم التليفون",
+  "male":"رجل",
+  "female":"انثي",
+  "gender":"الجنس",
+  "change":"تغيير"
+
+  "english":"انجليزي",
+  "language":"اللغه"
 }

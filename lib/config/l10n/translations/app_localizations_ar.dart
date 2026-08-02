@@ -230,4 +230,30 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get vehicle_license => 'رخصه العربه';
+  String get edit_profile => 'تعديل الصفحه';
+
+  @override
+  String get first_name => 'الإسم الأول';
+
+  @override
+  String get last_name => 'الإسم الأخير';
+
+  @override
+  String get phone_number => 'رقم التليفون';
+
+  @override
+  String get male => 'رجل';
+
+  @override
+  String get female => 'انثي';
+
+  @override
+  String get gender => 'الجنس';
+
+  @override
+  String get change => 'تغيير';
+  String get english => 'انجليزي';
+
+  @override
+  String get language => 'اللغه';
 }

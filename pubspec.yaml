@@ -10,6 +10,7 @@ environment:
 dependencies:
   bloc_test: ^10.0.0
   cached_network_image: ^3.4.1
+  image_picker: ^1.2.3
   camera: ^0.12.0+1
   cupertino_icons: ^1.0.8
   dio: ^5.9.2
@@ -50,6 +51,7 @@ dev_dependencies:
     sdk: flutter
   injectable_generator: ^2.12.1
   json_serializable: ^6.13.0
+  network_image_mock: ^2.1.1
   retrofit_generator: ^10.2.3
 
 flutter:

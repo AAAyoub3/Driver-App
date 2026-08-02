@@ -7,7 +7,6 @@ abstract class AppConstants {
   static const String userRole = 'userRole';
   static const String userName = 'userName';
   static const String userEmail = 'userEmail';
-  
 
   // 🔹 Localization Keys
   static const String languageCode = 'languageCode';
@@ -27,4 +26,5 @@ abstract class AppConstants {
   static const String securityRolesContentKey = "security_roles_config";
   static const String photoNumber = "Photo_12345678";
 
+  static const String pass_stars = "******";
 }
