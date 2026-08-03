@@ -11,6 +11,3 @@ class LoginEvent extends LoginEvents {
     this.rememberMe = false,
   });
 }
-
-class NavigateToRegisterEvent extends LoginEvents {}
-

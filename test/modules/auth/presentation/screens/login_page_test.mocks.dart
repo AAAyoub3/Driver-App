@@ -6,7 +6,6 @@
 import 'dart:async' as _i3;
 
 import 'package:flowery/config/base_response/base_response.dart' as _i4;
-import 'package:flowery/core/services/secure_storage_service.dart' as _i8;
 import 'package:flowery/modules/auth/data/models/request/login_request_model.dart'
     as _i6;
 import 'package:flowery/modules/auth/domain/entity/login_entity.dart' as _i5;
@@ -40,52 +39,17 @@ class MockLoginRepoContract extends _i1.Mock implements _i2.LoginRepoContract {
 
   @override
   _i3.Future<_i4.Result<_i5.LoginEntity>> login(
-    _i6.LoginRequestModel? request,
-  ) =>
+    _i6.LoginRequestModel? request, {
+    required bool? rememberMe,
+  }) =>
       (super.noSuchMethod(
-            Invocation.method(#login, [request]),
+            Invocation.method(#login, [request], {#rememberMe: rememberMe}),
             returnValue: _i3.Future<_i4.Result<_i5.LoginEntity>>.value(
               _i7.dummyValue<_i4.Result<_i5.LoginEntity>>(
                 this,
-                Invocation.method(#login, [request]),
+                Invocation.method(#login, [request], {#rememberMe: rememberMe}),
               ),
             ),
           )
           as _i3.Future<_i4.Result<_i5.LoginEntity>>);
-}
-
-/// A class which mocks [SecureStorageService].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockSecureStorageService extends _i1.Mock
-    implements _i8.SecureStorageService {
-  MockSecureStorageService() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i3.Future<void> saveToken(String? token) =>
-      (super.noSuchMethod(
-            Invocation.method(#saveToken, [token]),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
-
-  @override
-  _i3.Future<String?> getToken() =>
-      (super.noSuchMethod(
-            Invocation.method(#getToken, []),
-            returnValue: _i3.Future<String?>.value(),
-          )
-          as _i3.Future<String?>);
-
-  @override
-  _i3.Future<void> deleteToken() =>
-      (super.noSuchMethod(
-            Invocation.method(#deleteToken, []),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
 }

@@ -11,23 +11,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class LoginContinueButton extends StatelessWidget {
   const LoginContinueButton({
     super.key,
-    required this.loginCubit,
+    required this.formKey,
+    required this.emailController,
+    required this.passwordController,
     required this.rememberMe,
   });
 
-  final LoginCubit loginCubit;
+  final GlobalKey<FormState> formKey;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
   final bool rememberMe;
 
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: Listenable.merge([
-        loginCubit.emailController,
-        loginCubit.passwordController,
-      ]),
+      animation: Listenable.merge([emailController, passwordController]),
       builder: (context, _) {
-        final hasContent = loginCubit.emailController.text.isNotEmpty &&
-            loginCubit.passwordController.text.isNotEmpty;
+        final hasContent = emailController.text.isNotEmpty &&
+            passwordController.text.isNotEmpty;
 
         return BlocBuilder<LoginCubit, LoginStates>(
           builder: (context, state) {
@@ -51,14 +52,14 @@ class LoginContinueButton extends StatelessWidget {
                 onPressed: (isLoading || !hasContent)
                     ? null
                     : () {
-                        if (loginCubit.formKey.currentState!.validate()) {
-                          loginCubit.doEvent(
-                            LoginEvent(
-                              email: loginCubit.emailController.text.trim(),
-                              password: loginCubit.passwordController.text,
-                              rememberMe: rememberMe,
-                            ),
-                          );
+                        if (formKey.currentState!.validate()) {
+                          context.read<LoginCubit>().doEvent(
+                                LoginEvent(
+                                  email: emailController.text.trim(),
+                                  password: passwordController.text,
+                                  rememberMe: rememberMe,
+                                ),
+                              );
                         }
                       },
                 child: isLoading

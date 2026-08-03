@@ -15,63 +15,58 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<LoginCubit>(
       create: (_) => getIt<LoginCubit>(),
-      child: Builder(
-        builder: (context) {
-          final loginCubit = context.read<LoginCubit>();
-          return BlocListener<LoginCubit, LoginStates>(
-            listener: (context, state) {
-              state.loginState.when(
-                initial: () {},
-                loading: () {},
-                success: (data) {
-                  // TODO: navigate to home
-                },
-                error: (exception) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(exception.toString()),
-                      backgroundColor: AppColors.redColor,
-                      behavior: SnackBarBehavior.floating,
-                    ),
-                  );
-                },
+      child: BlocListener<LoginCubit, LoginStates>(
+        listener: (context, state) {
+          state.loginState.when(
+            initial: () {},
+            loading: () {},
+            success: (data) {
+              // TODO: navigate to home
+            },
+            error: (exception) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(exception.toString()),
+                  backgroundColor: AppColors.redColor,
+                  behavior: SnackBarBehavior.floating,
+                ),
               );
             },
-            child: Scaffold(
-              backgroundColor: AppColors.whiteColor,
-              appBar: AppBar(
-                backgroundColor: AppColors.whiteColor,
-                elevation: 0,
-                scrolledUnderElevation: 0,
-                leading: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back_ios,
-                    color: AppColors.blackColor,
-                    size: 20.sp,
-                  ),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-                titleSpacing: 0,
-                title: Text(
-                  AppLocalizations.of(context)!.login,
-                  style: TextStyle(
-                    color: AppColors.blackColor,
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-              body: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
-                  child: SingleChildScrollView(
-                    child: LoginBody(loginCubit: loginCubit),
-                  ),
-                ),
-              ),
-            ),
           );
         },
+        child: Scaffold(
+          backgroundColor: AppColors.whiteColor,
+          appBar: AppBar(
+            backgroundColor: AppColors.whiteColor,
+            elevation: 0,
+            scrolledUnderElevation: 0,
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: AppColors.blackColor,
+                size: 20.sp,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            titleSpacing: 0,
+            title: Text(
+              AppLocalizations.of(context)!.login,
+              style: TextStyle(
+                color: AppColors.blackColor,
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          body: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              child: SingleChildScrollView(
+                child: const LoginBody(),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

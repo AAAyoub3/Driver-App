@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flowery/config/base_response/base_response.dart';
 import 'package:flowery/config/l10n/translations/app_localizations.dart';
-import 'package:flowery/core/services/secure_storage_service.dart';
 import 'package:flowery/modules/auth/domain/entity/login_entity.dart';
 import 'package:flowery/modules/auth/domain/repo_contract/login_repo_contract.dart';
 import 'package:flowery/modules/auth/domain/use_case/login_use_case.dart';
@@ -17,10 +16,9 @@ import 'package:mockito/mockito.dart';
 
 import 'login_page_test.mocks.dart';
 
-@GenerateMocks([LoginRepoContract, SecureStorageService])
+@GenerateMocks([LoginRepoContract])
 void main() {
   late MockLoginRepoContract mockRepo;
-  late MockSecureStorageService mockStorage;
   late LoginCubit cubit;
 
   setUpAll(() {
@@ -29,8 +27,7 @@ void main() {
 
   setUp(() {
     mockRepo = MockLoginRepoContract();
-    mockStorage = MockSecureStorageService();
-    cubit = LoginCubit(LoginUseCase(mockRepo), mockStorage);
+    cubit = LoginCubit(LoginUseCase(mockRepo));
   });
 
   tearDown(() => cubit.close());
@@ -52,9 +49,9 @@ void main() {
           supportedLocales: AppLocalizations.supportedLocales,
           home: BlocProvider<LoginCubit>.value(
             value: cubit,
-            child: Scaffold(
+            child: const Scaffold(
               body: SingleChildScrollView(
-                child: LoginBody(loginCubit: cubit),
+                child: LoginBody(),
               ),
             ),
           ),
@@ -63,9 +60,6 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    // The Ahem test font makes each character exactly (fontSize)px wide,
-    // which causes overflow in LoginRememberMeRow on the 375px test surface.
-    // This overflow doesn't happen on real devices with normal fonts.
     final exception = tester.takeException();
     if (exception != null) {
       final message = exception.toString();
@@ -141,7 +135,8 @@ void main() {
     testWidgets('shows loading indicator while waiting for response',
         (tester) async {
       final completer = Completer<Result<LoginEntity>>();
-      when(mockRepo.login(any)).thenAnswer((_) => completer.future);
+      when(mockRepo.login(any, rememberMe: anyNamed('rememberMe')))
+          .thenAnswer((_) => completer.future);
 
       await pumpLoginBody(tester);
 
@@ -157,49 +152,6 @@ void main() {
       completer.complete(
           const Success(data: LoginEntity(message: '', token: '')));
       await tester.pumpAndSettle();
-    });
-
-    testWidgets('saves token when remember me is checked and login succeeds',
-        (tester) async {
-      when(mockRepo.login(any)).thenAnswer(
-        (_) async =>
-            const Success(data: LoginEntity(message: 'ok', token: 'token123')),
-      );
-      when(mockStorage.saveToken(any)).thenAnswer((_) async {});
-
-      await pumpLoginBody(tester);
-
-      await tester.tap(find.byType(Checkbox));
-      await tester.pump();
-
-      await tester.enterText(find.byType(TextFormField).first, 'test@test.com');
-      await tester.enterText(find.byType(TextFormField).last, 'Test@1234!');
-      await tester.pump();
-
-      await tester.tap(find.byType(ElevatedButton));
-      await tester.pumpAndSettle();
-
-      verify(mockStorage.saveToken('token123')).called(1);
-    });
-
-    testWidgets(
-        'does not save token when remember me is unchecked and login succeeds',
-        (tester) async {
-      when(mockRepo.login(any)).thenAnswer(
-        (_) async =>
-            const Success(data: LoginEntity(message: 'ok', token: 'token123')),
-      );
-
-      await pumpLoginBody(tester);
-
-      await tester.enterText(find.byType(TextFormField).first, 'test@test.com');
-      await tester.enterText(find.byType(TextFormField).last, 'Test@1234!');
-      await tester.pump();
-
-      await tester.tap(find.byType(ElevatedButton));
-      await tester.pumpAndSettle();
-
-      verifyNever(mockStorage.saveToken(any));
     });
   });
 }

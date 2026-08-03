@@ -1,5 +1,4 @@
-
-
+import 'package:flowery/core/services/secure_storage_service.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../config/base_response/base_response.dart';
@@ -12,25 +11,26 @@ import '../models/response/login_response_model.dart';
 @Injectable(as: LoginRepoContract)
 class LoginRepoImpl implements LoginRepoContract {
   final AuthRemoteDataSourceContract _remoteDataSource;
+  final SecureStorageService _secureStorage;
 
-  LoginRepoImpl(this._remoteDataSource);
+  LoginRepoImpl(this._remoteDataSource, this._secureStorage);
 
   @override
   Future<Result<LoginEntity>> login(
-      LoginRequestModel request,
-      ) async {
+    LoginRequestModel request, {
+    required bool rememberMe,
+  }) async {
     final result = await _remoteDataSource.login(request);
 
     switch (result) {
       case Success<LoginResponse>():
-        return Success(
-          data: result.data?.toDomain(),
-        );
+        if (rememberMe && result.data?.token != null) {
+          await _secureStorage.saveToken(result.data!.token!);
+        }
+        return Success(data: result.data?.toDomain());
 
       case Error<LoginResponse>():
-        return Error(
-          exception: result.exception,
-        );
+        return Error(exception: result.exception);
     }
   }
 }

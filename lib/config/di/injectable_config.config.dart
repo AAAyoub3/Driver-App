@@ -77,16 +77,16 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i899.AuthRemoteDataSourceImp(gh<_i785.AuthApiClient>()),
     );
     gh.factory<_i414.LoginRepoContract>(
-      () => _i540.LoginRepoImpl(gh<_i840.AuthRemoteDataSourceContract>()),
+      () => _i540.LoginRepoImpl(
+        gh<_i840.AuthRemoteDataSourceContract>(),
+        gh<_i814.SecureStorageService>(),
+      ),
     );
     gh.factory<_i46.LoginUseCase>(
       () => _i46.LoginUseCase(gh<_i414.LoginRepoContract>()),
     );
     gh.factory<_i1065.LoginCubit>(
-      () => _i1065.LoginCubit(
-        gh<_i46.LoginUseCase>(),
-        gh<_i814.SecureStorageService>(),
-      ),
+      () => _i1065.LoginCubit(gh<_i46.LoginUseCase>()),
     );
     return this;
   }

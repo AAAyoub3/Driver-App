@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:flowery/config/base_state/base_state.dart';
 import 'package:flowery/modules/auth/domain/entity/login_entity.dart';
 
-class LoginStates {
+class LoginStates extends Equatable {
   final BaseState<LoginEntity> loginState;
 
   const LoginStates({
@@ -15,4 +16,7 @@ class LoginStates {
       loginState: loginState ?? this.loginState,
     );
   }
+
+  @override
+  List<Object?> get props => [loginState];
 }

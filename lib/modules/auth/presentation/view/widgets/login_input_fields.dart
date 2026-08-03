@@ -1,3 +1,4 @@
+import 'package:flowery/config/helpers/validation_error_mapper.dart';
 import 'package:flowery/config/helpers/validators.dart';
 import 'package:flowery/config/l10n/translations/app_localizations.dart';
 import 'package:flowery/core/theme/app_colors.dart';
@@ -18,13 +19,8 @@ class LoginEmailField extends StatelessWidget {
       hintText: l10n.enter_your_email,
       controller: controller,
       keyboardType: TextInputType.emailAddress,
-      validator: (value) {
-        final error = Validations.validateEmail(value);
-        return switch (error) {
-          ValidationError.invalidEmail => l10n.email_is_not_valid,
-          _ => null,
-        };
-      },
+      validator: (value) =>
+          Validations.validateEmail(value)?.toMessage(l10n),
     );
   }
 }
@@ -49,13 +45,8 @@ class LoginPasswordField extends StatelessWidget {
       hintText: l10n.enter_your_password,
       controller: controller,
       obscureText: isObscure,
-      validator: (value) {
-        final error = Validations.validatePassword(value);
-        return switch (error) {
-          ValidationError.invalidPassword => l10n.password_is_not_valid,
-          _ => null,
-        };
-      },
+      validator: (value) =>
+          Validations.validatePassword(value)?.toMessage(l10n),
       suffixIcon: IconButton(
         onPressed: onToggle,
         icon: Icon(

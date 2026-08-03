@@ -1,4 +1,3 @@
-
 import 'package:injectable/injectable.dart';
 
 import '../../../../config/base_response/base_response.dart';
@@ -13,8 +12,9 @@ class LoginUseCase {
   LoginUseCase(this._loginRepo);
 
   Future<Result<LoginEntity>> call(
-      LoginRequestModel request,
-      ) {
-    return _loginRepo.login(request);
+    LoginRequestModel request, {
+    required bool rememberMe,
+  }) {
+    return _loginRepo.login(request, rememberMe: rememberMe);
   }
 }
