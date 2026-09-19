@@ -1,4 +1,4 @@
-<img width="5178" height="3611" alt="flowery" src="https://github.com/user-attachments/assets/78c5d1c3-ae8c-4692-879a-e4b3c341d9d2" /># 🌸 Flowery App
+# 🌸 Flowery App
 
 A Flutter-based e-commerce application for browsing products, managing a shopping cart, authentication, and tracking orders.
 
