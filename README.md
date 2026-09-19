@@ -1,36 +1,35 @@
-# 🌸 Flowery App
+# 🚚 Flowery Driver App
 
-A Flutter-based e-commerce application for browsing products, managing a shopping cart, authentication, and tracking orders.
+A Flutter-based driver application designed to manage delivery orders, track locations, and keep drivers updated throughout the delivery process.
 
 ## 📱 Overview
 
-**Flowery App** is a cross-platform mobile e-commerce application built with **Flutter and Dart**. The application provides a complete shopping experience, from user authentication and product browsing to cart management and order tracking.
+**Flowery Driver App** is a cross-platform mobile application built with **Flutter and Dart** for delivery drivers. It provides drivers with the tools needed to receive and manage orders, track deliveries using maps, update order statuses, and receive real-time notifications.
 
 ## ✨ Features
 
-- 🔐 **User Authentication**
-  - User registration and login
-  - Secure authentication flow
+- 📦 **Order Management**
+  - View available delivery orders
+  - Accept and manage assigned orders
+  - Keep track of active deliveries
 
-- 🛍️ **Product Management**
-  - Browse available products
-  - View product information
-  - Manage products through backend integration
+- 🗺️ **Map & Location Tracking**
+  - View delivery locations on the map
+  - Track delivery routes
+  - Navigate between delivery points
 
-- 🛒 **Shopping Cart**
-  - Add products to cart
-  - Manage cart items
-  - Review selected products before ordering
+- 🔄 **Order Status Management**
+  - Update order status throughout the delivery process
+  - Keep customers informed about delivery progress
 
-- 📦 **Order Tracking**
-  - Place orders
-  - Track order status
-  - Follow the order through the delivery process
+- 🔥 **Firebase Integration**
+  - Backend services
+  - Real-time data synchronization
+  - Notification support
 
-- 🔌 **Backend Integration**
-  - REST API integration
-  - Communication with the application backend
-  - Remote data management
+- 🔔 **Delivery Notifications**
+  - Receive updates about orders
+  - Get notified about relevant order-status changes
 
 ## 🛠️ Tech Stack
 
@@ -43,46 +42,45 @@ A Flutter-based e-commerce application for browsing products, managing a shoppin
 - **Dio**
 - **Dependency Injection**
 - **Firebase**
+- **Google Maps**
 
 ## 🏗️ Architecture
 
-The application follows a structured and maintainable architecture using:
+The application follows a structured architecture designed to separate presentation, business logic, domain, and data responsibilities.
 
-```text
+```text id="k2x6v1"
 Presentation
-    ↓
+      ↓
 Business Logic
-    ↓
+      ↓
 Domain
-    ↓
+      ↓
 Data
-    ↓
-Remote API / Backend
+      ↓
+REST API / Firebase
 ```
 
-This separation helps keep the application scalable, testable, and easier to maintain.
+This structure helps keep the application maintainable and allows individual features to be developed and tested independently.
 
-## 🔄 Application Flow
+## 🔄 Delivery Flow
 
-```text
-Authentication
+```text id="4z0qca"
+Receive Order
       ↓
-Browse Products
+Review Order
       ↓
-View Product Details
+Accept Order
       ↓
-Add to Cart
+Navigate to Delivery Location
       ↓
-Review Cart
+Update Order Status
       ↓
-Place Order
-      ↓
-Track Order
+Complete Delivery
 ```
 
 ## 📂 Project Structure
 
-```text
+```text id="9c7m2e"
 lib/
 ├── core/
 │   ├── constants/
@@ -121,41 +119,59 @@ Make sure you have the following installed:
 
 Clone the repository:
 
-```bash
+```bash id="3r7h2p"
 git clone <YOUR_REPOSITORY_URL>
 ```
 
 Navigate to the project:
 
-```bash
-cd flowery-app
+```bash id="w8k4q1"
+cd driver-app
 ```
 
 Install dependencies:
 
-```bash
+```bash id="q5m1fz"
 flutter pub get
 ```
 
 Run the application:
 
-```bash
+```bash id="u2n8jc"
 flutter run
 ```
 
-## 🔗 Backend
+## 🔥 Backend & Services
 
-The application communicates with a backend through REST APIs for operations such as authentication, product management, and order processing.
+The application uses backend services to manage delivery orders, synchronize order information, and provide notifications to drivers.
+
+Firebase is also used as part of the application's backend and notification infrastructure.
+
+## 🗺️ Maps & Delivery Tracking
+
+The driver application integrates **Google Maps** to provide location-based functionality for delivery operations.
+
+Drivers can use the map to:
+
+- View delivery locations
+- Track destinations
+- Manage delivery routes
+- Follow the delivery process
+
+## 🔔 Notifications
+
+The application provides notifications related to order updates, helping drivers stay informed about changes to their assigned deliveries.
 
 ## 📸 Screenshots
 
-<img width="5178" height="3611" alt="flowery" src="https://github.com/user-attachments/assets/af8bf2ae-be80-46c9-9c0f-c64b8b0499e6" />
+<img width="5178" height="3611" alt="driver" src="https://github.com/user-attachments/assets/ddf11ec8-fc95-473a-9ef9-510a1d03575c" />
 
 - Flutter & Dart
 - Clean Architecture
 - BLoC / Cubit
 - REST APIs
 - Firebase
+- Google Maps
 - Mobile Application Development
 
 ---
